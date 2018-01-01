@@ -1,0 +1,266 @@
+unit IU_ProgressBar;
+
+{$mode objfpc}{$H+}
+// ***
+// * Unit defining Progress bar object
+// * Creation date : 2017 November
+// *
+// * Version : 0.1
+// * Version Date : 2017 November
+// * Version contributors : Pascal Lemaître
+// *
+// * @authors : Pascal Lemaître
+// *
+// * @see :
+// *
+// * Team : TIm (Traitement d'IMages)
+// *
+// * 2017
+// ***
+
+interface
+
+uses
+  Classes, SysUtils, Forms, ExtCtrls, Graphics, StdCtrls;
+
+const
+  K_IU_PB_TopShapePos = 10; // Y position of the line of shapes from the top of parent's form
+  K_IU_PB_TopTextPos = 8 ; // Y position of the percent indicator text
+  K_IU_PB_ShapeHeight = 10; // Height of shape
+  K_IU_PB_TextHeight = 14 ; // Height of the text
+  K_IU_PB_MinShapeWidth = 20 ; // Minimal width size for a shape
+  K_IU_PB_WidthMarging = 10; // marging to right and left border
+  K_IU_Space = 2 ; // space between shapes
+  K_IU_TextSep = 5 ; // separation between percent text indicator and first shape
+
+type
+  T_IU_Progress_Line = record
+    _picto : array [1..20] of TShape ;
+    _caption : TLabel;
+  end;
+
+  // ***
+  // * Personnal progress bar object
+  // *
+  // * @author : Pascal Lemaître
+  // *
+  // * This is to show a work progression.
+  // * Aspect under various versions of OS or Linux is diferent.
+  // * It is necessary to define own progress bar if we want to have the same aspect on
+  // * all targets systems
+  // *
+  // ***
+  T_IU_ProgressBar = class(TObject)
+    private
+      _percent : integer;
+    public
+      _progressLine : T_IU_Progress_Line;
+
+      procedure _init;
+      procedure _draw;
+      procedure _setPercent(_in_percent : integer) ;
+      procedure _resize (var form : TForm);
+      constructor Create (var Form : TForm);
+      destructor Release;
+  end;
+
+  var
+      K_IU_PB_DefaultBG : TColor ; // default color when shape is not activated
+      K_IU_PB_ActivateBG : TColor ; // activated color of the shape
+      K_IU_PB_DistantEndBG : TColor ; // activated color when end is always distant
+      K_IU_PB_NearEndBG : TColor ; // activated color when end is near
+      K_IU_PB_EndBG : TColor ; // acivated color when end
+      K_IU_PB_TextColor : TColor ; // Color of text
+
+implementation
+
+// ***
+// * Personnal progress bar object constructor
+// *
+// * @author : Pascal Lemaître
+// *
+// * This constructor creat the object and add it to a form and init all values
+// *
+// * in out : the form which contains the progress bar
+// *
+// ***
+constructor T_IU_ProgressBar.Create (var Form : TForm);
+var i : integer;
+  _textsize, _startTextPos, _shapesize, _startShapePos : integer;
+begin
+  // Defining the width of each shape
+  // There are 20 shapes
+  // each must be separated by some pixels
+  // The size of the text should be enought to write 100% without recovering the first shape
+  // 1- text size
+  // 4 digits of 12 pixels width + K_IU_Space of separation
+  _textsize := 4 * 14 ;
+  // 2- Shape size
+  // 20 shapes
+  // 10 pixels of marging to the left and the right of the form
+  // 5 pixels between each shapes
+  _shapesize := trunc((Form.Width - _textsize - K_IU_PB_WidthMarging * 2 - K_IU_Space * 20) / 20);
+  // Test if it is smaller than the minimal width
+  if _shapesize < K_IU_PB_MinShapeWidth + 2 then _shapesize := K_IU_PB_MinShapeWidth ;
+  // Definig the first shape position from the left border of the form
+  _startShapePos := Form.width - ((_shapesize + K_IU_Space) * 20) - K_IU_PB_WidthMarging + K_IU_TextSep ;
+  // Defining text position from the left border of the form
+  _startTextPos := 10;
+  // testing if is a covering between text and shapes (then width of the form is to small)
+  // in this case, first shape position start after the text and 2 pixels of separation
+  if _startTextPos + _textSize + 2 > _startShapePos then _StartShapePos := _startTextPos + _textSize + 3;
+  // Loop of objects creation
+  for i := 1 to 20 do begin
+    // 1- Shape creation
+    _progressLine._picto[i]:= TShape.Create(form);
+    _progressLine._picto[i].Parent := form;
+    // 2- Defining the default color of the shape
+    _progressLine._picto[i].Brush.Color:=K_IU_PB_DefaultBG;
+    // 3- Setting position of the shape in the form
+    _progressLine._picto[i].Left:=_startShapePos;
+    _progressLine._picto[i].Top:= K_IU_PB_TopShapePos;
+    // 4- inc the pos for the next shape
+    _startShapePos := _startShapePos + _shapesize + K_IU_Space;
+    // 6- set size of the shape
+    _progressLine._picto[i].Height:= K_IU_PB_ShapeHeight;
+    _progressLine._picto[i].Width:= _shapesize;
+    // 7- set visible propertie to true
+    _progressLine._picto[i].Visible:=true;
+  end;
+  // Define text size and position
+  _progressLine._caption := TLabel.Create(form);
+  _progressLine._caption.Parent := form;
+  _progressLine._caption.Height := K_IU_PB_TextHeight;
+  _progressLine._caption.Font.Color:=K_IU_PB_TextColor;
+  _progressLine._caption.Font.Size:=10;
+  _progressLine._Caption.Font.Bold := true;
+  _progressLine._caption.AutoSize:=false;
+  _progressLine._caption.Width:=_textsize;
+  _progressLine._caption.Alignment:= taRightJustify;
+  _progressLine._Caption.Top := K_IU_PB_TopTextPos;
+  _progressLine._Caption.Left := K_IU_PB_WidthMarging;
+  _progressLine._caption.Visible:=true;
+  _progressLine._caption.Caption:='0%';
+end;
+
+// ***
+// * Personnal progress bar object resize
+// *
+// * @author : Pascal Lemaître
+// *
+// * This procedure resize the progress bar accoring to form in parameter
+// *
+// ***
+procedure T_IU_ProgressBar._resize (var Form : TForm);
+var i : integer;
+  _textsize, _startTextPos, _shapesize, _startShapePos : integer;
+begin
+  // Defining the width of each shape
+  // There are 20 shapes
+  // each must be separated by some pixels
+  // The size of the text should be enought to write 100% without recovering the first shape
+  // 1- text size
+  // 4 digits of 12 pixels width + K_IU_Space of separation
+  _textsize := 4 * 14 ;
+  // 2- Shape size
+  // 20 shapes
+  // 10 pixels of marging to the left and the right of the form
+  // 5 pixels between each shapes
+  _shapesize := trunc((Form.Width - _textsize - K_IU_PB_WidthMarging * 2 - K_IU_Space * 20) / 20);
+  // Test if it is smaller than the minimal width
+  if _shapesize < K_IU_PB_MinShapeWidth + 2 then _shapesize := K_IU_PB_MinShapeWidth ;
+  // Definig the first shape position from the left border of the form
+  _startShapePos := Form.width - ((_shapesize + K_IU_Space) * 20) - K_IU_PB_WidthMarging + K_IU_TextSep ;
+  // Defining text position from the left border of the form
+  _startTextPos := 10;
+  // testing if is a covering between text and shapes (then width of the form is to small)
+  // in this case, first shape position start after the text and 2 pixels of separation
+  if _startTextPos + _textSize + 2 > _startShapePos then _StartShapePos := _startTextPos + _textSize + 3;
+  // Loop of objects creation
+  for i := 1 to 20 do begin
+    // 1- Setting position of the shape in the form
+    _progressLine._picto[i].Left:=_startShapePos;
+    _progressLine._picto[i].Top:= K_IU_PB_TopShapePos;
+    // 2- inc the pos for the next shape
+    _startShapePos := _startShapePos + _shapesize + K_IU_Space;
+    // 3- set size of the shape
+    _progressLine._picto[i].Height:= K_IU_PB_ShapeHeight;
+    _progressLine._picto[i].Width:= _shapesize;
+    // 4- set visible propertie to true
+    _progressLine._picto[i].Visible:=true;
+  end;
+  // Define text size and position
+  _progressLine._Caption.Left := K_IU_PB_WidthMarging;
+end;
+
+
+// ***
+// * Personnal progress bar object init method
+// *
+// * @author : Pascal Lemaître
+// *
+// * This method init progress bar to 0 (nothing is done)
+// *
+// ***
+procedure T_IU_ProgressBar._init;
+begin
+  self._percent :=0;
+  self._draw;
+end ;
+
+// ***
+// * Personnal progress bar object draw method
+// *
+// * @author : Pascal Lemaître
+// *
+// * This method draw the progress bar. Hilight the progress indicators and write the percent
+// *
+// ***
+procedure T_IU_ProgressBar._draw;
+var i : integer ;
+begin
+  for i := 1 to 20 do begin
+    if i * 5 <= self._percent then
+      if i < 18 then
+        self._progressLine._picto[i].Brush.Color:=K_IU_PB_ActivateBG
+      else if i < 19 then
+        self._progressLine._picto[i].Brush.Color:=K_IU_PB_DistantEndBG
+        else if i < 20 then
+          self._progressLine._picto[i].Brush.Color:=K_IU_PB_NearEndBG
+        else
+            self._progressLine._picto[i].Brush.Color:=K_IU_PB_EndBG
+    else
+      self._progressLine._picto[i].Brush.Color:=K_IU_PB_DefaultBG
+  end;
+  self._progressLine._caption.Caption:=inttostr(self._percent)+'%';
+  Application.ProcessMessages;
+end ;
+
+// ***
+// * Personnal progress bar object draw method
+// *
+// * @author : Pascal Lemaître
+// *
+// * This method set the percent value. Percent must be in [0..100]
+// *
+// ***
+procedure T_IU_ProgressBar._setPercent(_in_percent : integer) ;
+begin
+  self._percent := _in_percent;
+end ;
+
+
+destructor T_IU_ProgressBar.Release;
+begin
+  inherited;
+end;
+
+begin
+      K_IU_PB_DefaultBG := rgbtocolor($44,$44,$44); // default color when shape is not activated
+      K_IU_PB_ActivateBG := rgbtocolor($55,$55,$55); // activated color of the shape
+      K_IU_PB_DistantEndBG := rgbtocolor($44,$60,$44); // activated color when end is near
+      K_IU_PB_NearEndBG := rgbtocolor($22,$99,$22); // activated color when end is near
+      K_IU_PB_EndBG := rgbtocolor($11,$CC,$11) ; // acivated color when end
+      K_IU_PB_TextColor := rgbtocolor($70,$70,$70); // Color of text
+end.
+

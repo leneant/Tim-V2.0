@@ -1,0 +1,165 @@
+=== Pixel types and functions ===
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3">''PBGRAPixel'' = ^TBGRAPixel;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Pointer for direct pixel access. Data is stored as a sequence of ''TBGRAPixel''. See [[BGRABitmap tutorial 4]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Each pixel is a sequence of 4 bytes containing blue, green, red and alpha channel. Values range from 0 to 255, color is in sRGB colorspace. The alpha value of 0 is transparent and 255 is opaque. In the bitmap data, when the pixel is fully transparent, the RGB values are supposed to be set to zero.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' BGRA(red, green, blue, alpha: byte): TBGRAPixel; '''overload'''; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates a pixel with given RGBA values</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' BGRA(red, green, blue: byte): TBGRAPixel; '''overload'''; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates a opaque pixel with given RGB values</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''operator''' = ('''const''' c1, c2: TBGRAPixel): boolean; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Checks if two pixels are equal. If they are both transparent, RGB values are ignored</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetIntensity(c: TBGRAPixel): word; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the intensity of a pixel. The intensity is the maximum value reached by any component</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' SetIntensity(c: TBGRAPixel; intensity: word): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the intensity of a pixel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetLightness(c: TBGRAPixel): word;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the lightness of a pixel. The lightness is the perceived brightness, 0 being black and 65535 being white</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' SetLightness(c: TBGRAPixel; lightness: word): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the lightness of a pixel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' ApplyLightnessFast(color: TBGRAPixel; lightness: word): TBGRAPixel; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the lightness quickly, by fading towards black if ''lightness'' is less than 32768, and fading towards white if ''lightness'' is more than 32768</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' ApplyIntensityFast(color: TBGRAPixel; lightness: longword): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the intensity quickly, by fading towards black if ''lightness'' is less than 32768, and multiplying all components if ''lightness'' is more than 32768. In case of saturation, it fades towards white</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' CombineLightness(lightness1,lightness2: Int32or64): Int32or64;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Combines two lightnesses together. A value of 32768 is neutral. The result may exceed 65535</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' BGRAToGrayscale(c: TBGRAPixel): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a color into grayscale</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GrayscaleToBGRA(lightness: word): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Create a gray color with the given ''lightness''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' MergeBGRA(c1, c2: TBGRAPixel): TBGRAPixel; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Merge two colors without gamma correction</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' MergeBGRA(c1: TBGRAPixel; weight1: integer; c2: TBGRAPixel; weight2: integer): TBGRAPixel; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Merge two colors without gamma correction. ''weight1'' and ''weight2'' indicates the weight of the color barycentre</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' MergeBGRAWithGammaCorrection(c1: TBGRAPixel; weight1: byte; c2: TBGRAPixel; weight2: byte): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Merge two colors with gamma correction. ''weight1'' and ''weight2'' indicates the weight of the color barycentre</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' ColorToBGRA(color: TColor): TBGRAPixel; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a ''TColor'' value into an opaque pixel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' ColorToBGRA(color: TColor; opacity: byte): TBGRAPixel; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a ''TColor'' value into a pixel with given ''opacity''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' BGRAToColor(c: TBGRAPixel): TColor;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a pixel into a TColor value, discarding the alpha value</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' FPColorToBGRA(AValue: TFPColor): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a ''TFPColor'' value into a pixel. Note that even if ''TFPColor'' have 16-bit values, they are not considered as gamma expanded</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' BGRAToFPColor(AValue: TBGRAPixel): TFPColor; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Converts a pixel into a ''TFPColor''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' BGRAWordDiff(c1, c2: TBGRAPixel): word;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Computes the difference (with gamma correction) between two pixels, taking into account all dimensions, including transparency. The result ranges from 0 to 65535</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' BGRADiff(c1, c2: TBGRAPixel): byte;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Computes the difference (with gamma correction) between two pixels, taking into account all dimensions, including transparency. The result ranges from 0 to 255</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">''ArrayOfTBGRAPixel'' = '''array''' '''of''' TBGRAPixel;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Array of pixels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' MergeBGRA('''const''' colors: '''array''' '''of''' TBGRAPixel): TBGRAPixel; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Merge given colors without gamma correction</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">''TDrawMode'' = (</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Possible modes when drawing a pixel over another one</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''dmSet'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The pixel is replaced</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''dmSetExceptTransparent'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The pixel is replaced if the pixel over has an alpha value of 255</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''dmLinearBlend'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The pixel is blend over the other one according to alpha values, however no gamma correction is applied. In other words, the color space is assumed to be linear</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''dmDrawWithTransparency'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The pixel is blend over the other one according to alpha values, and a gamma correction is applied. In other word, the color space is assumed to be sRGB</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''dmXor'');</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Values of all channels are combined with Xor. This is useful to compute the binary difference, however it is not something that makes much sense to display on the screen</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''dmFastBlend'' = dmLinearBlend;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">An alias for the linear blend, because it is faster than blending with gamma correction</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''TBlendOperation'' = (</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Advanced blending modes. See [http://www.brighthub.com/multimedia/photography/articles/18301.aspx Paint.NET blend modes] and [http://www.pegtop.net/delphi/articles/blendmodes/ Formulas]. Blending layers has two steps. The first one is to apply the blend operations listed below, and the second is the actual merging of the colors</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boLinearBlend'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Simple blend, except that it forces a linear merge so it is equivalent to ''dmLinearBlend''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''boTransparent'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Simple blend. It is equivalent to ''dmLinearBlend'' or ''dmDrawWithTransparency''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boLighten'', boScreen, boAdditive, boLinearAdd, boColorDodge, boDivide, boNiceGlow, boSoftLight, boHardLight,</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Lighting blend modes (tends to increase the luminosity)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''boGlow'', boReflect, boOverlay, boDarkOverlay, boDarken, boMultiply, boColorBurn,</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Masking blend modes (tends to decrease the luminosity)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boDifference'', boLinearDifference, boExclusion, boLinearExclusion, boSubtract, boLinearSubtract, boSubtractInverse, boLinearSubtractInverse,</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Difference blend modes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''boNegation'', boLinearNegation,</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Negation blend modes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boXor'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Xor blend mode. It is sightly different from ''dmXor'' because the alpha value is used like in other blends modes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''boSvgSoftLight'');</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Additional blend modes **</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boGlowMask'' = boGlow;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Alias to glow that express that this blend mode masks the part where the top layer is black</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''boLinearMultiply'' = boMultiply;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Alias because linear or non linear multiply modes are identical</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''boNonLinearOverlay'' = boDarkOverlay;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Alias to express that dark overlay is simply an overlay with gamma correction</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''BlendOperationStr'' : '''array'''[TBlendOperation] '''of''' '''string'''</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">String constants for blend modes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' StrToBlendOperation(str: '''string'''): TBlendOperation;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the blend mode expressed by the string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''TAlphaChannelPaletteOption'' = (</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Specifies how a palette handles the alpha channel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''acIgnore'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The alpha channel is ignored. The alpha channel is considered to be stored elsewhere</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''acTransparentEntry'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">One entry is allocated the fully transparent color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''acFullChannelInPalette'');</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The alpha channel is fully embedded in the palette so that a color is identified by its four RGBA channels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''TDitheringAlgorithm'' = (</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Dithering algorithms that specifies how to handle colors that are not found in the palette</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''daNearestNeighbor'',</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The nearest color is to be used instead</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''daFloydSteinberg'');</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">The nearest color may be used however another color may be used to compensate for the error, following Floyd-Steinberg algorithm</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>

@@ -1,0 +1,29 @@
+object Form1: TForm1
+  Left = 845
+  Height = 161
+  Top = 123
+  Width = 444
+  Caption = 'Set Control Win'
+  ClientHeight = 161
+  ClientWidth = 444
+  Color = 4473924
+  LCLVersion = '1.6.0.4'
+  object Button1: TButton
+    Left = 35
+    Height = 30
+    Top = 15
+    Width = 115
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 170
+    Height = 27
+    Top = 17
+    Width = 100
+    Caption = 'Button2'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+end

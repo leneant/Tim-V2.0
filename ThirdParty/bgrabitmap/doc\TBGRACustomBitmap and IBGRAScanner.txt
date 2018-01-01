@@ -1,0 +1,247 @@
+=== TBGRACustomBitmap and IBGRAScanner ===
+==== IBGRAScanner ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3">''IBGRAScanner'' = '''interface'''</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Interface for a scanner. A scanner is like an image, but its content has no limit and it can be calculated on the fly. It is like a infinite readonly image. <br/> <br/>Note: it must not implement reference counting even if it is an interface <br/> <br/>''TBGRACustomBitmap'' implements this interface and the content is repeated horizontally and vertically. There are also various classes in ''BGRAGradientScanner'' unit that generate gradients on the fly and in ''BGRATransform'' unit that provide geometrical transformations of images</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' ScanMoveTo(X,Y: Integer);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Move to the position (''X'',''Y'') for the next call to ''ScanNextPixel''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' ScanNextPixel: TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Scan the pixel at the current location and increments ''X''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' ScanAt(X,Y: Single): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Scan at any location using floating point coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' ScanAtInteger(X,Y: integer): TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Scan at any location using integer coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' ScanPutPixels(pdest: PBGRAPixel; count: integer; mode: TDrawMode);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Copy a row of pixels from ''X'' to ''X''+''count''-1 to a specified destination ''pdest''. ''mode'' indicates how to combine with existing data</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' IsScanPutPixelsDefined: boolean;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns True if the function ''ScanPutPixels'' is available. Otherwise you need to call ''ScanNextPixel'' and combine pixels for example with ''SetPixel''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetTextureGL: IUnknown;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the corresponding OpenGL texture. The value is ''nil'' if no texture is associated. **</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''TScanAtFunction'' = '''function''' (X,Y: Single): TBGRAPixel '''of''' '''object''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">A type of function of a scanner that returns the content at floating point coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''TScanAtIntegerFunction'' = '''function''' (X,Y: Integer): TBGRAPixel '''of''' '''object''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">A type of function of a scanner that returns the content at integer coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''TScanNextPixelFunction'' = '''function''': TBGRAPixel '''of''' '''object''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">A type of function of a scanner that returns the next pixel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''TBGRACustomScanner'' = '''class'''(IBGRAScanner)</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Base class for implementing ''IBGRAScanner'' interface</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== TBGRACustomBitmap ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3">''TBGRACustomBitmap'' = '''class'''(TFPCustomImage,IBGRAScanner)</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">This is the base class for ''TBGRABitmap''. It is the direct parent of ''TBGRADefaultBitmap'' class, which is the parent of the diverse implementations. A bitmap can be used as a scanner using the interface ''IBGRAScanner''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''Caption'':   '''string''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">User defined caption. It does not appear on the image</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''FillMode'':  TFillMode;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Method to use when filling polygons (winding or alternate). See [[BGRABitmap Types imported from Graphics|BGRAGraphics]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''LinearAntialiasing'': boolean;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies if linear antialiasing must be used when drawing antialiased shapes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''ResampleFilter'' : TResampleFilter;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Resample filter is used when resizing the bitmap. See [[BGRABitmap Miscellaneous types#Images and resampling|resampling types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''ScanInterpolationFilter'': TResampleFilter;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Scan interpolation filter is used when the bitmap is used as a scanner (interface ''IBGRAScanner'')</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''ScanOffset'': TPoint;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Offset to apply when the image is scanned using ''IBGRAScanner'' interface</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''HotSpot'': TPoint;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Cursor position for mouse pointer</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' XorMask: TBGRACustomBitmap '''read''' FXorMask;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Xor mask to be applied when image is drawn</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Width: integer '''read''' GetWidth;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Width of the image in pixels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' Height: integer '''read''' GetHeight;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Height of the image in pixels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ClipRect: TRect '''read''' GetClipRect '''write''' SetClipRect;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Clipping rectangle for all drawing functions</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' NbPixels: integer '''read''' GetNbPixels;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Total number of pixels. It is always true that ''NbPixels'' = ''Width'' * ''Height''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ScanLine[y: integer]: PBGRAPixel '''read''' GetScanLine;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the address of the left-most pixel of any line. The parameter y ranges from 0 to Height-1</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' LineOrder: TRawImageLineOrder '''read''' GetLineOrder;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Indicates the order in which lines are stored in memory. If it is equal to ''riloTopToBottom'', the first line is the top line. If it is equal to ''riloBottomToTop'', the first line is the bottom line. See [[BGRABitmap Miscellaneous types|miscellaneous types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Data: PBGRAPixel '''read''' GetDataPtr;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Provides a pointer to the first pixel in memory. Depending on the ''LineOrder'' property, this can be the top-left pixel or the bottom-left pixel. There is no padding between scanlines, so the start of the next line is at the address ''Data'' + ''Width''. See [[BGRABitmap tutorial 4]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' RefCount: integer '''read''' GetRefCount;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Number of references to this image. It is increased by the function ''NewReference'' and decreased by the function ''FreeReference''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Empty: boolean '''read''' CheckEmpty;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns True if the bitmap only contains transparent pixels or has a size of zero</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' HasTransparentPixels: boolean '''read''' GetHasTransparentPixels;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns True if there are transparent or semitransparent pixels, and so if the image would be stored with an alpha channel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' AverageColor: TColor '''read''' GetAverageColor;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Average color of the image</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' AveragePixel: TBGRAPixel '''read''' GetAveragePixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Average color (including alpha) of the image</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' CanvasFP: TFPImageCanvas '''read''' GetCanvasFP;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Canvas compatible with FreePascal</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' CanvasDrawModeFP: TDrawMode '''read''' GetCanvasDrawModeFP '''write''' SetCanvasDrawModeFP;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draw mode to used when image is access using FreePascal functions and ''Colors'' property</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Bitmap: TBitmap '''read''' GetBitmap;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Bitmap in a format compatible with the current GUI. Don't forget to call ''InvalidateBitmap'' before using it if you changed something with direct pixel access (''Scanline'' and ''Data'')</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' Canvas: TCanvas '''read''' GetCanvas;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Canvas provided by the GUI</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' CanvasOpacity: byte '''read''' GetCanvasOpacity '''write''' SetCanvasOpacity;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Opacity to apply to changes made using GUI functions, provided ''CanvasAlphaCorrection'' is set to ''True''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' CanvasAlphaCorrection: boolean '''read''' GetCanvasAlphaCorrection '''write''' SetCanvasAlphaCorrection;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies if the alpha values must be corrected after GUI access to the bitmap</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' JoinStyle: TPenJoinStyle '''read''' GetPenJoinStyle '''write''' SetPenJoinStyle;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">How to join segments. See [[BGRABitmap Types imported from Graphics|BGRAGraphics]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' JoinMiterLimit: single '''read''' GetPenMiterLimit '''write''' SetPenMiterLimit;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Limit for the extension of the segments when joining them with ''pjsMiter'' join style, expressed in multiples of the width of the pen</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' PenStyle: TPenStyle '''read''' GetPenStyle '''write''' SetPenStyle;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Pen style. See [[BGRABitmap Types imported from Graphics|BGRAGraphics]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' CustomPenStyle: TBGRAPenStyle '''read''' GetCustomPenStyle '''write''' SetCustomPenStyle;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Custom pen style. See [[BGRABitmap Geometry types|geometric types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' LineCap: TPenEndCap '''read''' GetLineCap '''write''' SetLineCap;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">How to draw the ends of a line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' Pen: TBGRACustomPenStroker '''read''' GetPenStroker;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">You can use this class to generate strokes polygonal representations</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ArrowStartSize: TPointF '''read''' GetArrowStartSize '''write''' SetArrowStartSize;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Size of arrows at the start of the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' ArrowEndSize: TPointF '''read''' GetArrowEndSize '''write''' SetArrowEndSize;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Size of arrows at the end of the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ArrowStartOffset: single '''read''' GetArrowStartOffset '''write''' SetArrowStartOffset;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Offset of the arrow from the start of the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' ArrowEndOffset: single '''read''' GetArrowEndOffset '''write''' SetArrowEndOffset;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Offset of the arrow from the end of the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ArrowStartRepeat: integer '''read''' GetArrowStartRepeat '''write''' SetArrowStartRepeat;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Number of times to repeat the starting arrow</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' ArrowEndRepeat: integer '''read''' GetArrowEndRepeat '''write''' SetArrowEndRepeat;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Number of times to repeat the ending arrow</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''FontName'': '''string''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the font to use. Unless the font renderer accept otherwise, the name is in human readable form, like 'Arial', 'Times New Roman', ...</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''FontStyle'': TFontStyles;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the set of styles to be applied to the font. These can be ''fsBold'', ''fsItalic'', ''fsStrikeOut'', ''fsUnderline''. So the value [''fsBold'',''fsItalic''] means that the font must be bold and italic. See [[BGRABitmap Miscellaneous types|miscellaneous types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''FontQuality'' : TBGRAFontQuality;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the quality of rendering. Default value is ''fqSystem''. See [[BGRABitmap Miscellaneous types|miscellaneous types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''FontOrientation'': integer;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the rotation of the text, for functions that support text rotation. It is expressed in tenth of degrees, positive values going counter-clockwise.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">''FontVerticalAnchor'': TFontVerticalAnchor;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies how the font is vertically aligned relative to the start coordinate. See [[BGRABitmap Miscellaneous types|miscellaneous types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' FontHeight: integer '''read''' GetFontHeight '''write''' SetFontHeight;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the height of the font in pixels without taking into account additional line spacing. A negative value means that it is the full height instead (see below)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' FontFullHeight: integer '''read''' GetFontFullHeight '''write''' SetFontFullHeight;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the height of the font in pixels, taking into account the additional line spacing defined for the font</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' FontAntialias: Boolean '''read''' GetFontAntialias '''write''' SetFontAntialias;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Simplified property to specify the quality (see ''FontQuality'')</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' FontPixelMetric: TFontPixelMetric '''read''' GetFontPixelMetric;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns measurement for the current font in pixels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' FontRenderer: TBGRACustomFontRenderer '''read''' GetFontRenderer '''write''' SetFontRenderer;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Specifies the font renderer. When working with the LCL, by default it is an instance of ''TLCLFontRenderer'' of unit ''BGRAText''. Other renderers are provided in ''BGRATextFX'' unit and ''BGRAVectorize'' unit. Additionally, ''BGRAFreeType'' provides a renderer independent from the LCL. <br/> <br/>Once you assign a renderer, it will automatically be freed when the bitmap is freed. The renderers may provide additional styling for the font, not accessible with the properties in this class <br/> <br/>See [[BGRABitmap tutorial Font rendering|font rendering]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Load and save files ====
+<table style="border-collapse: collapse;">
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' LoadFromFile('''const''' filename: '''string'''); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a file. ''filename'' is an ANSI string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' LoadFromFile('''const''' filename:'''string'''; Handler:TFPCustomImageReader); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a file with the specified image reader. ''filename'' is an ANSI string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' LoadFromFileUTF8('''const''' filenameUTF8: '''string'''; AOptions: TBGRALoadingOptions = []); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a file. ''filename'' is an UTF8 string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' LoadFromFileUTF8('''const''' filenameUTF8: '''string'''; AHandler: TFPCustomImageReader; AOptions: TBGRALoadingOptions = []); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a file with the specified image reader. ''filename'' is an UTF8 string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' LoadFromStream(Str: TStream); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a stream. Format is detected automatically</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' LoadFromStream(Str: TStream; Handler: TFPCustomImageReader); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a stream. The specified image reader is used</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' SaveToFile('''const''' filename: '''string'''); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a file. The format is guessed from the file extension. ''filename'' is an ANSI string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SaveToFile('''const''' filename: '''string'''; Handler:TFPCustomImageWriter); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a file with the specified image writer. ''filename'' is an ANSI string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' SaveToFileUTF8('''const''' filenameUTF8: '''string'''); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a file. The format is guessed from the file extension. ''filename'' is an ANSI string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SaveToFileUTF8('''const''' filenameUTF8: '''string'''; Handler:TFPCustomImageWriter); '''virtual'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a file with the specified image writer. ''filename'' is an UTF8 string</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' SaveToStream (Str:TStream; Handler:TFPCustomImageWriter);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a stream with the specified image writer</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SaveToStreamAs(Str: TStream; AFormat: TBGRAImageFormat); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a stream in the specified image format</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' SaveToStreamAsPng(Str: TStream); '''virtual''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Save image to a stream in PNG format</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' LoadFromDevice(DC: System.THandle); '''virtual'''; '''abstract'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the content of the specified device context</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' LoadFromDevice(DC: System.THandle; ARect: TRect); '''virtual'''; '''abstract'''; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the content from the specified rectangular area of a device context</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' TakeScreenshotOfPrimaryMonitor; '''virtual'''; '''abstract''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills the content with a screenshot of the primary monitor</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' TakeScreenshot(ARect: TRect); '''virtual'''; '''abstract''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills the content with a screenshot of the specified rectangular area of the desktop (it can be from any screen)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;"></td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">For more methods, see derived class [[TBGRABitmap class|TBGRABitmap]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>

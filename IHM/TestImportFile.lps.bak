@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="13">
+      <Unit0>
+        <Filename Value="TestImportFile.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="14" Y="11"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ImportFile"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="IU_importfile"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="513"/>
+        <CursorPos X="66" Y="534"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_GeneralUtils"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="100"/>
+        <CursorPos X="38" Y="127"/>
+        <UsageCount Value="64"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../Images32/iu_i18n_messages.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_I18N_Messages"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="198"/>
+        <CursorPos Y="230"/>
+        <UsageCount Value="60"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../Images32/iu_exceptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Exceptions"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="119"/>
+        <CursorPos X="52" Y="149"/>
+        <UsageCount Value="60"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../Utils/iu_strechutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_strechutils"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="26"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/filutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="83"/>
+        <CursorPos X="11" Y="86"/>
+        <UsageCount Value="20"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="61"/>
+        <CursorPos Y="79"/>
+        <UsageCount Value="7"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../../../AppData/Local/Temp/7zO04C10BD3/U_DriveDemo.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="78"/>
+        <UsageCount Value="8"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="/lazarus/lcl/forms.pp"/>
+        <UnitName Value="Forms"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1407"/>
+        <CursorPos X="5" Y="1423"/>
+        <UsageCount Value="8"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="/usr/share/lazarus/1.6/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1277"/>
+        <CursorPos Y="1296"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="/usr/share/lazarus/1.6/lcl/lclproc.pas"/>
+        <UnitName Value="LCLProc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="882"/>
+        <CursorPos Y="902"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/share/lazarus/1.6/lcl/dialogs.pp"/>
+        <UnitName Value="Dialogs"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="21" Y="36"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+    </Units>
+    <JumpHistory Count="1">
+      <Position1>
+        <Filename Value="../Utils/iu_strechutils.pas"/>
+      </Position1>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

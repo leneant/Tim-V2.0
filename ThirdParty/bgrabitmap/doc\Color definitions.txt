@@ -1,0 +1,66 @@
+=== Color definitions ===
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3">''BGRAPixelTransparent'': TBGRAPixel;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">This is the value used for transparent pixels. In theory, any color with alpha = 0 is transparent, however it is recommended to use all other channels to zero as well.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''BGRAWhite'': TBGRAPixel;</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2"><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FFFFFF;"></span> White opaque</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">''BGRABlack'': TBGRAPixel;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2"><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000000;"></span> Black opaque</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''clBlackOpaque'' = TColor($010000);</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">This color <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000001;"></span> looks just like black. It is needed for drawing black shapes using the ''Canvas'' property of ''TBGRABitmap''. This is a standard ''TCanvas'' and when drawing with pure black (''clBlack''), there is no way to know if something has been drawn or if it is transparent</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">''TBGRAColorList'' = '''class'''</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Contains a fixed list of colors</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''constructor''' Create;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an empty color list</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' Add(Name: '''string'''; '''const''' Color: TBGRAPixel);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Add a color to the list</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' Finished;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Ends the color list and prevents further modifications</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' IndexOf(Name: '''string'''): integer;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the index of a color with a given name</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' IndexOfColor('''const''' AColor: TBGRAPixel; AMaxDiff: Word = 0): integer;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the index of a color. Colors are considered to match if the difference is less than or equal to ''AMaxDiff''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' ByName[Name: '''string''']: TBGRAPixel '''read''' GetByName;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the color associated with a color name</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' ByIndex[Index: integer]: TBGRAPixel '''read''' GetByIndex; '''default''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the color at the specified index</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' Name[Index: integer]: '''string''' '''read''' GetName;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the name of the color at the specified index</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Count: integer '''read''' FNbColors;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Gets the number of colors</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">''VGAColors'': TBGRAColorList;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">List of VGA colors: <br/><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000000;"></span> Black, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #808080;"></span> Gray, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #C0C0C0;"></span> Silver, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FFFFFF;"></span> White, <br/><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #800000;"></span> Maroon, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FF0000;"></span> Red,  <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #800080;"></span> Purple, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FF00FF;"></span> Fuchsia, <br/><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #008000;"></span> Green,  <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #00FF00;"></span> Lime, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #808000;"></span> Olive,  <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FFFF00;"></span> Yellow, <br/><span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000080;"></span> Navy,   <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #0000FF;"></span> Blue, <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #008080;"></span> Teal,   <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #00FFFF;"></span> Aqua. <br/>Shortcut constants are provided: <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000000;"></span> ''VGABlack'', <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #808080;"></span> ''VGAGray''...</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">''CSSColors'': TBGRAColorList;</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">List of [http://www.w3schools.com/cssref/css_colornames.asp web colors]. Shortcut constants are provided: <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #000000;"></span> ''CSSBlack'', <span style="width:8px; height: 8px; display: inline-block; border: 1px solid black; background: #FF0000;"></span> ''CSSRed''...</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">'''function''' BGRAToStr(c: TBGRAPixel; AColorList: TBGRAColorList = '''nil'''; AMaxDiff: Word= 0): '''string''';</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Converts a ''TBGRAPixel'' value into a string, using color names provided in ''AColorList'', and considering that a color matches in the color list if its difference is within ''AMaxDiff''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">'''function''' StrToBGRA(str: '''string'''): TBGRAPixel;</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Converts a fully defined string into a ''TBGRAPixel'' value. Color names from ''VGAColors'' and ''CSSColors'' are used if there is an exact match</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">'''function''' StrToBGRA(str: '''string'''; '''const''' DefaultColor: TBGRAPixel): TBGRAPixel;</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Converts a string into a ''TBGRAPixel'' value. If the value is not fully defined or that there is an error, ''DefaultColor'' is returned. Color names from ''VGAColors'' and ''CSSColors'' are used if there is an exact match.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3">'''function''' PartialStrToBGRA(str: '''string'''; '''const''' fallbackValues: TBGRAPixel; '''out''' error: boolean): TBGRAPixel;</td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Converts a string into a ''TBGRAPixel'' value. If the value is not fully defined, missing channels (expressed with '?') are filled with fallbackValues. You can check if there was an error with the provided boolean. Color names from ''VGAColors'' and ''CSSColors'' are used if there is an exact match.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td colspan="3">'''procedure''' TryStrToBGRA(str: '''string'''; '''var''' parsedValue: TBGRAPixel; '''out''' missingValues: boolean; '''out''' error: boolean);</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Converts a string into a ''TBGRAPixel'' value into ''parsedValue''. ''parsedValue'' is not changed if some channels are missing (expressed with '?'). You can check if there was an error with the provided boolean. Color names from ''VGAColors'' and ''CSSColors'' are used if there is an exact match.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>

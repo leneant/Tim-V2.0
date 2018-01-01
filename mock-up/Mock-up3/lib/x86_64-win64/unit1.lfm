@@ -1,0 +1,120 @@
+object Form1: TForm1
+  Left = 595
+  Height = 240
+  Top = 66
+  Width = 345
+  Caption = 'Form1'
+  ClientHeight = 240
+  ClientWidth = 345
+  Color = 4473924
+  Constraints.MaxWidth = 345
+  KeyPreview = True
+  OnActivate = FormActivate
+  OnChangeBounds = FormChangeBounds
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  OnPaint = FormPaint
+  OnShow = FormShow
+  LCLVersion = '1.6.0.4'
+  object Edit1: TEdit
+    Left = 11
+    Height = 23
+    Top = 33
+    Width = 44
+    OnChange = Edit1Change
+    OnClick = Edit1Click
+    TabOrder = 0
+    Text = 'Edit1'
+  end
+  object Image1: TImage
+    Left = 65
+    Height = 15
+    Top = 36
+    Width = 241
+  end
+  object Image2: TImage
+    Left = 320
+    Height = 229
+    Top = 5
+    Width = 16
+  end
+  object GroupBox1: TGroupBox
+    Left = 24
+    Height = 49
+    Top = 82
+    Width = 276
+    Caption = 'Progression'
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 32
+    Height = 23
+    Top = 171
+    Width = 75
+    Caption = 'Go'
+    Color = 4473924
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Label1: TLabel
+    Left = 238
+    Height = 12
+    Top = 151
+    Width = 38
+    Caption = 'CheckBox'
+    Font.Height = 12
+    ParentColor = False
+    ParentFont = False
+  end
+  object Image3: TImage
+    Left = 206
+    Height = 14
+    Top = 151
+    Width = 24
+    Transparent = True
+  end
+  object Label2: TLabel
+    Left = 238
+    Height = 15
+    Top = 178
+    Width = 66
+    Caption = 'RadioButton'
+    ParentColor = False
+  end
+  object Image4: TImage
+    Left = 206
+    Height = 14
+    Top = 178
+    Width = 24
+  end
+  object Image5: TImage
+    Left = 206
+    Height = 14
+    Top = 194
+    Width = 24
+  end
+  object Label3: TLabel
+    Left = 238
+    Height = 15
+    Top = 194
+    Width = 66
+    Caption = 'RadioButton'
+    ParentColor = False
+  end
+  object Image6: TImage
+    Left = 206
+    Height = 14
+    Top = 210
+    Width = 24
+  end
+  object Label4: TLabel
+    Left = 238
+    Height = 15
+    Top = 210
+    Width = 66
+    Caption = 'RadioButton'
+    ParentColor = False
+  end
+end

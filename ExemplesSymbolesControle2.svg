@@ -1,0 +1,1142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg3127"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="ExemplesSymbolesControle2.svg">
+  <defs
+     id="defs3129">
+    <linearGradient
+       id="linearGradient3988">
+      <stop
+         style="stop-color:#696969;stop-opacity:1;"
+         offset="0"
+         id="stop3990" />
+      <stop
+         style="stop-color:#444444;stop-opacity:1;"
+         offset="1"
+         id="stop3992" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3959">
+      <stop
+         style="stop-color:#696969;stop-opacity:1;"
+         offset="0"
+         id="stop3961" />
+      <stop
+         style="stop-color:#444444;stop-opacity:1;"
+         offset="1"
+         id="stop3963" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3969">
+      <stop
+         style="stop-color:#ffe38e;stop-opacity:1;"
+         offset="0"
+         id="stop3971" />
+      <stop
+         style="stop-color:#b27c62;stop-opacity:1;"
+         offset="1"
+         id="stop3973" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4263">
+      <stop
+         style="stop-color:#6979a3;stop-opacity:1;"
+         offset="0"
+         id="stop4265" />
+      <stop
+         style="stop-color:#3d51a1;stop-opacity:1;"
+         offset="1"
+         id="stop4267" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4035">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4037" />
+      <stop
+         style="stop-color:#969696;stop-opacity:1;"
+         offset="1"
+         id="stop4039" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3263"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-0"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-3"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-7"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765"
+       is_visible="true" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3755"
+       id="linearGradient4343"
+       gradientUnits="userSpaceOnUse"
+       x1="252.06523"
+       y1="397.3895"
+       x2="373.13593"
+       y2="397.3895" />
+    <linearGradient
+       id="linearGradient3755">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3757" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3759" />
+    </linearGradient>
+    <linearGradient
+       y2="397.3895"
+       x2="373.13593"
+       y1="397.3895"
+       x1="252.06523"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3199"
+       xlink:href="#linearGradient3755"
+       inkscape:collect="always" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4035"
+       id="linearGradient4041"
+       x1="70.394737"
+       y1="227.69113"
+       x2="292.10526"
+       y2="227.69113"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter4259">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.0678268"
+         id="feGaussianBlur4261" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4355"
+       x="-0.019228487"
+       width="1.038457"
+       y="-0.28173912"
+       height="1.5634782">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.7763158"
+         id="feGaussianBlur4357" />
+    </filter>
+    <linearGradient
+       id="linearGradient4035-6">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4037-7" />
+      <stop
+         style="stop-color:#969696;stop-opacity:1;"
+         offset="1"
+         id="stop4039-5" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3755-2">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3757-9" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3759-1" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-2"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-7"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-7-0"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-3-9"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-3"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-06"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-0-2"
+       is_visible="true" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4263-1"
+       id="radialGradient4269-6"
+       cx="220.10056"
+       cy="153.52789"
+       fx="220.10056"
+       fy="153.52789"
+       r="175.68459"
+       gradientTransform="matrix(1,0,0,0.55607159,0,68.155393)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4263-1">
+      <stop
+         style="stop-color:#79d786;stop-opacity:1;"
+         offset="0"
+         id="stop4265-8" />
+      <stop
+         style="stop-color:#62b26d;stop-opacity:1;"
+         offset="1"
+         id="stop4267-7" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3263-9"
+       is_visible="true" />
+    <linearGradient
+       id="linearGradient4035-7">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4037-5" />
+      <stop
+         style="stop-color:#969696;stop-opacity:1;"
+         offset="1"
+         id="stop4039-3" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3755-9">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3757-1" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3759-2" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-70"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-9"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-7-3"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-3-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-0"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-62"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-0-1"
+       is_visible="true" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4263-7"
+       id="radialGradient4269-8"
+       cx="220.10056"
+       cy="153.52789"
+       fx="220.10056"
+       fy="153.52789"
+       r="175.68459"
+       gradientTransform="matrix(1,0,0,0.55607159,0,68.155393)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4263-7">
+      <stop
+         style="stop-color:#7982d7;stop-opacity:1;"
+         offset="0"
+         id="stop4265-9" />
+      <stop
+         style="stop-color:#6286b2;stop-opacity:1;"
+         offset="1"
+         id="stop4267-2" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3263-0"
+       is_visible="true" />
+    <linearGradient
+       gradientTransform="translate(-0.22809511,202.90087)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient4035-5"
+       id="linearGradient4041-7"
+       x1="70.394737"
+       y1="227.69113"
+       x2="292.10526"
+       y2="227.69113"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4035-5">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4037-3" />
+      <stop
+         style="stop-color:#969696;stop-opacity:1;"
+         offset="1"
+         id="stop4039-56" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter4355-2"
+       x="-0.019228486"
+       width="1.038457"
+       y="-0.28173912"
+       height="1.5634782">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.7763158"
+         id="feGaussianBlur4357-9" />
+    </filter>
+    <linearGradient
+       y2="397.3895"
+       x2="373.13593"
+       y1="397.3895"
+       x1="252.06523"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3199-1"
+       xlink:href="#linearGradient3755-27"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3755-27">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3757-0" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3759-9" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-36"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-0"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-7-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-3-2"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-6"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-1"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-8"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-0-7"
+       is_visible="true" />
+    <linearGradient
+       id="linearGradient4263-2">
+      <stop
+         style="stop-color:#6979a3;stop-opacity:1;"
+         offset="0"
+         id="stop4265-0" />
+      <stop
+         style="stop-color:#3d51a1;stop-opacity:1;"
+         offset="1"
+         id="stop4267-23" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3263-7"
+       is_visible="true" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter4259-5">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.0678268"
+         id="feGaussianBlur4261-9" />
+    </filter>
+    <linearGradient
+       gradientTransform="translate(-0.35575489,406.39023)"
+       inkscape:collect="always"
+       xlink:href="#linearGradient4035-78"
+       id="linearGradient4041-4"
+       x1="70.394737"
+       y1="227.69113"
+       x2="292.10526"
+       y2="227.69113"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient4035-78">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4037-4" />
+      <stop
+         style="stop-color:#969696;stop-opacity:1;"
+         offset="1"
+         id="stop4039-50" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter4355-3"
+       x="-0.019228486"
+       width="1.038457"
+       y="-0.28173912"
+       height="1.5634782">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="1.7763158"
+         id="feGaussianBlur4357-6" />
+    </filter>
+    <linearGradient
+       y2="397.3895"
+       x2="373.13593"
+       y1="397.3895"
+       x1="252.06523"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient3199-10"
+       xlink:href="#linearGradient3755-6"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient3755-6">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3757-3" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3759-20" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-61"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-5"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-7-5"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-3-3-4"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-7"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-65"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-69"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3765-6-9-2-0-3"
+       is_visible="true" />
+    <linearGradient
+       id="linearGradient4263-4">
+      <stop
+         style="stop-color:#e3e0c3;stop-opacity:1;"
+         offset="0"
+         id="stop4265-5" />
+      <stop
+         style="stop-color:#b27b62;stop-opacity:1;"
+         offset="1"
+         id="stop4267-25" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3263-4"
+       is_visible="true" />
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter4259-7">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.0678268"
+         id="feGaussianBlur4261-4" />
+    </filter>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3969-6"
+       id="radialGradient3975-3"
+       cx="-195.39473"
+       cy="298.41483"
+       fx="-195.39473"
+       fy="298.41483"
+       r="18.605263"
+       gradientTransform="matrix(1,0,0,0.92927865,0,21.104298)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3969-6">
+      <stop
+         style="stop-color:#ffe38e;stop-opacity:1;"
+         offset="0"
+         id="stop3971-7" />
+      <stop
+         style="stop-color:#b28a62;stop-opacity:1;"
+         offset="1"
+         id="stop3973-5" />
+    </linearGradient>
+    <filter
+       color-interpolation-filters="sRGB"
+       inkscape:collect="always"
+       id="filter3922"
+       x="-0.37515739"
+       width="1.7503148"
+       y="-0.4064205"
+       height="1.8128411">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="5.3476381"
+         id="feGaussianBlur3924" />
+    </filter>
+    <radialGradient
+       r="18.605263"
+       fy="298.41483"
+       fx="-195.39473"
+       cy="298.41483"
+       cx="-195.39473"
+       gradientTransform="matrix(1,0,0,0.92927865,0,21.104298)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4646"
+       xlink:href="#linearGradient3969-6"
+       inkscape:collect="always" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3969-6"
+       id="radialGradient4870"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.92927865,0,21.104298)"
+       cx="-195.39473"
+       cy="298.41483"
+       fx="-195.39473"
+       fy="298.41483"
+       r="18.605263" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3755-27"
+       id="linearGradient3171"
+       gradientUnits="userSpaceOnUse"
+       x1="252.06523"
+       y1="397.3895"
+       x2="373.13593"
+       y2="397.3895" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4035-5"
+       id="linearGradient3173"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-0.22809511,202.90087)"
+       x1="70.394737"
+       y1="227.69113"
+       x2="292.10526"
+       y2="227.69113" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3969-6"
+       id="radialGradient3175"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,0.92927865,0,21.104298)"
+       cx="-195.39473"
+       cy="298.41483"
+       fx="-195.39473"
+       fy="298.41483"
+       r="18.605263" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3959"
+       id="radialGradient3965"
+       cx="219.87246"
+       cy="356.42876"
+       fx="219.87246"
+       fy="356.42876"
+       r="175.68459"
+       gradientTransform="matrix(1,0,0,0.55607161,0,158.22884)"
+       gradientUnits="userSpaceOnUse" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3988"
+       id="radialGradient3994"
+       cx="220.10056"
+       cy="153.52789"
+       fx="220.10056"
+       fy="153.52789"
+       r="175.68459"
+       gradientTransform="matrix(1,0,0,0.55607159,0,68.155393)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.1545694"
+     inkscape:cx="307.27673"
+     inkscape:cy="693.73884"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1029"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3132">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3996"
+       inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+       inkscape:export-xdpi="22"
+       inkscape:export-ydpi="22">
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Off.png"
+         y="53.58168"
+         x="43.224091"
+         height="198.26991"
+         width="355.71014"
+         id="rect4489"
+         style="fill:#444444;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Off.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         inkscape:original-d="M 53.278752,242.07489 95.003103,64.852065 386.92237,64.697465 380.63181,83.738999 345.54793,116.63374 309.94901,242.35832 z"
+         inkscape:path-effect="#path-effect3263"
+         id="path3261"
+         d="M 53.278752,242.07489 95.003103,64.852065 386.92237,64.697465 380.63181,83.738999 345.54793,116.63374 309.94901,242.35832 53.278752,242.07489"
+         style="fill:url(#radialGradient3994);stroke:#5d98ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-mid:none;filter:url(#filter4259);fill-opacity:1" />
+      <g
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Off.png"
+         id="g3250">
+        <path
+           transform="matrix(0.84755706,0,0,0.83355224,-96.394196,-185.57591)"
+           d="m 373.13594,397.3895 a 60.535355,60.535355 0 1 1 -121.07071,0 60.535355,60.535355 0 1 1 121.07071,0 z"
+           sodipodi:ry="60.535355"
+           sodipodi:rx="60.535355"
+           sodipodi:cy="397.3895"
+           sodipodi:cx="312.60059"
+           id="path2985"
+           style="fill:url(#linearGradient3199);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 z"
+           inkscape:path-effect="#path-effect3765"
+           id="path3763"
+           d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 -17.50949,-0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 z"
+           inkscape:path-effect="#path-effect3765-3"
+           id="path3763-6"
+           d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 0.0211,-17.22017"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 z"
+           inkscape:path-effect="#path-effect3765-7"
+           id="path3763-5"
+           d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 -17.50948,0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 z"
+           inkscape:path-effect="#path-effect3765-3-3"
+           id="path3763-6-5"
+           d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 -0.0212,-17.22016"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 z"
+           inkscape:path-effect="#path-effect3765-6"
+           id="path3763-2"
+           d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 -12.39603,12.161796"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9"
+           id="path3763-2-1"
+           d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 -12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2"
+           id="path3763-2-1-7"
+           d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2-0"
+           id="path3763-2-1-7-9"
+           d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 12.39603,12.161786"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+      </g>
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Off.png"
+         y="220.12534"
+         x="70.394737"
+         height="15.131579"
+         width="221.71053"
+         id="rect3265"
+         style="fill:url(#linearGradient4041);fill-opacity:1;stroke:none;filter:url(#filter4355)" />
+    </g>
+    <g
+       id="g4855"
+       inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Off.png"
+       inkscape:export-xdpi="22"
+       inkscape:export-ydpi="22">
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-On.png"
+         y="459.97189"
+         x="42.86834"
+         height="198.26991"
+         width="355.71014"
+         id="rect4489-4"
+         style="fill:#444444;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-On.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         inkscape:original-d="m 52.922995,648.46512 41.72435,-177.22283 291.919275,-0.1546 -6.29056,19.04154 -35.08388,32.89474 -35.59892,125.72458 z"
+         inkscape:path-effect="#path-effect3263-4"
+         id="path3261-3"
+         d="m 52.922995,648.46512 41.72435,-177.22283 291.919275,-0.1546 -6.29056,19.04154 -35.08388,32.89474 -35.59892,125.72458 -256.670265,-0.28343"
+         style="fill:none;fill-opacity:1;stroke:#ff6e3c;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-mid:none;filter:url(#filter4259-7)" />
+      <g
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-On.png"
+         id="g3250-0"
+         transform="translate(-0.35575489,406.39023)">
+        <path
+           transform="matrix(0.84755706,0,0,0.83355224,-96.394196,-185.57591)"
+           d="m 373.13594,397.3895 c 0,33.43275 -27.1026,60.53535 -60.53535,60.53535 -33.43276,0 -60.53536,-27.1026 -60.53536,-60.53535 0,-33.43276 27.1026,-60.53536 60.53536,-60.53536 33.43275,0 60.53535,27.1026 60.53535,60.53536 z"
+           sodipodi:ry="60.535355"
+           sodipodi:rx="60.535355"
+           sodipodi:cy="397.3895"
+           sodipodi:cx="312.60059"
+           id="path2985-7"
+           style="fill:url(#linearGradient3199-10);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 z"
+           inkscape:path-effect="#path-effect3765-61"
+           id="path3763-8"
+           d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 -17.50949,-0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 z"
+           inkscape:path-effect="#path-effect3765-3-5"
+           id="path3763-6-6"
+           d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 0.0211,-17.22017"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 z"
+           inkscape:path-effect="#path-effect3765-7-5"
+           id="path3763-5-8"
+           d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 -17.50948,0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 z"
+           inkscape:path-effect="#path-effect3765-3-3-4"
+           id="path3763-6-5-8"
+           d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 -0.0212,-17.22016"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 z"
+           inkscape:path-effect="#path-effect3765-6-7"
+           id="path3763-2-4"
+           d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 -12.39603,12.161796"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-65"
+           id="path3763-2-1-3"
+           d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 -12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2-69"
+           id="path3763-2-1-7-1"
+           d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2-0-3"
+           id="path3763-2-1-7-9-4"
+           d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 12.39603,12.161786"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+      </g>
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-On.png"
+         y="626.51556"
+         x="70.038979"
+         height="15.131579"
+         width="221.71053"
+         id="rect3265-92"
+         style="fill:url(#linearGradient4041-4);fill-opacity:1;stroke:none;filter:url(#filter4355-3)" />
+    </g>
+    <g
+       id="g4011"
+       inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-On.png"
+       inkscape:export-xdpi="22"
+       inkscape:export-ydpi="22">
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+         y="256.48254"
+         x="42.995995"
+         height="198.26991"
+         width="355.71014"
+         id="rect4489-2"
+         style="fill:#444444;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         inkscape:original-d="m 53.050655,444.97576 41.72435,-177.22283 291.919265,-0.1546 -6.29056,19.04153 -35.08388,32.89475 -35.59892,125.72458 z"
+         inkscape:path-effect="#path-effect3263-7"
+         id="path3261-2"
+         d="m 53.050655,444.97576 41.72435,-177.22283 291.919265,-0.1546 -6.29056,19.04153 -35.08388,32.89475 -35.59892,125.72458 -256.670255,-0.28343"
+         style="fill:url(#radialGradient3965);stroke:#5d98ff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-mid:none;filter:url(#filter4259-5);fill-opacity:1" />
+      <g
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+         id="g3250-8"
+         transform="translate(-0.22809511,202.90087)">
+        <path
+           transform="matrix(0.84755706,0,0,0.83355224,-96.394196,-185.57591)"
+           d="m 373.13594,397.3895 c 0,33.43275 -27.1026,60.53535 -60.53535,60.53535 -33.43276,0 -60.53536,-27.1026 -60.53536,-60.53535 0,-33.43276 27.1026,-60.53536 60.53536,-60.53536 33.43275,0 60.53535,27.1026 60.53535,60.53536 z"
+           sodipodi:ry="60.535355"
+           sodipodi:rx="60.535355"
+           sodipodi:cy="397.3895"
+           sodipodi:cx="312.60059"
+           id="path2985-9"
+           style="fill:url(#linearGradient3171);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           sodipodi:type="arc"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 z"
+           inkscape:path-effect="#path-effect3765-36"
+           id="path3763-7"
+           d="m 159.48676,90.249384 8.60915,-15.51488 8.90034,15.53568 -17.50949,-0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 z"
+           inkscape:path-effect="#path-effect3765-3-0"
+           id="path3763-6-3"
+           d="m 226.42623,134.66363 15.77555,8.46689 -15.79669,8.75328 0.0211,-17.22017"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 z"
+           inkscape:path-effect="#path-effect3765-7-6"
+           id="path3763-5-6"
+           d="m 160.05051,201.74772 8.60914,15.51487 8.90034,-15.53567 -17.50948,0.0208"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 z"
+           inkscape:path-effect="#path-effect3765-3-3-2"
+           id="path3763-6-5-1"
+           d="m 111.45254,135.0655 -15.775536,8.46689 15.796686,8.75327 -0.0212,-17.22016"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 z"
+           inkscape:path-effect="#path-effect3765-6-6"
+           id="path3763-2-2"
+           d="m 121.41586,111.91588 -5.0674,-16.957666 17.46343,4.79587 -12.39603,12.161796"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-1"
+           id="path3763-2-1-9"
+           d="m 120.2092,179.46445 -5.06741,16.95767 17.46344,-4.79588 -12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2-8"
+           id="path3763-2-1-7-3"
+           d="m 219.03244,176.9577 5.06741,16.95767 -17.46344,-4.79588 12.39603,-12.16179"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+        <path
+           sodipodi:nodetypes="cccc"
+           inkscape:connector-curvature="0"
+           inkscape:original-d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 z"
+           inkscape:path-effect="#path-effect3765-6-9-2-0-7"
+           id="path3763-2-1-7-9-1"
+           d="m 215.35652,107.91208 5.06741,-16.957666 -17.46344,4.79588 12.39603,12.161786"
+           style="fill:#d1d1d1;fill-opacity:1;stroke:#000000;stroke-width:0.84052551;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lumiere.png"
+           inkscape:export-xdpi="16.83"
+           inkscape:export-ydpi="16.83" />
+      </g>
+      <rect
+         inkscape:export-ydpi="22.790001"
+         inkscape:export-xdpi="22.790001"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+         y="423.02621"
+         x="70.166656"
+         height="15.131579"
+         width="221.71053"
+         id="rect3265-9"
+         style="fill:url(#linearGradient3173);fill-opacity:1;stroke:none;filter:url(#filter4355-2)" />
+      <path
+         inkscape:export-ydpi="22"
+         inkscape:export-xdpi="22"
+         inkscape:export-filename="/home/pascal/Developpements/Tim-V2.0/Lum-Sel.png"
+         transform="matrix(0.66801172,0,0,0.69871912,487.05604,76.49468)"
+         d="m -178.28947,298.41483 a 17.105263,15.789474 0 1 1 -34.21052,0 17.105263,15.789474 0 1 1 34.21052,0 z"
+         sodipodi:ry="15.789474"
+         sodipodi:rx="17.105263"
+         sodipodi:cy="298.41483"
+         sodipodi:cx="-195.39473"
+         id="path3199"
+         style="fill:url(#radialGradient3175);fill-opacity:1;stroke:none;filter:url(#filter3922)"
+         sodipodi:type="arc" />
+    </g>
+  </g>
+</svg>

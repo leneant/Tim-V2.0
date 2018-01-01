@@ -1,0 +1,107 @@
+object Form1: TForm1
+  Left = 374
+  Height = 284
+  Top = 181
+  Width = 699
+  HorzScrollBar.Page = 682
+  HorzScrollBar.Range = 682
+  VertScrollBar.Page = 267
+  VertScrollBar.Range = 267
+  Caption = 'Form1'
+  ClientHeight = 284
+  ClientWidth = 699
+  Color = 2894892
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.6.0.4'
+  object ListBox1: TListBox
+    Left = 25
+    Height = 193
+    Top = 32
+    Width = 343
+    Color = 2697515
+    ExtendedSelect = False
+    Font.Color = clSilver
+    ItemHeight = 0
+    OnClick = ListBox1Click
+    OnDblClick = ListBox1DblClick
+    OnEnter = ListBox1Enter
+    OnExit = ListBox1Exit
+    OnKeyDown = ListBox1KeyDown
+    ParentFont = False
+    ScrollWidth = 341
+    TabOrder = 0
+  end
+  object ListBox2: TListBox
+    Left = 392
+    Height = 193
+    Top = 32
+    Width = 290
+    Color = 2697515
+    Font.Color = clSilver
+    ItemHeight = 0
+    OnEnter = ListBox2Enter
+    OnExit = ListBox2Exit
+    ParentFont = False
+    ScrollWidth = 288
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 25
+    Height = 15
+    Top = 7
+    Width = 92
+    Caption = 'Current disk size :'
+    Font.Color = clSilver
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 145
+    Height = 15
+    Top = 7
+    Width = 34
+    Caption = 'Label2'
+    Font.Color = clSilver
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 395
+    Height = 15
+    Top = 7
+    Width = 93
+    Caption = 'Current disk free :'
+    Font.Color = clSilver
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 520
+    Height = 15
+    Top = 7
+    Width = 34
+    Caption = 'Label4'
+    Font.Color = clSilver
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 25
+    Height = 27
+    Top = 240
+    Width = 158
+    Caption = 'Revert order'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 395
+    Height = 27
+    Top = 240
+    Width = 158
+    Caption = 'Revert order'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+end

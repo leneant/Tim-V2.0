@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="9">
+      <Unit0>
+        <Filename Value="mockup1.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="50" Y="10"/>
+        <UsageCount Value="31"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="unit1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Unit1"/>
+        <TopLine Value="21"/>
+        <CursorPos X="8" Y="49"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="wincontrol2.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form2"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="WinControl2"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="75" Y="8"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="winsand.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="W_WinSand"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="112"/>
+        <CursorPos X="33" Y="124"/>
+        <UsageCount Value="30"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="wincontrol3.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form3"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Wincontrol3"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="66" Y="8"/>
+        <UsageCount Value="27"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="iu_commandcontrolmanager.pas"/>
+        <UnitName Value="IU_CommandControlManager"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="24"/>
+        <CursorPos Y="49"/>
+        <UsageCount Value="26"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/lazarus/1.6/lcl/include/wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7337"/>
+        <CursorPos Y="7353"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/usr/share/lazarus/1.6/lcl/include/customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2190"/>
+        <CursorPos Y="2206"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="wincontrol2.lfm"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit8>
+    </Units>
+    <JumpHistory Count="17" HistoryIndex="16">
+      <Position1>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="140" TopLine="125"/>
+      </Position1>
+      <Position2>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="140" Column="34" TopLine="135"/>
+      </Position2>
+      <Position3>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="161" Column="75" TopLine="135"/>
+      </Position3>
+      <Position4>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="133" TopLine="105"/>
+      </Position4>
+      <Position5>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="107" TopLine="89"/>
+      </Position5>
+      <Position6>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="60" Column="24" TopLine="40"/>
+      </Position6>
+      <Position7>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="80" Column="42" TopLine="50"/>
+      </Position7>
+      <Position8>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="97" TopLine="82"/>
+      </Position8>
+      <Position9>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="61" Column="39" TopLine="37"/>
+      </Position9>
+      <Position10>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="96" TopLine="81"/>
+      </Position10>
+      <Position11>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="97" TopLine="81"/>
+      </Position11>
+      <Position12>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="9" Column="11"/>
+      </Position12>
+      <Position13>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="90" Column="50" TopLine="84"/>
+      </Position13>
+      <Position14>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="169" Column="3" TopLine="43"/>
+      </Position14>
+      <Position15>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="54" Column="26" TopLine="41"/>
+      </Position15>
+      <Position16>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="88" Column="31" TopLine="76"/>
+      </Position16>
+      <Position17>
+        <Filename Value="winsand.pas"/>
+        <Caret Line="106" Column="33" TopLine="94"/>
+      </Position17>
+    </JumpHistory>
+  </ProjectSession>
+</CONFIG>

@@ -1,0 +1,541 @@
+unit IU_TemporaryPixFiles;
+
+{$mode objfpc}{$H+}
+// ***
+// * Unit provides temporyary files management (creation, reference, deletion, reading, writing)
+// * Creation Date : 2017 September
+// *
+// * Version : 0.1
+// * Version Date : 2017 November
+// * Version Contributors : Pascal Lemaître
+// *
+// * @authors : Pascal Lemaître
+// *
+// * @see :
+// *
+// *
+// * Team : TIm (Traitement d'Images)
+// *
+// * 2017
+// ***
+
+interface
+
+uses
+  // IU use BGRABitmap without IU can't compil
+  Classes, SysUtils, IU_Types, BGRABitmap, BGRABitmapTypes, IU_I18N_Messages, IU_ImagesUtils,
+  IU_CriticalSections, IU_Exceptions ;
+
+// ***
+// * Create a new single name for a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * return : file name
+// ***
+function IU_Get_TemporaryFileName : ansistring;
+// function return an single temporary file name
+// ***
+
+
+
+// ***
+// * Create a new temporary empty file on disk
+// *
+// * @author : Pascal Lemaître
+// *
+// * out : Temporary file descriptor out_TempFile
+// * in : is an alpha chanel iu_alpha
+// * in : size of the pix (width and height)
+// ***
+procedure IU_CreateTemporaryFile (var out_TempFile : T_IU_TemporaryPictureFile ;
+                                  iu_alpha : boolean ;
+                                  iu_whpix : T_IU_WHPixSize);
+// Creating an empty temporary file on disk
+// return temporary filename and init file descriptor alpha and size values
+// ***
+
+
+
+// ***
+// * Writing cols from a buffer into a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : Temporary file descriptor out_TempFile defini wich temporary file must be used
+// * in : starting col from the begining of the temporary file startCol
+// * in : numbers of cols to write nbCols
+// * in : memory buffer from the first column of the pix to write to the last to write PBuffer
+// * in : size of the buffer buffersize. To check memory out of bounds if buffer is too small
+// *                                     for nbCols to write
+// ***
+procedure IU_WritingColsToFile (out_TempFile : T_IU_TemporaryPictureFile ;
+                                startCol : T_IU_PosPix ; nbCols : smallint;
+                                PBuffer : T_IU_PPictData ; buffersize : T_IU_BufSize);
+// Writte cols from a file
+// Startcol : first col to save on disk
+// nbCols : number of cols to save
+// PBuffer : Pointer on buffer where pixels are located in memory
+// buffersize : Size of the buffer
+//              control the size of the buffer
+//              if size of the buffer is different of calculated one
+//                 then an exception is raised.
+// ***
+
+
+
+// ***
+// * Reading cols from a temporary file and copy them in a buffer
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : Temporary file descriptor out_TempFile defini wich temporary file must be used
+// * in : starting col from the begining of the temporary file startCol
+// * in : numbers of cols to write nbCols
+// * out : memory buffer from the first column of the pix to read to the last to read PBuffer
+// * in : size of the buffer buffersize. To check memory out of bounds if buffer is too small
+// *                                     for nbCols to write
+// ***
+procedure IU_ReadingCoslFromFile (in_TempFile : T_IU_TemporaryPictureFile ;
+                                  startCol : T_IU_PosPix ; nbCols : smallint;
+                                  PBuffer : T_IU_PPictData ; buffersize : T_IU_BufSize);
+// Read cols from a file
+// Startcol : first col to read from disk
+// nbCols : number of cols to read
+// PBuffer : Pointer on buffer where pixels are located in memory
+// buffersize : Size of the buffer
+//              control the size of the buffer
+//              if size of the buffer is different of calculated one
+//                 then an exception is raised.
+// ***
+
+
+
+// ***
+// * Deleting all temporary files registered from the begining of program start up
+// *
+// * @author : Pascal Lemaître
+// *
+// ***
+Procedure IU_CleanTempFiles;
+// Deleting all temporary files created since the start of the program
+// ***
+
+
+// ***
+// * Deleting a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : temporary file name to delete filename
+// ***
+Procedure IU_DeleteATempFile (filename : ansistring);
+// Delete one temporary file
+// ***
+
+implementation
+
+// Internals
+var
+  Registered_TempFile : array[1..K_IU_MaxTempFiles] of ansistring;
+  i : smallint ;
+
+// Internals procedures and function
+
+
+// ***
+// * Internal registering a new temporay file (needed for self deletion at the end of the program)
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : temporary file name _tempFile
+// *
+// ***
+procedure _registerTempFile(_tempFile : ansistring);
+var i : smallint;
+  _index : smallint;
+begin
+  // Need a critical section if more than one thread wants to register or unreg a temp file
+  EnterCriticalSection(IU_RegisteringTempFileCriticalSection);
+  // find first free entry in Registered_TempFile array
+  _index := 0;
+  for i := 1 to K_IU_MaxTempFiles do
+    begin
+        if length(Registered_TempFile[i]) = 0 then begin
+          _index := i;
+          break;
+        end;
+    end;
+  if _index > 0 then
+    begin
+      Registered_TempFile[_index] := _tempFile;
+      LeaveCriticalSection(IU_RegisteringTempFileCriticalSection);
+    end
+  else
+    LeaveCriticalSection(IU_RegisteringTempFileCriticalSection);
+    raise IU_ERegisteringTempFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_RegisterTemporaryFileError]);
+end;
+
+
+// ***
+// * Internal unregistering an existing temporay file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : temporary file name _tempFile
+// *
+// ***
+procedure _unregisterTempFile(_tempFile : ansistring);
+var i : smallint;
+  _index : smallint;
+begin
+  // Need a critical section if more than one thread wants to register or unreg a temp file
+  EnterCriticalSection(IU_RegisteringTempFileCriticalSection);
+  // find first the entry in Registered_TempFile array
+  //   and erase the temporary file name stored in it
+  _index := 0;
+  for i := 1 to K_IU_MaxTempFiles do
+    begin
+        if AnsiStrComp(pchar(@_tempFile), pchar(@Registered_TempFile[i])) = 0 then begin
+          _index := i;
+          break;
+        end;
+    end;
+  if _index > 0 then
+    begin
+      Registered_TempFile[_index] := '';
+      LeaveCriticalSection(IU_RegisteringTempFileCriticalSection);
+    end
+  else
+    LeaveCriticalSection(IU_RegisteringTempFileCriticalSection);
+    raise IU_EUnRegisteringTempFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_UnRegisterTemporaryFileError]);
+end;
+
+
+// ***
+// * Internal creating a new temporay file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : temporary file name _filename
+// *
+// ***
+procedure _createFile (_filename : ansistring);
+// internal procedure.
+// Creating an empty new file on disk.
+var
+  Fid : TFileStream;        // for picture with or without alpha chanel
+begin
+    try
+      Fid := TFileStream.Create (_filename, fmCreate); //fmOpenReadWrite pour lire et écrire, fmOpenWrite pour écrire et fmOpenRead pour lire
+    except
+      on e : exception do begin
+        raise IU_ECreateTemporartyPixFile.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_TmpCreationFail]);
+      end;
+    end;
+    Fid.Free;
+end;
+
+
+// ***
+// * Calc the size needed for writing a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : number of columns width
+// * in : number of lines height
+// * in : is an alpha chanel alpha
+// *
+// ***
+function _bytessizeneeded(width, height : T_IU_MaxPix ; alpha : boolean) : T_IU_BufSize ; inline ;
+// internal function that determine the needed buffer size for reading or writing a number of cols from or on disk
+var _nbPixels : T_IU_Size ;
+    _buffneededsize : T_IU_BufSize;
+begin
+  // no critical section because inline and all variables are locals
+  _nbPixels := width * height ;
+  if (alpha) then
+    _buffneededsize := _nbPixels * sizeof(T_IU_AlphaColor32)
+  else
+    _buffneededsize := _nbPixels * sizeof(T_IU_Color32);
+  _bytessizeneeded := _buffneededsize;
+end;
+
+
+
+
+
+
+// Declared implementations
+// ***
+// * Create a new single name for a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * return : file name
+// ***
+function IU_Get_TemporaryFileName : ansistring ;
+begin
+  IU_Get_TemporaryFileName := V_IU_tempDirectory + '/TimPix-' + FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz',Now) + FloatToStr(random) + '-temp.tim';
+end ;
+
+
+
+// ***
+// * Create a new temporary empty file on disk
+// *
+// * @author : Pascal Lemaître
+// *
+// * out : Temporary file descriptor out_TempFile
+// * in : is an alpha chanel iu_alpha
+// * in : size of the pix (width and height)
+// ***
+procedure IU_CreateTemporaryFile (var out_TempFile : T_IU_TemporaryPictureFile ;
+                                  iu_alpha : boolean ;
+                                  iu_whpix : T_IU_WHPixSize);
+var
+  _filename : ansistring;
+begin
+    // no critical section because inline and all variables are locals except var param then
+    // caller must use critical section if needed
+        {$IFDEF Windows}
+        _filename := V_IU_tempDirectory + '\TimPix-' + FormatDateTime('yyyy-mm-dd-hh-mm-ss',Now) + '-temp.tim';
+        {$ELSE}
+        _filename := V_IU_tempDirectory + '/TimPix-' + FormatDateTime('yyyy-mm-dd-hh-mm-ss',Now) + '-temp.tim';
+        {$ENDIF}
+        // Creating empty file Raise an error if unsuccessfull.
+        try
+          _createFile(_filename); //needed for testing if file could be written. Need to use reset for filling it
+          out_TempFile.iu_temporaryFileName := _filename;
+          out_TempFile.iu_alpha:=iu_alpha;
+          out_TempFile.iu_whsize.width:=iu_whpix.width;
+          out_TempFile.iu_whsize.height:=iu_whpix.height;
+        Except
+          on e : exception do begin
+            out_TempFile.iu_temporaryFileName := ''; // no name if file couldn't created
+            out_TempFile.iu_alpha:=false; // no alpha chanel
+            out_TempFile.iu_whsize.width:=0; // no width if file couldn't created
+            out_TempFile.iu_whsize.height:=0; // no height if file couldn't created
+            // exception forwarding (see procedure _createFile)
+            raise IU_ECreateTemporartyPixFile.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_TmpCreationFail]);
+          end;
+        end;
+        // Registering new temporary file
+        try
+          _registerTempFile(out_TempFile.iu_temporaryFileName);
+        Except
+          // Forwardind exception because file couldn't be deleted by clean procedure
+          IU_ERegisteringTempFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_RegisterTemporaryFileError] + ' ' + out_TempFile.iu_temporaryFileName);
+        end;
+end;
+
+
+
+// ***
+// * Writing cols from a buffer into a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : Temporary file descriptor out_TempFile defini wich temporary file must be used
+// * in : starting col from the begining of the temporary file startCol
+// * in : numbers of cols to write nbCols
+// * in : memory buffer from the first column of the pix to write to the last to write PBuffer
+// * in : size of the buffer buffersize. To check memory out of bounds if buffer is too small
+// *                                     for nbCols to write
+// ***
+procedure IU_WritingColsToFile (out_TempFile : T_IU_TemporaryPictureFile ;
+                                startCol : T_IU_PosPix ; nbCols : smallint;
+                                PBuffer : T_IU_PPictData ; buffersize : T_IU_BufSize);
+// Writte cols from a file
+// Startcol : first col to save on disk
+// nbCols : number of cols to save
+// PBuffer : Pointer on buffer where pixels are located in memory
+// buffersize : Size of the buffer
+//              control the size of the buffer
+//              if size of the buffer is different of calculated one
+//                 then an exception is raised.
+var _buffsize :  T_IU_BufSize;
+  _recordposition : T_IU_RealPosPix;
+  Fid : TFileStream ;
+begin
+    // no critical section because all variables and params are locals
+    // but if many one threads use the same temp file they must use a critical section if needed
+    // Calc the needed buff size
+    _buffsize := _bytessizeneeded(nbCols, out_TempFile.iu_whsize.height, out_TempFile.iu_alpha) ;
+    // if _buffsize > buffersize then an error is raised
+    if _buffsize > buffersize then
+      raise IU_EBufferToSmall.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_WritingBufferToSmall])
+    else
+      begin
+        // opening file from direct writing or reading
+        try
+          Fid.Create(out_TempFile.iu_temporaryFileName, fmOpenWrite);
+        Except
+          // Open failed raise an error
+          raise IU_EOpenFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_OpenFileError]);
+        end;
+        // seeking file pos
+        // Wich is the position ?
+        _recordposition := IU_PSeek_Col (out_TempFile.iu_whsize, startcol, out_TempFile.iu_alpha);
+        // GOTO the position in the file
+        try
+         Fid.Seek(int64(_recordposition), soBeginning);
+        Except
+          // free file accessor object
+          Fid.Free;
+          // raise exception
+          raise IU_EDirectAccessError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_DirecFileAccesError]);
+        end;
+        // writing buffer into file
+        try
+          Fid.Write(PBuffer,_buffsize);
+        Except
+          // Wrinting error
+          // free file accessor object
+          Fid.Free;
+          // raise exception
+          raise IU_EBynaryFileWritingError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_BynaryFileWrintingError]);
+        end;
+        // Cols are written
+        Fid.Free;
+      end;
+end;
+
+
+
+
+
+// ***
+// * Reading cols from a temporary file and copy them in a buffer
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : Temporary file descriptor out_TempFile defini wich temporary file must be used
+// * in : starting col from the begining of the temporary file startCol
+// * in : numbers of cols to write nbCols
+// * out : memory buffer from the first column of the pix to read to the last to read PBuffer
+// * in : size of the buffer buffersize. To check memory out of bounds if buffer is too small
+// *                                     for nbCols to write
+// ***
+procedure IU_ReadingCoslFromFile (in_TempFile : T_IU_TemporaryPictureFile ;
+                                  startCol : T_IU_PosPix ; nbCols : smallint;
+                                  PBuffer : T_IU_PPictData ; buffersize : T_IU_BufSize);
+// Read cols from a file
+// Startcol : first col to read from disk
+// nbCols : number of cols to read
+// PBuffer : Pointer on buffer where pixels are located in memory
+// buffersize : Size of the buffer
+//              control the size of the buffer
+//              if size of the buffer is different of calculated one
+//                 then an exception is raised.
+var
+    _buffsize :  T_IU_BufSize;
+    _recordposition : T_IU_RealPosPix;
+    Fid : TFileStream ;
+begin
+  // no critical section because all variables and params are locals
+  // but if many one threads use the same temp file they must use a critical section if needed
+  // Calc the needed buff size
+  _buffsize := _bytessizeneeded(nbCols, in_TempFile.iu_whsize.height, in_TempFile.iu_alpha) ;
+  // if _buffsize > buffersize then an error is raised
+  if _buffsize > buffersize then
+    raise IU_EBufferToSmall.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_ReadingBufferToSmall])
+  else
+    begin
+      // opening file from direct writing or reading
+      try
+        Fid.Create(in_TempFile.iu_temporaryFileName, fmOpenWrite);
+      Except
+        // Open failed raise an error
+        raise IU_EOpenFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_OpenFileError]);
+      end;
+      // seeking file pos
+      // Wich is the position ?
+      _recordposition := IU_PSeek_Col (in_TempFile.iu_whsize, startcol, in_TempFile.iu_alpha);
+      // GOTO the position in the file
+      try
+       Fid.Seek(int64(_recordposition), soBeginning);
+      Except
+        // free file accessor object
+        Fid.Free;
+        // raise exception
+        raise IU_EDirectAccessError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_DirecFileAccesError]);
+      end;
+      // writing buffer into file
+      try
+        Fid.Read(PBuffer, _buffsize);
+      Except
+        // Wrinting error
+        // free file accessor object
+        Fid.Free;
+        // raise exception
+        raise IU_EBynaryFileReadingError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_BynaryFileReadingError]);
+      end;
+      // Cols are written
+      Fid.Free;
+    end;
+end;
+
+
+
+// ***
+// * Deleting all temporary files registered from the begining of program start up
+// *
+// * @author : Pascal Lemaître
+// *
+// ***
+Procedure IU_CleanTempFiles;
+// Deleting all temporary files created since the start of the program
+// This procedure must be call when program is stopped
+var i : smallint;
+begin
+  // must use a critical section if others threads try to reg or unreg temp file
+  EnterCriticalSection(IU_RegisteringTempFileCriticalSection);
+  for i := 1 to K_IU_MaxTempFiles do
+    begin
+      if length(Registered_TempFile[i]) = 0 then
+        DeleteFile(Registered_TempFile[i]);
+    end;
+  LeaveCriticalSection(IU_RegisteringTempFileCriticalSection);
+end;
+
+
+// ***
+// * Deleting a temporary file
+// *
+// * @author : Pascal Lemaître
+// *
+// * in : temporary file name to delete filename
+// ***
+Procedure IU_DeleteATempFile (filename : ansistring);
+// Delete one temporary file
+begin
+  DeleteFile(filename);
+  // Trying to unregestering it
+  // must use a critical section if others threads try to reg or unreg temp file
+  // but _unregprocedure is protected with a critical section Then this procedure
+  //   not need to use one
+  try
+    _unregisterTempFile(filename);
+  finally
+    // Nothing todo file should be not registered !  ans so what ?
+  end;
+end ;
+
+begin
+  // ***
+  // * Init of registered file names array when program is starting up
+  // *
+  // * @author : Pascal Lemaître
+  // *
+  // ***
+
+  // init of registered temporary files.
+  // When program begin no tempory files are created
+  for i := 1 to K_IU_MaxTempFiles do
+    Registered_TempFile[i] := '';
+
+  // Init random sequence
+  randomize;
+end.
+

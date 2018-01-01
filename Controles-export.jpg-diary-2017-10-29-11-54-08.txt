@@ -1,0 +1,8 @@
+-- Tim-Rapport V1.1.0.14a-c1 ----------------
+/home/pascal/Developpements/Tim-V2.0/Controles-export.jpg-diary-2017-10-29-11-54-08.txt
+-------------------------------
+Commande : Ouverture image
+-- Param :
+--       File name : /home/pascal/Developpements/Tim-V2.0/Controles-export.jpg
+--       Largeur : 100
+--       Hauteur : 241

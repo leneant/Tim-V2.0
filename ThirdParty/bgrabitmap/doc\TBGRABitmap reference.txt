@@ -1,0 +1,367 @@
+=== TBGRABitmap reference ===
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3">''TBGRABitmap'' = '''class'''(TBGRACustomBitmap)</td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">This class is the base for all ''TBGRABitmap'' classes. It implements most function to the exception from implementations specific to the widgetset</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;"></td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Cursor hotspot and Xor mask</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''property''' CanvasBGRA: TBGRACanvas '''read''' GetCanvasBGRA;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Provides a canvas with opacity and antialiasing</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''property''' Canvas2D: TBGRACanvas2D '''read''' GetCanvas2D;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Provides a canvas with 2d transformation and similar to HTML5.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;"></td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">For more properties, see parent class [[TBGRACustomBitmap and IBGRAScanner#TBGRACustomBitmap|TBGRACustomBitmap]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Reference counting ====
+<table style="border-collapse: collapse;">
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' NewReference: TBGRACustomBitmap;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Adds a reference (this reference count is not the same as the reference count of an interface, it changes only by explicit calls</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FreeReference;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Free a reference. When the resulting reference count gets to zero, the image is freed. The initial reference count is equal to 1</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' GetUnique: TBGRACustomBitmap;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns an object with a reference count equal to 1. Duplicate this bitmap if necessary</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Constructors ====
+<table style="border-collapse: collapse;">
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''constructor''' Create(AWidth, AHeight: integer); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates a new bitmap, initialize properties and bitmap data</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SetSize(AWidth, AHeight: integer); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called with an existing instance of ''TBGRABitmap''. Sets the dimensions of an existing ''TBGRABitmap'' instance.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''constructor''' Create; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image of width and height equal to zero. In this case, ''Data'' = '''nil'''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''constructor''' Create(AFPImage: TFPCustomImage); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image by copying the content of a ''TFPCustomImage''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''constructor''' Create(ABitmap: TBitmap; AUseTransparent: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image by copying the content of a ''TBitmap''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''constructor''' Create(AWidth, AHeight: integer; Color: TColor); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image of dimensions ''AWidth'' and ''AHeight'' and fills it with the opaque color ''Color''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''constructor''' Create(AWidth, AHeight: integer; Color: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image of dimensions ''AWidth'' and ''AHeight'' and fills it with ''Color''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''constructor''' Create(AFilename: '''string'''); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image by loading its content from the file ''AFilename''. The encoding of the string is the default one for the operating system. It is recommended to use the next constructor and UTF8 encoding</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''constructor''' Create(AFilename: '''string'''; AIsUtf8: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image by loading its content from the file ''AFilename''. The boolean ''AIsUtf8Filename'' specifies if UTF8 encoding is assumed for the filename</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''constructor''' Create(AStream: TStream); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Creates an image by loading its content from the stream ''AStream''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">''destructor'' Destroy; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Free the object and all its resources</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' NewBitmap(AWidth, AHeight: integer): TBGRACustomBitmap; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called from an existing instance of ''TBGRABitmap''. Creates a new instance with dimensions ''AWidth'' and ''AHeight'', containing transparent pixels.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' NewBitmap(AWidth, AHeight: integer; Color: TBGRAPixel): TBGRACustomBitmap; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called from an existing instance of ''TBGRABitmap''. Creates a new instance with dimensions ''AWidth'' and ''AHeight'', and fills it with Color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' NewBitmap(Filename: '''string'''): TBGRACustomBitmap; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called from an existing instance of ''TBGRABitmap''. Creates a new instance with by loading its content from the file ''Filename''. The encoding of the string is the default one for the operating system</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' NewBitmap(Filename: '''string'''; AIsUtf8: boolean): TBGRACustomBitmap; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called from an existing instance of ''TBGRABitmap''. Creates a new instance with by loading its content from the file ''Filename''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' NewBitmap(AFPImage: TFPCustomImage): TBGRACustomBitmap; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Can only be called from an existing instance of ''TBGRABitmap''. Creates an image by copying the content of a ''TFPCustomImage''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' LoadFromStream(Str: TStream; Handler: TFPCustomImageReader; AOptions: TBGRALoadingOptions); override; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Load image from a stream. The specified image reader is used</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' Assign(Source: TPersistent); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Assign the content of the specified ''Source''. It can be a ''TBGRACustomBitmap'' or a ''TFPCustomImage''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' Serialize(AStream: TStream); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Stores the image in the stream without compression nor header</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' Deserialize(AStream: TStream); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Reads the image in a stream that was previously serialized</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''class''' '''procedure''' SerializeEmpty(AStream: TStream);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Stores an empty image (of size zero)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td colspan="3"></td></tr>
+<tr style="background: #f0f0ff;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">Example: <syntaxhighlight> <br/>var bmp1, bmp2: TBGRABitmap; <br/>begin <br/>bmp1 := TBGRABitmap.Create(100,100); <br/>bmp2 := bmp1.NewBitmap(100,100) as TBGRABitmap; <br/>... <br/>end;</syntaxhighlight> See tutorial 2 on [[BGRABitmap_tutorial_2|how to load and display an image]]. <br/>See reference on [[TBGRACustomBitmap_and_IBGRAScanner#Load_and_save_files|loading and saving files]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Pixel functions ====
+<table style="border-collapse: collapse;">
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' PtInClipRect(x, y: int32or64): boolean; '''inline''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Checks if the specified point is in the clipping rectangle ''ClipRect''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SetPixel(x, y: int32or64; c: TColor); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the pixel by replacing the content at (''x'',''y'') with the specified color. Alpha value is set to 255 (opaque)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' SetPixel(x, y: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the pixel at (''x'',''y'') with the specified content</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' XorPixel(x, y: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Applies a logical '''xor''' to the content of the pixel with the specified value. This includes the alpha channel, so if you want to preserve the opacity, provide a color ''c'' with alpha channel equal to zero</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPixel(x, y: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a pixel with gamma correction at (''x'',''y''). Pixel is supplied in sRGB colorspace</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawPixel(x, y: int32or64; c: TBGRAPixel; ADrawMode: TDrawMode); '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a pixel with the specified ''ADrawMode'' at (''x'',''y''). Pixel is supplied in sRGB colorspace. Gamma correction may be applied depending on the draw mode</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPixel(x, y: int32or64; ec: TExpandedPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a pixel with gamma correction at (''x'',''y''). Pixel is supplied in gamma expanded colorspace</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FastBlendPixel(x, y: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a pixel without gamma correction at (''x'',''y''). Pixel is supplied in sRGB colorspace</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' ErasePixel(x, y: int32or64; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erase the content of the pixel by reducing the value of the alpha channel. ''alpha'' specifies how much to decrease. If the resulting alpha reaches zero, the content is replaced by ''BGRAPixelTransparent''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' AlphaPixel(x, y: int32or64; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the alpha value at (''x'',''y''). If ''alpha'' = 0, the pixel is replaced by ''BGRAPixelTransparent''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' GetPixel(x, y: int32or64): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Returns the content of the specified pixel. If it is out of the bounds of the picture, the result is ''BGRAPixelTransparent''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetPixel(x, y: single; AResampleFilter: TResampleFilter = rfLinear; smoothBorder: boolean = true): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Computes the value of the pixel at a floating point coordiante by interpolating the values of the pixels around it. <br/>There is a one pixel wide margin around the pixel where the pixels are still considered inside. If ''smoothBorder'' is set to true, pixel fade to transparent. <br/>If it is more out of the bounds, the result is ''BGRAPixelTransparent''. <br/>''AResampleFilter'' specifies how pixels must be interpolated. Accepted values are ''rfBox'', ''rfLinear'', ''rfHalfCosine'' and ''rfCosine''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' GetPixel256(x, y, fracX256,fracY256: int32or64; AResampleFilter: TResampleFilter = rfLinear; smoothBorder: boolean = true): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Similar to previous ''GetPixel'' function, but the fractional part of the coordinate is supplied with a number from 0 to 255. The actual coordinate is (''x'' + ''fracX256''/256, ''y'' + ''fracY256''/256)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetPixelCycle(x, y: single; AResampleFilter: TResampleFilter = rfLinear): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Computes the value of the pixel at a floating point coordiante by interpolating the values of the pixels around it. If the pixel is out of bounds, the image is repeated. <br/>''AResampleFilter'' specifies how pixels must be interpolated. Accepted values are ''rfBox'', ''rfLinear'', ''rfHalfCosine'' and ''rfCosine''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' GetPixelCycle256(x, y, fracX256,fracY256: int32or64; AResampleFilter: TResampleFilter = rfLinear): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Similar to previous ''GetPixel'' function, but the fractional part of the coordinate is supplied with a number from 0 to 255. The actual coordinate is (''x'' + ''fracX256''/256, ''y'' + ''fracY256''/256)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''function''' GetPixelCycle(x, y: single; AResampleFilter: TResampleFilter; repeatX: boolean; repeatY: boolean): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Computes the value of the pixel at a floating point coordiante by interpolating the values of the pixels around it. ''repeatX'' and ''repeatY'' specifies if the image is to be repeated or not. <br/>''AResampleFilter'' specifies how pixels must be interpolated. Accepted values are ''rfBox'', ''rfLinear'', ''rfHalfCosine'' and ''rfCosine''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''function''' GetPixelCycle256(x, y, fracX256,fracY256: int32or64; AResampleFilter: TResampleFilter; repeatX: boolean; repeatY: boolean): TBGRAPixel; override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Similar to previous ''GetPixel'' function, but the fractional part of the coordinate is supplied with a number from 0 to 255. The actual coordinate is (''x'' + ''fracX256''/256, ''y'' + ''fracY256''/256)</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Drawing lines and polylines (integer coordinates) ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">These functions do not take into account current pen style/cap/join. See [[BGRABitmap tutorial 13|coordinate system]].</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SetHorizLine(x, y, x2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Replaces the content of the pixels at line ''y'' and at columns ''x'' to ''x2'' included, using specified color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' XorHorizLine(x, y, x2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Applies xor to the pixels at line ''y'' and at columns ''x'' to ''x2'' included, using specified color. This includes the alpha channel, so if you want to preserve the opacity, provide a color ''c'' with alpha channel equal to zero</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawHorizLine(x, y, x2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line with gamma correction at line ''y'' and at columns ''x'' to ''x2'' included, using specified color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawHorizLine(x, y, x2: int32or64; ec: TExpandedPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line with gamma correction at line ''y'' and at columns ''x'' to ''x2'' included, using specified color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawHorizLine(x, y, x2: int32or64; texture: IBGRAScanner); '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line with gamma correction at line ''y'' and at columns ''x'' to ''x2'' included, using specified scanner to get the source colors</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FastBlendHorizLine(x, y, x2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line without gamma correction at line ''y'' and at columns ''x'' to ''x2'' included, using specified color</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' HorizLine(x, y, x2: int32or64; texture: IBGRAScanner; ADrawMode : TDrawMode); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line at line ''y'' and at columns ''x'' to ''x2'' included, using specified scanner and the specified ''ADrawMode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' HorizLine(x,y,x2: Int32or64; c: TBGRAPixel; ADrawMode: TDrawMode); '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line at line ''y'' and at columns ''x'' to ''x2'' included, using specified color and the specified ''ADrawMode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' AlphaHorizLine(x, y, x2: int32or64; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Replaces the alpha value of the pixels at line ''y'' and at columns ''x'' to ''x2'' included</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawHorizLineDiff(x, y, x2: int32or64; c, compare: TBGRAPixel;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an horizontal line with gamma correction at line ''y'' and at columns ''x'' to ''x2'' included, using specified color, and with a transparency that increases with the color difference with ''compare''. If the difference is greater than ''maxDiff'', pixels are not changed</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' SetVertLine(x, y, y2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Replaces a vertical line at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' XorVertLine(x, y, y2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Xors a vertical line at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawVertLine(x, y, y2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a vertical line with gamma correction at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FastBlendVertLine(x, y, y2: int32or64; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a vertical line without gamma correction at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' AlphaVertLine(x, y, y2: int32or64; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Replace alpha values in a vertical line at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' VertLine(x,y,y2: Int32or64; c: TBGRAPixel; ADrawMode: TDrawMode);</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a vertical line with the specified draw mode at column ''x'' and at row ''y'' to ''y2''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawLine(x1, y1, x2, y2: integer; c: TBGRAPixel; DrawLastPixel: boolean; ADrawMode: TDrawMode = dmDrawWithTransparency); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an aliased line from (x1,y1) to (x2,y2) using Bresenham's algorithm ''c'' specifies the color. ''DrawLastPixel'' specifies if (x2,y2) must be drawn. ''ADrawMode'' specifies the mode to use when drawing the pixels</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: integer; c: TBGRAPixel; DrawLastPixel: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an antialiased line from (x1,y1) to (x2,y2) using an improved version of Bresenham's algorithm ''c'' specifies the color. ''DrawLastPixel'' specifies if (x2,y2) must be drawn</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: integer; c1, c2: TBGRAPixel; dashLen: integer; DrawLastPixel: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an antialiased line with two colors ''c1'' and ''c2'' as dashes of lenght ''dashLen''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: integer; c1, c2: TBGRAPixel; dashLen: integer; DrawLastPixel: boolean; '''var''' DashPos: integer); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an antialiased line with two colors ''c1'' and ''c2'' as dashes of lenght ''dashLen''. ''DashPos'' can be used to specify the start dash position and to retrieve the dash position at the end of the line, in order to draw a polyline with consistent dashes</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EraseLine(x1, y1, x2, y2: integer; alpha: byte; DrawLastPixel: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases the line from (x1,y1) to (x2,y2) using Bresenham's algorithm. ''alpha'' specifies how much to decrease. If ''alpha'' = 0, nothing is changed and if ''alpha'' = 255, all pixels become transparent. ''DrawListPixel'' specifies if (x2,y2) must be changed</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' EraseLineAntialias(x1, y1, x2, y2: integer; alpha: byte; DrawLastPixel: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases the line from (x1,y1) to (x2,y2) width antialiasing. ''alpha'' specifies how much to decrease. If ''alpha'' = 0, nothing is changed and if ''alpha'' = 255, all pixels become transparent. ''DrawListPixel'' specifies if (x2,y2) must be changed</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Drawing lines and polylines (floating point coordinates) ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">These functions use the current pen style/cap/join. The parameter ''w'' specifies the width of the line and the base unit for dashes. See [[BGRABitmap tutorial 13|coordinate system]].</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: single; c: TBGRAPixel; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a line from (x1,y1) to (x2,y2) using current pen style/cap/join</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: single; texture: IBGRAScanner; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a line from (x1,y1) to (x2,y2) using current pen style/cap/join. ''texture'' specifies the source color to use when filling the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: single; c: TBGRAPixel; w: single; ClosedCap: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a line from (x1,y1) to (x2,y2) using current pen style/cap/join. ''Closed'' specifies if the end of the line is closed. If it is not closed, a space is left so that the next line can fit</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawLineAntialias(x1, y1, x2, y2: single; texture: IBGRAScanner; w: single; ClosedCap: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Same as above with ''texture'' specifying the source color to use when filling the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawPolyLineAntialias('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polyline using current pen style/cap/join</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPolyLineAntialias('''const''' points: '''array''' '''of''' TPointF; texture: IBGRAScanner; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polyline using current pen style/cap/join. ''texture'' specifies the source color to use when filling the line</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawPolyLineAntialias('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single; ClosedCap: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polyline using current pen style/cap/join. ''Closed'' specifies if the end of the line is closed. If it is not closed, a space is left so that the next line can fit</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPolyLineAntialias('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single; fillcolor: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polyline using current pen style/cap/join. ''fillcolor'' specifies a color to fill the polygon formed by the points</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawPolyLineAntialiasAutocycle('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polyline using current pen style/cap/join. The last point considered as a join with the first point if it has the same coordinate</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPolygonAntialias('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polygon using current pen style/cap/join. The polygon is always closed. You don't need to set the last point to be the same as the first point</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' DrawPolygonAntialias('''const''' points: '''array''' '''of''' TPointF; texture: IBGRAScanner; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a polygon using current pen style/cap/join. The polygon is always closed. You don't need to set the last point to be the same as the first point</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' DrawPolygonAntialias('''const''' points: '''array''' '''of''' TPointF; c: TBGRAPixel; w: single; fillcolor: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a filled polygon using current pen style/cap/join. The polygon is always closed. You don't need to set the last point to be the same as the first point.</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EraseLineAntialias(x1, y1, x2, y2: single; alpha: byte; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases a line from (x1,y1) to (x2,y2) using current pen style/cap/join</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' EraseLineAntialias(x1, y1, x2, y2: single; alpha: byte; w: single; Closed: boolean); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases a line from (x1,y1) to (x2,y2) using current pen style/cap/join. ''Closed'' specifies if the end of the line is closed. If it is not closed, a space is left so that the next line can fit</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' ErasePolyLineAntialias('''const''' points: '''array''' '''of''' TPointF; alpha: byte; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases a polyline using current pen style/cap/join</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Rectangles (integer coordinates) ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">The integer coordinates of rectangles interpreted such that that the bottom/right pixels are not drawn. The width is equal to x2-x, and pixels are drawn from x to x2-1. If x = x2, then nothing is drawn. See [[BGRABitmap tutorial 13|coordinate system]]. <br/>These functions do not take into account current pen style/cap/join. They draw a continuous 1-pixel width border</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' Rectangle(x, y, x2, y2: integer; c: TBGRAPixel; mode: TDrawMode); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draw a size border of a rectangle, using the specified ''mode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' Rectangle(x, y, x2, y2: integer; BorderColor, FillColor: TBGRAPixel; mode: TDrawMode); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draw a filled rectangle with a border of color ''BorderColor'', using the specified ''mode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FillRect(x, y, x2, y2: integer; c: TBGRAPixel; mode: TDrawMode); override; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills completely a rectangle, without any border, with the specified ''mode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FillRect(x, y, x2, y2: integer; texture: IBGRAScanner; mode: TDrawMode; AScanOffset: TPoint); override; '''overload''';</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills completely a rectangle, without any border, with the specified ''texture'' and with the specified ''mode''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' AlphaFillRect(x, y, x2, y2: integer; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Sets the alpha value within the specified rectangle</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' RoundRect(X1, Y1, X2, Y2: integer; DX, DY: integer; BorderColor, FillColor: TBGRAPixel; ADrawMode: TDrawMode = dmDrawWithTransparency); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a filled round rectangle, with corners having an elliptical diameter of ''DX'' and ''DY''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' RoundRect(X1, Y1, X2, Y2: integer; DX, DY: integer; BorderColor: TBGRAPixel; ADrawMode: TDrawMode = dmDrawWithTransparency); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a round rectangle, with corners having an elliptical diameter of ''DX'' and ''DY''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Rectangles and ellipses (floating point coordinates) ====
+<table style="border-collapse: collapse;">
+<tr style="background: white;"><td colspan="3"></td></tr>
+<tr style="background: white;"><td width="10%"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;" colspan="2">These functions use the current pen style/cap/join. The parameter ''w'' specifies the width of the line and the base unit for dashes <br/>The coordinates are pixel-centered, so that when filling a rectangle, if the supplied values are integers, the border will be half transparent. If you want the border to be completely filled, you can subtract/add 0.5 to the coordinates to include the remaining thin border. See [[BGRABitmap tutorial 13|coordinate system]].</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' RectangleAntialias(x, y, x2, y2: single; c: TBGRAPixel; w: single; back: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a rectangle with antialiasing and fills it with color ''back''. Note that the pixel (x2,y2) is included contrary to integer coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' RectangleAntialias(x, y, x2, y2: single; texture: IBGRAScanner; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a rectangle with antialiasing. Note that the pixel (x2,y2) is included contrary to integer coordinates</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FillRectAntialias(x, y, x2, y2: single; c: TBGRAPixel; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills a rectangle with antialiasing. For example (-0.5,-0.5,0.5,0.5) fills one pixel</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FillRectAntialias(x, y, x2, y2: single; texture: IBGRAScanner; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills a rectangle with a texture</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EraseRectAntialias(x, y, x2, y2: single; alpha: byte; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases the content of a rectangle with antialiasing</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' RoundRectAntialias(x,y,x2,y2,rx,ry: single; c: TBGRAPixel; w: single; options: TRoundRectangleOptions = []); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a rounded rectangle border with antialiasing. The corners have an elliptical radius of ''rx'' and ''ry''. ''options'' specifies how to draw the corners. See [[BGRABitmap Geometry types|geometry types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' RoundRectAntialias(x,y,x2,y2,rx,ry: single; texture: IBGRAScanner; w: single; options: TRoundRectangleOptions = []); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws a rounded rectangle border with the specified texture. The corners have an elliptical radius of ''rx'' and ''ry''. ''options'' specifies how to draw the corners. See [[BGRABitmap Geometry types|geometry types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' RoundRectAntialias(x,y,x2,y2,rx,ry: single; pencolor: TBGRAPixel; w: single; fillcolor: TBGRAPixel; options: TRoundRectangleOptions = []); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws and fills a round rectangle</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' RoundRectAntialias(x,y,x2,y2,rx,ry: single; penTexture: IBGRAScanner; w: single; fillTexture: IBGRAScanner; options: TRoundRectangleOptions = []); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws and fills a round rectangle with textures</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FillRoundRectAntialias(x,y,x2,y2,rx,ry: single; c: TBGRAPixel; options: TRoundRectangleOptions = []; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills a rounded rectangle with antialiasing. The corners have an elliptical radius of ''rx'' and ''ry''. ''options'' specifies how to draw the corners. See [[BGRABitmap Geometry types|geometry types]]</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FillRoundRectAntialias(x,y,x2,y2,rx,ry: single; texture: IBGRAScanner; options: TRoundRectangleOptions = []; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills a rounded rectangle with a texture</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' EraseRoundRectAntialias(x,y,x2,y2,rx,ry: single; alpha: byte; options: TRoundRectangleOptions = []; pixelCenteredCoordinates: boolean = true); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases the content of a rounded rectangle with a texture</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EllipseAntialias(x, y, rx, ry: single; c: TBGRAPixel; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an ellipse with antialising. ''rx'' is the horizontal radius and ''ry'' the vertical radius</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' EllipseAntialias(x, y, rx, ry: single; texture: IBGRAScanner; w: single); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws an ellipse border with a ''texture''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EllipseAntialias(x, y, rx, ry: single; c: TBGRAPixel; w: single; back: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Draws and fills an ellipse</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FillEllipseAntialias(x, y, rx, ry: single; c: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills an ellipse</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' FillEllipseAntialias(x, y, rx, ry: single; texture: IBGRAScanner); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills an ellipse with a ''texture''</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: white;">'''procedure''' FillEllipseLinearColorAntialias(x, y, rx, ry: single; outercolor, innercolor: TBGRAPixel); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: white;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Fills an ellipse with a gradient of color. ''outercolor'' specifies the end color of the gradient on the border of the ellipse and ''innercolor'' the end color of the gradient at the center of the ellipse</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+<tr><td width="10%"></td><td colspan="2" style="background: #f0f0ff;">'''procedure''' EraseEllipseAntialias(x, y, rx, ry: single; alpha: byte); override;</td></tr>
+<tr><td width="10%"></td><td width="10%" style="background: #f0f0ff;"></td><td style="border: 1px solid #e0e0a0; background: #ffffe4;">Erases the content of an ellipse</td></tr>
+<tr style="height: 8px;"><td colspan="3"></td></tr>
+</table>
+==== Polygons and path ====

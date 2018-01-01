@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="18">
+      <Unit0>
+        <Filename Value="Images32.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="18" Y="10"/>
+        <UsageCount Value="144"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainForm"/>
+        <TopLine Value="74"/>
+        <CursorPos X="3" Y="80"/>
+        <UsageCount Value="132"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="iu_imagesutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_ImagesUtils"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="422"/>
+        <CursorPos X="45" Y="328"/>
+        <UsageCount Value="144"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="iu_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Types"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="261"/>
+        <CursorPos X="7" Y="277"/>
+        <UsageCount Value="144"/>
+        <Loaded Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="iu_pix.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Pix"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="80" Y="17"/>
+        <UsageCount Value="144"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="iu_exceptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Exceptions"/>
+        <EditorIndex Value="10"/>
+        <CursorPos X="66" Y="5"/>
+        <UsageCount Value="144"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="iu_generalutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_GeneralUtils"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="306"/>
+        <CursorPos X="7" Y="341"/>
+        <UsageCount Value="140"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="iu_temporarypixfiles.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_TemporaryPixFiles"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="404"/>
+        <CursorPos Y="420"/>
+        <UsageCount Value="135"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="iu_i18n_messages.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_I18N_Messages"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="20"/>
+        <CursorPos X="4" Y="20"/>
+        <UsageCount Value="128"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="iu_criticalsections.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_CriticalSections"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="4"/>
+        <CursorPos X="19" Y="8"/>
+        <UsageCount Value="120"/>
+        <Loaded Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="iu_frames.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Frames"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="680"/>
+        <CursorPos X="36" Y="700"/>
+        <UsageCount Value="107"/>
+        <Loaded Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../BGRABitmapsManipulations/iu_bgra_interface.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_BGRA_Interface"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="173"/>
+        <CursorPos Y="199"/>
+        <UsageCount Value="76"/>
+        <Loaded Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/inc/strings.pp"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="29"/>
+        <UsageCount Value="7"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/packages/pasjpeg/src/jinclude.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="43"/>
+        <CursorPos X="9" Y="77"/>
+        <UsageCount Value="7"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/datih.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
+        <CursorPos Y="155"/>
+        <UsageCount Value="7"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="/usr/share/lazarus/1.6/components/lazutils/laz2_xmlcfg.pas"/>
+        <UnitName Value="Laz2_XMLCfg"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="19"/>
+        <UsageCount Value="7"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/sysstrh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="133"/>
+        <CursorPos Y="155"/>
+        <UsageCount Value="7"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/sysinth.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="28"/>
+        <CursorPos X="3" Y="33"/>
+        <UsageCount Value="7"/>
+      </Unit17>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="iu_temporarypixfiles.pas"/>
+        <Caret Line="327" Column="117" TopLine="309"/>
+      </Position1>
+      <Position2>
+        <Filename Value="iu_temporarypixfiles.pas"/>
+        <Caret Line="250" Column="10" TopLine="232"/>
+      </Position2>
+      <Position3>
+        <Filename Value="iu_temporarypixfiles.pas"/>
+        <Caret Line="386" Column="112" TopLine="369"/>
+      </Position3>
+      <Position4>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="21"/>
+      </Position4>
+      <Position5>
+        <Filename Value="iu_imagesutils.pas"/>
+        <Caret Line="24" Column="39" TopLine="16"/>
+      </Position5>
+      <Position6>
+        <Filename Value="iu_imagesutils.pas"/>
+        <Caret Line="28" Column="24" TopLine="16"/>
+      </Position6>
+      <Position7>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="1232" TopLine="1208"/>
+      </Position7>
+      <Position8>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="596" Column="59" TopLine="580"/>
+      </Position8>
+      <Position9>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="645" Column="36" TopLine="616"/>
+      </Position9>
+      <Position10>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="767" Column="45" TopLine="682"/>
+      </Position10>
+      <Position11>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="810" Column="45" TopLine="751"/>
+      </Position11>
+      <Position12>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="862" Column="44" TopLine="764"/>
+      </Position12>
+      <Position13>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="910" Column="44" TopLine="807"/>
+      </Position13>
+      <Position14>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="80" Column="16" TopLine="73"/>
+      </Position14>
+      <Position15>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="2752" Column="20" TopLine="840"/>
+      </Position15>
+      <Position16>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="626" Column="32" TopLine="606"/>
+      </Position16>
+      <Position17>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="983" Column="88" TopLine="960"/>
+      </Position17>
+      <Position18>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="1120" Column="46" TopLine="1087"/>
+      </Position18>
+      <Position19>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="2618" Column="74" TopLine="2585"/>
+      </Position19>
+      <Position20>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="700" Column="36" TopLine="680"/>
+      </Position20>
+      <Position21>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="983" Column="88" TopLine="950"/>
+      </Position21>
+      <Position22>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="1120" Column="46" TopLine="1087"/>
+      </Position22>
+      <Position23>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="2618" Column="74" TopLine="2585"/>
+      </Position23>
+      <Position24>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="248" Column="77" TopLine="208"/>
+      </Position24>
+      <Position25>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="283" Column="27" TopLine="238"/>
+      </Position25>
+      <Position26>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="211" Column="25" TopLine="191"/>
+      </Position26>
+      <Position27>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="272" Column="48" TopLine="239"/>
+      </Position27>
+      <Position28>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="211" Column="25" TopLine="191"/>
+      </Position28>
+      <Position29>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="279" Column="79" TopLine="259"/>
+      </Position29>
+      <Position30>
+        <Filename Value="iu_generalutils.pas"/>
+        <Caret Line="330" Column="33" TopLine="297"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Kind Value="bpkData"/>
+        <WatchData Value="_ret"/>
+        <WatchScope Value="wpsGlobal"/>
+        <WatchKind Value="wpkReadWrite"/>
+        <InitialEnabled Value="False"/>
+      </Item1>
+    </BreakPoints>
+    <Watches Count="1">
+      <Item1>
+        <DisplayStyle Value="wdfDecimal"/>
+      </Item1>
+    </Watches>
+  </Debugging>
+</CONFIG>

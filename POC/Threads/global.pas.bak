@@ -1,0 +1,38 @@
+unit global;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  LCLType, Classes, SysUtils, stdctrls;
+
+
+type
+  T_ThreadControl = record
+    thread : TThreadID;
+    ThreadMSG : string;
+    running : boolean;
+    stopthread : boolean;
+  end;
+
+
+var
+{
+  Threadcontrol0 : T_ThreadControl ;
+  Threadcontrol1 : T_ThreadControl ;
+  Threadcontrol2 : T_ThreadControl ;
+  Threadcontrol3 : T_ThreadControl ;
+}
+  Threadcontrol : array [0..3] of T_ThreadControl;
+
+
+  thread1ID, thread2ID, thread3ID, thread4ID : TThreadID;
+
+
+
+implementation
+
+
+end.
+

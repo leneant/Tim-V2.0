@@ -1,0 +1,192 @@
+object Form1: TForm1
+  Left = 508
+  Height = 364
+  Top = 93
+  Width = 787
+  ActiveControl = Edit1
+  Caption = 'Test Controls'
+  ClientHeight = 364
+  ClientWidth = 787
+  Color = 4473924
+  KeyPreview = True
+  OnChangeBounds = FormChangeBounds
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  LCLVersion = '1.6.0.4'
+  Visible = True
+  object Button1: TButton
+    Left = 11
+    Height = 29
+    Top = 320
+    Width = 81
+    Caption = 'Test'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 112
+    Height = 29
+    Top = 320
+    Width = 85
+    Caption = 'Reset'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object GroupBox1: TGroupBox
+    Left = 48
+    Height = 210
+    Top = 48
+    Width = 680
+    ClientHeight = 190
+    ClientWidth = 676
+    TabOrder = 2
+    OnChangeBounds = GroupBox1ChangeBounds
+    object Label1: TLabel
+      Left = 11
+      Height = 15
+      Top = 7
+      Width = 55
+      Caption = 'TB1 (top) :'
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 11
+      Height = 15
+      Top = 27
+      Width = 77
+      Caption = 'TB2 (bottom) :'
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 232
+      Height = 15
+      Top = 7
+      Width = 54
+      Caption = 'TB3 (left) :'
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 232
+      Height = 15
+      Top = 27
+      Width = 62
+      Caption = 'TB4 (right) :'
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 112
+      Height = 1
+      Top = 7
+      Width = 1
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 112
+      Height = 1
+      Top = 27
+      Width = 1
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 318
+      Height = 1
+      Top = 7
+      Width = 1
+      Font.Color = clMenuBar
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 318
+      Height = 1
+      Top = 27
+      Width = 1
+      Font.Color = clMenu
+      ParentColor = False
+      ParentFont = False
+    end
+  end
+  object Image1: TImage
+    Left = 48
+    Height = 13
+    Top = 34
+    Width = 680
+  end
+  object Image2: TImage
+    Left = 48
+    Height = 13
+    Top = 264
+    Width = 680
+  end
+  object Edit1: TEdit
+    Left = 48
+    Height = 23
+    Top = 8
+    Width = 87
+    NumbersOnly = True
+    TabOrder = 3
+    Text = 'Edit1'
+  end
+  object Edit2: TEdit
+    Left = 48
+    Height = 23
+    Top = 280
+    Width = 85
+    NumbersOnly = True
+    TabOrder = 4
+    Text = 'Edit2'
+  end
+  object Image3: TImage
+    Left = 16
+    Height = 243
+    Top = 34
+    Width = 14
+  end
+  object Image4: TImage
+    Left = 744
+    Height = 244
+    Top = 34
+    Width = 16
+  end
+  object Edit3: TEdit
+    Left = 673
+    Height = 23
+    Top = 280
+    Width = 91
+    TabOrder = 5
+    Text = 'Edit3'
+  end
+  object Label9: TLabel
+    Left = 184
+    Height = 15
+    Top = 13
+    Width = 57
+    Caption = 'Free RAM :'
+    Font.Color = clMenuBar
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 264
+    Height = 15
+    Top = 13
+    Width = 40
+    Caption = 'Label10'
+    Font.Color = clMenuBar
+    ParentColor = False
+    ParentFont = False
+  end
+end

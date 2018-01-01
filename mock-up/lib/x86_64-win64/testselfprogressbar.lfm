@@ -1,0 +1,113 @@
+object Form1: TForm1
+  Left = 404
+  Height = 101
+  Top = 125
+  Width = 359
+  Caption = 'Form1'
+  ClientHeight = 101
+  ClientWidth = 359
+  Color = 4473924
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object Button1: TButton
+    Left = 16
+    Height = 26
+    Top = 52
+    Width = 76
+    Caption = 'Test'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Shape1: TShape
+    Left = 56
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape2: TShape
+    Left = 84
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape3: TShape
+    Left = 113
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape4: TShape
+    Left = 142
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape5: TShape
+    Left = 171
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape6: TShape
+    Left = 199
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape7: TShape
+    Left = 228
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape8: TShape
+    Left = 257
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape9: TShape
+    Left = 286
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Shape10: TShape
+    Left = 315
+    Height = 8
+    Top = 8
+    Width = 24
+    Brush.Color = 4473924
+  end
+  object Button2: TButton
+    Left = 113
+    Height = 26
+    Top = 52
+    Width = 63
+    Caption = 'Reset'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 9
+    Height = 17
+    Top = 4
+    Width = 18
+    Alignment = taRightJustify
+    Caption = '0%'
+    Font.Color = 7829367
+    Font.Height = -13
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+end

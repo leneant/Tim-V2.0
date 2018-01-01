@@ -1,0 +1,25 @@
+unit UI_CommandControlManager;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls;
+
+type
+T_IU_T_ImageCommand = record
+  ID : integer ; // Command number
+  CommandBouton : T_Image;
+  CommandRem : array [1..4] of T_Image;
+end;
+
+var
+  V_IU_GroupBoxCommandsControl: TGroupBox;
+  V_IU_CommandsImages : array [1..3] of T_UI_T_ImageCommand;
+
+implementation
+
+end.
+

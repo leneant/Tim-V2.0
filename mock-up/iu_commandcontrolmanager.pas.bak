@@ -1,0 +1,75 @@
+unit IU_CommandControlManager;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls,
+  StdCtrls;
+
+type
+
+T_IU_T_ImageCommand = record
+  ID : integer ; // Command number
+  CommandBouton : TImage;
+  CommandRem : array [1..4] of TImage;
+end;
+
+var
+  V_IU_CommandsImages : array [1..3] of T_IU_T_ImageCommand;
+  i, j : integer;
+
+  machin : TImage;
+
+  procedure IU_CCM_ImageClick(_id : integer);
+  procedure IU_CCM_ImageMouseEnter(_id : integer);
+  procedure IU_CCM_ImageMouseLeave(_id : integer);
+
+
+
+implementation
+
+
+
+procedure IU_CCM_ImageClick(_id : integer);
+var i : integer;
+  SelectID : integer;
+begin
+  // Get ID of current command
+  for i:= 1 to 3 do begin
+    if i = _id then begin
+      V_IU_CommandsImages[i].CommandBouton.Assign(V_IU_CommandsImages[i].CommandRem[2]);
+      V_IU_CommandsImages[i].CommandRem[4].Assign(V_IU_CommandsImages[i].CommandBouton);
+    end else begin
+        V_IU_CommandsImages[i].CommandBouton.Assign(V_IU_CommandsImages[i].CommandRem[3]);
+        V_IU_CommandsImages[i].CommandRem[4].Assign(V_IU_CommandsImages[i].CommandRem[3]);
+    end;
+  end;
+end;
+
+
+procedure IU_CCM_ImageMouseEnter(_id : integer);
+var i : integer ;
+begin
+  for i := 1 to 3 do begin
+    if i = _id then begin
+      V_IU_CommandsImages[i].CommandBouton:=V_IU_CommandsImages[i].CommandRem[1];
+    end;
+  end;
+end;
+
+procedure IU_CCM_ImageMouseLeave(_id : integer);
+var i : integer;
+begin
+  for i := 1 to 3 do begin
+    if i = _id then begin
+      V_IU_CommandsImages[i].CommandBouton:=V_IU_CommandsImages[i].CommandRem[4];
+    end;
+  end;
+end;
+
+
+
+end.
+

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="Images32"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <BuildNr Value="5"/>
+      <Attributes pvaDebug="True"/>
+      <StringTable ProductName="Tim" ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="BGRABitmapPack"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="12">
+      <Unit0>
+        <Filename Value="Images32.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="mainform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainForm"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="iu_imagesutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_ImagesUtils"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="iu_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Types"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="iu_pix.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Pix"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="iu_exceptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Exceptions"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="iu_generalutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_GeneralUtils"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="iu_temporarypixfiles.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_TemporaryPixFiles"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="iu_i18n_messages.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_I18N_Messages"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="iu_criticalsections.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_CriticalSections"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="iu_frames.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Frames"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../BGRABitmapsManipulations/iu_bgra_interface.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_BGRA_Interface"/>
+      </Unit11>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="Images32"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <Libraries Value="../Librairies/Imaging/Source/Extensions"/>
+      <OtherUnitFiles Value="../Librairies/Imaging/Source;../Librairies/Imaging/Source/Extensions;../BGRABitmapsManipulations"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <Checks>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="linux"/>
+    </CodeGeneration>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

@@ -1,0 +1,9 @@
+object Form3: TForm3
+  Left = 539
+  Height = 301
+  Top = 315
+  Width = 543
+  Caption = 'Wincontrol2'
+  Color = 4473924
+  LCLVersion = '1.6.0.4'
+end

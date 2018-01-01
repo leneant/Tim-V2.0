@@ -1,0 +1,431 @@
+unit unitForm1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
+  global,
+  sectionsCritiques, U_MyThread_Test;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button10: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    Button9: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    LT2msg: TLabel;
+    LT1msg: TLabel;
+    LT3msg: TLabel;
+    LT4msg: TLabel;
+    procedure Button10Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure Button9Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
+  private
+    { private declarations }
+    pause0, pause1, pause2, pause3 : boolean;
+  public
+    { public declarations }
+  end;
+
+
+var
+  Form1: TForm1;
+  boucle : boolean;
+
+implementation
+
+{$R *.lfm}
+
+
+{ TForm1 }
+
+procedure TForm1.FormCreate(Sender: TObject);
+var i : integer;
+begin
+  Threadcontrol[0].running := false;
+  Threadcontrol[1].running := false;
+  Threadcontrol[2].running := false;
+  Threadcontrol[3].running := false;
+  InitCriticalSection(MyCriticalSection);
+  InitCriticalSection(MyCriticalSection0); // Create critical section
+  InitCriticalSection(MyCriticalSection1); // Create critical section
+  InitCriticalSection(MyCriticalSection2); // Create critical section
+  InitCriticalSection(MyCriticalSection3); // Create critical section
+
+  InitCriticalSection(MyCriticalSectionThreadID_read); // Create critical section
+
+  pause0 := false;
+  pause1 := false;
+  pause2 := false;
+  pause3 := false;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var msg : string;
+  var go : boolean;
+begin
+  if not ((Threadcontrol[0].running and Threadcontrol[1].running) and
+  (Threadcontrol[2].running and Threadcontrol[3].running)) then begin
+    Threadcontrol[0].StopThread := false;
+    Threadcontrol[1].StopThread := false;
+    Threadcontrol[2].StopThread := false;
+    Threadcontrol[3].StopThread := false;
+    Threadcontrol[0].running := true;
+    Threadcontrol[1].running := true;
+    Threadcontrol[2].running := true;
+    Threadcontrol[3].running := true;
+    boucle := ((Threadcontrol[0].running and Threadcontrol[1].running) and
+              (Threadcontrol[2].running and Threadcontrol[3].running));
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // Paused the new thread until init var will be set
+    EnterCriticalSection(MyCriticalSection);
+    threadid_read := false;
+    thread1ID := BeginThread(TThreadFunc(@ThreadExecute));
+    CreatedThreadID := thread1ID;
+    Threadcontrol[0].thread:=thread1ID;
+    go := true;
+    // Leave critical section -> thread can resume and read its thread id
+    LeaveCriticalSection(MyCriticalSection);
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // loop until new thread has read its thread id
+    while go do begin
+      EnterCriticalSection(MyCriticalSectionThreadID_read);
+      if threadid_read then go := false;
+      LeaveCriticalSection(MyCriticalSectionThreadID_read);
+    end;
+
+    button3.enabled := true;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // Paused the new thread until init var will be set
+    EnterCriticalSection(MyCriticalSection);
+    threadid_read := false;
+    thread2ID := BeginThread(TThreadFunc(@ThreadExecute));
+    CreatedThreadID := thread2ID;
+    Threadcontrol[1].thread:=thread2ID;
+    go := true;
+    // Leave critical section -> thread can resume and read its thread id
+    LeaveCriticalSection(MyCriticalSection);
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // loop until new thread has read its thread id
+
+    button4.enabled := true;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    while go do begin
+      EnterCriticalSection(MyCriticalSectionThreadID_read);
+      if threadid_read then go := false;
+      LeaveCriticalSection(MyCriticalSectionThreadID_read);
+    end;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // Paused the new thread until init var will be set
+    EnterCriticalSection(MyCriticalSection);
+    threadid_read := false;
+    thread3ID := BeginThread(TThreadFunc(@ThreadExecute));
+    CreatedThreadID := thread3ID;
+    Threadcontrol[2].thread:=thread3ID;
+    go := true;
+    // Leave critical section -> thread can resume and read its thread id
+    LeaveCriticalSection(MyCriticalSection);
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // loop until new thread has read its thread id
+
+    button5.enabled := true;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    while go do begin
+      EnterCriticalSection(MyCriticalSectionThreadID_read);
+      if threadid_read then go := false;
+      LeaveCriticalSection(MyCriticalSectionThreadID_read);
+    end;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // Paused the new thread until init var will be set
+    EnterCriticalSection(MyCriticalSection);
+    threadid_read := false;
+    thread4ID := BeginThread(TThreadFunc(@ThreadExecute));
+    CreatedThreadID := thread4ID;
+    Threadcontrol[3].thread:=thread4ID;
+    go := true;
+    // Leave critical section -> thread can resume and read its thread id
+    LeaveCriticalSection(MyCriticalSection);
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    // loop until new thread has read its thread id
+
+    button6.enabled := true;
+
+    // With windows in thread GetThreadID function doesn't work
+    // Then we need to set the right ThreadID ourself
+    while go do begin
+      EnterCriticalSection(MyCriticalSectionThreadID_read);
+      if threadid_read then go := false;
+      LeaveCriticalSection(MyCriticalSectionThreadID_read);
+    end;
+
+    Label1.caption := 'Threads démarrées...';
+    pause0 := false;
+    pause1 := false;
+    pause2 := false;
+    pause3 := false;
+    while boucle do
+      begin
+        try
+           EnterCriticalSection(MyCriticalSection0);
+           boucle := Threadcontrol[0].running ;
+           msg := Threadcontrol[0].ThreadMSG;
+           Lt1msg.caption := msg;
+        finally
+          LeaveCriticalSection(MyCriticalSection0);
+        end;
+        try
+           EnterCriticalSection(MyCriticalSection1);
+           boucle := boucle and Threadcontrol[1].running;
+           msg := Threadcontrol[1].ThreadMSG;
+           Lt2msg.caption := msg;
+        finally
+          LeaveCriticalSection(MyCriticalSection1);
+        end;
+        try
+           EnterCriticalSection(MyCriticalSection2);
+           boucle := boucle and Threadcontrol[2].running;
+           msg := Threadcontrol[2].ThreadMSG;
+           Lt3msg.caption := msg;
+        finally
+          LeaveCriticalSection(MyCriticalSection2);
+        end;
+        try
+           EnterCriticalSection(MyCriticalSection3);
+           boucle := boucle and Threadcontrol[3].running;
+           msg := Threadcontrol[3].ThreadMSG;
+           Lt4msg.caption := msg;
+        finally
+          LeaveCriticalSection(MyCriticalSection3);
+        end;
+        Application.ProcessMessages;
+        sleep(100);
+      end;
+    Label1.caption := 'Threads terminées...';
+  end;
+end;
+
+procedure TForm1.Button10Click(Sender: TObject);
+begin
+  LeaveCriticalSection(MyCriticalSection3);
+  pause3 := false;
+  button6.enabled := true;
+  button10.enabled := false;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  try
+     if pause0 then
+     LeaveCriticalSection(MyCriticalSection0);
+  finally
+     EnterCriticalSection(MyCriticalSection0);
+     Threadcontrol[0].stopThread := true;
+     LeaveCriticalSection(MyCriticalSection0);
+  end;
+  try
+     if pause1 then
+     LeaveCriticalSection(MyCriticalSection1);
+  finally
+     EnterCriticalSection(MyCriticalSection1);
+     Threadcontrol[1].stopThread := true;
+     LeaveCriticalSection(MyCriticalSection1);
+  end;
+  try
+     if pause2 then
+     LeaveCriticalSection(MyCriticalSection2);
+  finally
+     EnterCriticalSection(MyCriticalSection2);
+     Threadcontrol[2].stopThread := true;
+     LeaveCriticalSection(MyCriticalSection2);
+  end;
+  try
+     if pause3 then
+     LeaveCriticalSection(MyCriticalSection3);
+  finally
+     EnterCriticalSection(MyCriticalSection3);
+     Threadcontrol[3].stopThread := true;
+     LeaveCriticalSection(MyCriticalSection3);
+  end;
+   Label1.caption := 'Threads Stoppées...';
+   button3.enabled := false;
+   button4.enabled := false;
+   button5.enabled := false;
+   button6.enabled := false;
+   button7.enabled := false;
+   button8.enabled := false;
+   button9.enabled := false;
+   button10.enabled := false;
+   pause0 := false;
+   pause1 := false;
+   pause2 := false;
+   pause3 := false;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var Thread:TThreadID;
+begin
+  EnterCriticalSection(MyCriticalSection0);
+  pause0 := true;
+  button3.enabled := false;
+  button7.enabled := true;
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  EnterCriticalSection(MyCriticalSection1);
+  pause1 := true;
+  button4.enabled := false;
+  button8.enabled := true;
+end;
+
+procedure TForm1.Button5Click(Sender: TObject);
+begin
+  EnterCriticalSection(MyCriticalSection2);
+  pause2 := true;
+  button5.enabled := false;
+  button9.enabled := true;
+end;
+
+procedure TForm1.Button6Click(Sender: TObject);
+begin
+  EnterCriticalSection(MyCriticalSection3);
+  pause3 := true;
+  button6.enabled := false;
+  button10.enabled := true;
+end;
+
+procedure TForm1.Button7Click(Sender: TObject);
+begin
+  LeaveCriticalSection(MyCriticalSection0);
+  pause0 := false;
+  button3.enabled := true;
+  button7.enabled := false;
+end;
+
+procedure TForm1.Button8Click(Sender: TObject);
+begin
+  LeaveCriticalSection(MyCriticalSection1);
+  pause1 := false;
+  button4.enabled := true;
+  button8.enabled := false;
+end;
+
+procedure TForm1.Button9Click(Sender: TObject);
+begin
+  LeaveCriticalSection(MyCriticalSection2);
+  pause2 := false;
+  button5.enabled := true;
+  button9.enabled := false;
+end;
+
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: boolean);
+begin
+  try
+     try
+        if pause0 then
+        LeaveCriticalSection(MyCriticalSection0);
+     finally
+        EnterCriticalSection(MyCriticalSection0);
+        Threadcontrol[0].stopThread := true;
+        LeaveCriticalSection(MyCriticalSection0);
+     end;
+     try
+        if pause1 then
+        LeaveCriticalSection(MyCriticalSection1);
+     finally
+        EnterCriticalSection(MyCriticalSection1);
+        Threadcontrol[1].stopThread := true;
+        LeaveCriticalSection(MyCriticalSection1);
+     end;
+     try
+        if pause2 then
+        LeaveCriticalSection(MyCriticalSection2);
+     finally
+        EnterCriticalSection(MyCriticalSection2);
+        Threadcontrol[2].stopThread := true;
+        LeaveCriticalSection(MyCriticalSection2);
+     end;
+     try
+        if pause3 then
+        LeaveCriticalSection(MyCriticalSection3);
+     finally
+        EnterCriticalSection(MyCriticalSection3);
+        Threadcontrol[3].stopThread := true;
+        LeaveCriticalSection(MyCriticalSection3);
+     end;
+  finally
+  end;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+    try
+       KillThread (thread1ID);
+    finally
+      try
+         KillThread (thread2ID);
+      finally
+        try
+           KillThread (thread3ID);
+        finally
+          try
+             KillThread (thread4ID);
+          finally
+            DoneCriticalSection(MyCriticalSection0); // destroying critical section
+            DoneCriticalSection(MyCriticalSection1); // destroying critical section
+            DoneCriticalSection(MyCriticalSection2); // destroying critical section
+            DoneCriticalSection(MyCriticalSection3); // destroying critical section
+            DoneCriticalSection(MyCriticalSection);
+            DoneCriticalSection(MyCriticalSectionThreadID_read); // destroying critical section
+          end;
+        end;
+      end;
+    end;
+end;
+
+procedure TForm1.Label2Click(Sender: TObject);
+begin
+
+end;
+
+end.
+
