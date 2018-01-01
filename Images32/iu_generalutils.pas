@@ -3,10 +3,12 @@ unit IU_GeneralUtils;
 // * Unit provides generals utils services (adapted from TIm V1.x branch)
 // * Creation Date : 2017 September
 // *
-// * Version : 1.5
-// * Version Date : 2017 December
+// * Version : 1.6
+// * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 1.6 : Testing equality in file name because under windows x.tiff = x.TIFF
+// *               Then test was added to insert only once the file in the list
 // * Version 1.5 : Adding drives list and files list object
 // * Version 1.4 : Adding double chained list of text
 // * Version 1.3 : Adding size of current disk and free room on it (for windows and linux)
@@ -823,6 +825,10 @@ begin
     self._end:=pt;
     pt^._next:=nil;
     pt^._previous:=nil;
+    // ***
+    // * Add V1.6
+    inc(self._count);
+    // ***
   end else begin
     inserted := false;
     while searchpt <> nil do begin
@@ -880,7 +886,24 @@ begin
         end;
         searchpt := nil;
         inserted := true;
-      end else searchpt := searchpt^._next;
+        // ***
+        // * Add V1.6
+        inc(self._count);
+        // ***
+      end else
+      // ***
+      // * Add v1.6
+      begin
+        if CompareText(_value, captioncomp) = 0 then begin
+          searchpt := nil;
+          inserted := true;
+          // exiting without insertion then no inc of _count
+        end else
+      // *
+      // * End Add V1.6
+      // ***
+        searchpt := searchpt^._next;
+      end;
     end;
     // Case when pt was not inserted (because it is the higher value of text)
     // Then it becomes the last item
@@ -903,10 +926,19 @@ begin
       pt^._previous:=self._end;
       pt^._next := nil;
       self._end := pt;
+      // ***
+      // * Add V1.6
+      inc(self._count);
+      // ***
     end;
   end;
+  // ***
+  // * Del V1.6
+  {
   // if no exception then item was added
   inc(self._count);
+  }
+  // ***
   // reset policy to its old value
   ReturnNilIfGrowHeapFails := nilerror ;
 end;

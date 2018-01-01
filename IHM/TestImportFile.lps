@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="14" Y="11"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
       </Unit0>
       <Unit1>
         <Filename Value="ImportFile/iu_importfile.pas"/>
@@ -18,9 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IU_importfile"/>
-        <TopLine Value="513"/>
-        <CursorPos X="66" Y="534"/>
-        <UsageCount Value="64"/>
+        <TopLine Value="431"/>
+        <CursorPos Y="449"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,9 +30,8 @@
         <UnitName Value="IU_GeneralUtils"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="100"/>
-        <CursorPos X="38" Y="127"/>
-        <UsageCount Value="64"/>
+        <CursorPos X="80" Y="11"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -42,7 +41,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="198"/>
         <CursorPos Y="230"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -52,7 +51,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="119"/>
         <CursorPos X="52" Y="149"/>
-        <UsageCount Value="60"/>
+        <UsageCount Value="61"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -60,7 +59,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_strechutils"/>
         <EditorIndex Value="1"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -115,10 +114,127 @@
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="1">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="../Utils/iu_strechutils.pas"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="822" TopLine="802"/>
       </Position1>
+      <Position2>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="823" TopLine="802"/>
+      </Position2>
+      <Position3>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="824" TopLine="802"/>
+      </Position3>
+      <Position4>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="825" TopLine="802"/>
+      </Position4>
+      <Position5>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="937" TopLine="919"/>
+      </Position5>
+      <Position6>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="789" TopLine="770"/>
+      </Position6>
+      <Position7>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="938" TopLine="921"/>
+      </Position7>
+      <Position8>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1237" TopLine="1219"/>
+      </Position8>
+      <Position9>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1228" TopLine="1219"/>
+      </Position9>
+      <Position10>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1227" TopLine="1219"/>
+      </Position10>
+      <Position11>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1245" TopLine="1219"/>
+      </Position11>
+      <Position12>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1241" TopLine="1219"/>
+      </Position12>
+      <Position13>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="449" TopLine="431"/>
+      </Position13>
+      <Position14>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1236" TopLine="1219"/>
+      </Position14>
+      <Position15>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="789" TopLine="770"/>
+      </Position15>
+      <Position16>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="791" TopLine="770"/>
+      </Position16>
+      <Position17>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="793" TopLine="770"/>
+      </Position17>
+      <Position18>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="795" TopLine="770"/>
+      </Position18>
+      <Position19>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="796" TopLine="770"/>
+      </Position19>
+      <Position20>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="804" TopLine="774"/>
+      </Position20>
+      <Position21>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="805" TopLine="775"/>
+      </Position21>
+      <Position22>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="804" TopLine="823"/>
+      </Position22>
+      <Position23>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="819" TopLine="802"/>
+      </Position23>
+      <Position24>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="821" TopLine="802"/>
+      </Position24>
+      <Position25>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="827" TopLine="802"/>
+      </Position25>
+      <Position26>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="828" TopLine="802"/>
+      </Position26>
+      <Position27>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="830" TopLine="802"/>
+      </Position27>
+      <Position28>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="831" TopLine="802"/>
+      </Position28>
+      <Position29>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="830" TopLine="802"/>
+      </Position29>
+      <Position30>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="869" Column="16" TopLine="1210"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
