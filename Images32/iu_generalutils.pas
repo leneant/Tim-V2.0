@@ -485,7 +485,7 @@ var
   coef : real;
 begin
   RAM := IU_getInstalledRAM / 1024 / 1024 / 1024 ;
-  coef := real(IU_min(2.25, 1+(RAM*_K)));
+  coef := real(IU_min(2.05, 1+(RAM*_K)));
   IU_getAdaptationRAMCoef := coef;
 end;
 

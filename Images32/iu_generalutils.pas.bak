@@ -3,10 +3,12 @@ unit IU_GeneralUtils;
 // * Unit provides generals utils services (adapted from TIm V1.x branch)
 // * Creation Date : 2017 September
 // *
-// * Version : 1.5
-// * Version Date : 2017 December
+// * Version : 1.6
+// * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 1.6 : Testing equality in file name because under windows x.tiff = x.TIFF
+// *               Then test was added to insert only once the file in the list
 // * Version 1.5 : Adding drives list and files list object
 // * Version 1.4 : Adding double chained list of text
 // * Version 1.3 : Adding size of current disk and free room on it (for windows and linux)

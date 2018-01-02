@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 364
+  Left = 362
   Height = 449
-  Top = 84
+  Top = 28
   Width = 1042
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682
@@ -15,6 +15,28 @@ object ImportFile: TImportFile
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '1.6.0.4'
+  object Shape1: TShape
+    Left = 657
+    Height = 251
+    Top = 27
+    Width = 376
+    Brush.Color = 2894892
+  end
+  object Label7: TLabel
+    Left = 32
+    Height = 15
+    Top = 66
+    Width = 290
+    AutoSize = False
+    Caption = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+    Color = 2894892
+    Font.Color = clSilver
+    Font.Height = -13
+    Font.Name = 'Sans'
+    ParentColor = False
+    ParentFont = False
+    Transparent = False
+  end
   object ListBox1: TListBox
     Left = 0
     Height = 366
@@ -37,10 +59,10 @@ object ImportFile: TImportFile
     TopIndex = -1
   end
   object ListBox2: TListBox
-    Left = 330
+    Left = 332
     Height = 381
     Top = 67
-    Width = 312
+    Width = 310
     Color = 2697515
     Font.Color = clSilver
     Font.Height = -13
@@ -50,7 +72,7 @@ object ImportFile: TImportFile
     OnEnter = ListBox2Enter
     OnExit = ListBox2Exit
     ParentFont = False
-    ScrollWidth = 310
+    ScrollWidth = 308
     TabOrder = 3
     TopIndex = -1
   end
@@ -185,20 +207,6 @@ object ImportFile: TImportFile
     ParentFont = False
     Transparent = False
   end
-  object Label7: TLabel
-    Left = 32
-    Height = 15
-    Top = 66
-    Width = 43
-    Caption = 'Label7'
-    Color = 2894892
-    Font.Color = clSilver
-    Font.Height = -13
-    Font.Name = 'Sans'
-    ParentColor = False
-    ParentFont = False
-    Transparent = False
-  end
   object Label8: TLabel
     Left = 333
     Height = 15
@@ -264,12 +272,6 @@ object ImportFile: TImportFile
     ParentFont = False
     TabOrder = 6
   end
-  object Image1: TImage
-    Left = 658
-    Height = 250
-    Top = 28
-    Width = 375
-  end
   object Label9: TLabel
     Left = 660
     Height = 1
@@ -309,5 +311,15 @@ object ImportFile: TImportFile
     ParentFont = False
     Style = csDropDownList
     TabOrder = 2
+  end
+  object Image1: TImage
+    Left = 658
+    Height = 250
+    Top = 28
+    Width = 375
+    BorderSpacing.Left = 1
+    BorderSpacing.Top = 1
+    BorderSpacing.Right = 1
+    BorderSpacing.Bottom = 1
   end
 end

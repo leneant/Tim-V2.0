@@ -1,5 +1,24 @@
 unit IU_importfile;
-
+// ***
+// * Unit provides an import file windows
+// * Creation Date : 2017 December
+// *
+// * Version : 0.2
+// * Version Date : 2018 January
+// * Version Contributors : Pascal Lemaître
+// *
+// * Version 0.2 : Adding management of horizontals scrollbars
+// * Version 0.1 : Creation
+// *
+// * @authors : Pascal Lemaître
+// *
+// * @see :
+// *
+// *
+// * Team : TIm (Traitement d'Images)
+// *
+// * 2017-2018
+// ***
 {$mode objfpc}{$H+}
 
 interface
@@ -38,6 +57,7 @@ type
     Label9: TLabel;
     ListBox1: TListBox;
     ListBox2: TListBox;
+    Shape1: TShape;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
     procedure Button1Click(Sender: TObject);
@@ -321,6 +341,10 @@ var
   _coef : int64;
   _scale : string;
 begin
+  Shape1.Top := Image1.Top-1;
+  Shape1.Left := Image1.Left - 1;
+  Shape1.Width := Image1.Width + 2;
+  shape1.Height := Image1.Height + 2;
   SelectedFile := ''; // no file selected
   dirsList := IU_T_DirsList.Create;
   filesList := IU_T_FilesList.Create;
@@ -394,6 +418,8 @@ var
   _coef : int64;
   _scale : string;
 begin
+  ListBox1.ScrollWidth := ListBox1.Width;
+  ListBox2.ScrollWidth := ListBox2.Width;
   _olddir := getCurrentDir;
   _directory := ListBox1.GetSelectedText;
   ListBox1.Clear;
@@ -495,7 +521,7 @@ begin
   ListBox2.Color:=rgbtocolor($30,$30,$30);
   ListBox2.Repaint;
   ListBox2.Refresh;
-  if ListBox2.Count > 0 then begin
+  if (ListBox2.Count > 0) and (ListBox2.ItemIndex > -1) then begin
     screen.cursor := crHourGlass;
     _error := false;
     bmp1 := TBGRABitmap.Create;
@@ -567,9 +593,10 @@ procedure TImportFile.Splitter1Moved(Sender: TObject);
 begin
   if Splitter1.Left < 250 then Splitter1.Left := 250;
   if Splitter2.Left - Splitter1.Left - Splitter1.Width < 300 then  Splitter2.Left := Splitter1.Left + Splitter1.Width + 300;
+  Label7.Width := Splitter1.Left - Label7.Left ;
   ListBox1.Width := Splitter1.Left - 2;
-  ListBox2.Left := Splitter1.Left + Splitter1.Width;
-  ListBox2.Width := Splitter2.left - 2 - (Splitter1.Left + Splitter1.Width);
+  ListBox2.Left := Splitter1.Left + Splitter1.Width+2;
+  ListBox2.Width := Splitter2.left - 4 - (Splitter1.Left + Splitter1.Width);
   Button2.Left := Splitter1.Left + Splitter1.Width + 1 ;
   Label6.Left := Splitter1.Left + Splitter1.Width + 3 ;
   Label8.Left := Splitter1.Left + Splitter1.Width + 3 ;
@@ -577,6 +604,7 @@ begin
   Button5.Left := Splitter2.Left + Splitter2.Width + 5;
   Button6.Left := Splitter2.Left + Splitter2.Width + 5;
   Image1.Left := Splitter2.Left+Splitter2.Width + 5;
+  Shape1.Left := Splitter2.Left+Splitter2.Width + 4;
   Label9.Left := Splitter2.Left+Splitter2.Width + 5;
   Label10.Left := Splitter2.Left+Splitter2.Width + 5;
 end;
