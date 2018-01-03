@@ -3,13 +3,13 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="19">
+    <Units Count="21">
       <Unit0>
         <Filename Value="TestImportFile.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="14" Y="11"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
       </Unit0>
       <Unit1>
         <Filename Value="ImportFile/iu_importfile.pas"/>
@@ -19,9 +19,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IU_importfile"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="624"/>
-        <CursorPos X="46" Y="531"/>
-        <UsageCount Value="68"/>
+        <TopLine Value="152"/>
+        <CursorPos X="67" Y="187"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -29,223 +29,275 @@
         <Filename Value="../Images32/iu_generalutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_GeneralUtils"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="26"/>
         <CursorPos X="7" Y="26"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="../Images32/iu_i18n_messages.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_I18N_Messages"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="198"/>
         <CursorPos Y="230"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="../Images32/iu_exceptions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_Exceptions"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="119"/>
         <CursorPos X="52" Y="149"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="66"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="../Utils/iu_strechutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_strechutils"/>
-        <EditorIndex Value="1"/>
-        <UsageCount Value="30"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
+        <Filename Value="../Images32/iu_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Types"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/filutilh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="83"/>
         <CursorPos X="11" Y="86"/>
         <UsageCount Value="20"/>
-      </Unit6>
-      <Unit7>
+      </Unit7>
+      <Unit8>
         <Filename Value="/usr/share/fpcsrc/3.0.0/rtl/objpas/sysutils/sysstrh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="61"/>
         <CursorPos Y="79"/>
         <UsageCount Value="7"/>
-      </Unit7>
-      <Unit8>
+      </Unit8>
+      <Unit9>
         <Filename Value="../../../../AppData/Local/Temp/7zO04C10BD3/U_DriveDemo.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="78"/>
         <UsageCount Value="8"/>
-      </Unit8>
-      <Unit9>
+      </Unit9>
+      <Unit10>
         <Filename Value="/lazarus/lcl/forms.pp"/>
         <UnitName Value="Forms"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1407"/>
         <CursorPos X="5" Y="1423"/>
         <UsageCount Value="8"/>
-      </Unit9>
-      <Unit10>
+      </Unit10>
+      <Unit11>
         <Filename Value="/usr/share/lazarus/1.6/lcl/interfaces/gtk2/gtk2widgetset.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2384"/>
         <CursorPos Y="2404"/>
         <UsageCount Value="10"/>
-      </Unit10>
-      <Unit11>
+      </Unit11>
+      <Unit12>
         <Filename Value="/usr/share/lazarus/1.6/lcl/lclproc.pas"/>
         <UnitName Value="LCLProc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="882"/>
         <CursorPos Y="902"/>
         <UsageCount Value="10"/>
-      </Unit11>
-      <Unit12>
+      </Unit12>
+      <Unit13>
         <Filename Value="/usr/share/lazarus/1.6/lcl/dialogs.pp"/>
         <UnitName Value="Dialogs"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="21" Y="36"/>
         <UsageCount Value="10"/>
-      </Unit12>
-      <Unit13>
+      </Unit13>
+      <Unit14>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/control.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2106"/>
         <CursorPos Y="2125"/>
         <UsageCount Value="10"/>
-      </Unit13>
-      <Unit14>
+      </Unit14>
+      <Unit15>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/buttoncontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos Y="21"/>
         <UsageCount Value="10"/>
-      </Unit14>
-      <Unit15>
+      </Unit15>
+      <Unit16>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/buttons.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="150"/>
         <CursorPos Y="170"/>
         <UsageCount Value="10"/>
-      </Unit15>
-      <Unit16>
+      </Unit16>
+      <Unit17>
         <Filename Value="/usr/share/lazarus/1.6/lcl/include/wincontrol.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="5365"/>
         <CursorPos Y="5384"/>
         <UsageCount Value="10"/>
-      </Unit16>
-      <Unit17>
+      </Unit17>
+      <Unit18>
         <Filename Value="/usr/share/lazarus/1.6/lcl/lclmessageglue.pas"/>
         <UnitName Value="LCLMessageGlue"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="93"/>
         <CursorPos Y="112"/>
         <UsageCount Value="10"/>
-      </Unit17>
-      <Unit18>
+      </Unit18>
+      <Unit19>
         <Filename Value="/usr/share/lazarus/1.6/lcl/interfaces/gtk2/gtk2wsstdctrls.pp"/>
         <UnitName Value="Gtk2WSStdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2408"/>
         <CursorPos Y="2428"/>
         <UsageCount Value="10"/>
-      </Unit18>
+      </Unit19>
+      <Unit20>
+        <Filename Value="../Utils/iu_timcontrols.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_TimControls"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="3767"/>
+        <CursorPos X="37" Y="3778"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit20>
     </Units>
-    <JumpHistory Count="22" HistoryIndex="21">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="608" Column="57" TopLine="579"/>
+        <Caret Line="168" Column="104" TopLine="148"/>
       </Position1>
       <Position2>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="521" Column="32" TopLine="502"/>
+        <Caret Line="277" Column="95" TopLine="258"/>
       </Position2>
       <Position3>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="594" Column="54" TopLine="583"/>
+        <Caret Line="297" Column="96" TopLine="278"/>
       </Position3>
       <Position4>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="593" Column="49" TopLine="583"/>
+        <Caret Line="364" Column="99" TopLine="345"/>
       </Position4>
       <Position5>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="592" Column="49" TopLine="582"/>
+        <Caret Line="454" Column="100" TopLine="435"/>
       </Position5>
       <Position6>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="591" Column="49" TopLine="581"/>
+        <Caret Line="468" Column="99" TopLine="449"/>
       </Position6>
       <Position7>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="604" TopLine="578"/>
+        <Caret Line="568" Column="101" TopLine="549"/>
       </Position7>
       <Position8>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="329" TopLine="310"/>
+        <Caret Line="582" Column="101" TopLine="563"/>
       </Position8>
       <Position9>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="330" TopLine="311"/>
+        <Caret Line="595" Column="98" TopLine="576"/>
       </Position9>
       <Position10>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="347" Column="38" TopLine="333"/>
+        <Caret Line="468" Column="68" TopLine="457"/>
       </Position10>
       <Position11>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="325" Column="3" TopLine="323"/>
+        <Caret Line="454" Column="68" TopLine="436"/>
       </Position11>
       <Position12>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="602" Column="16" TopLine="488"/>
+        <Caret Line="591" Column="114" TopLine="447"/>
       </Position12>
       <Position13>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="214" TopLine="176"/>
+        <Caret Line="468" Column="141" TopLine="449"/>
       </Position13>
       <Position14>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="359" Column="3" TopLine="348"/>
+        <Caret Line="568" Column="142" TopLine="549"/>
       </Position14>
       <Position15>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="207" Column="113" TopLine="183"/>
+        <Caret Line="310" Column="18" TopLine="317"/>
       </Position15>
       <Position16>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="247" TopLine="218"/>
+        <Caret Line="72" Column="26" TopLine="54"/>
       </Position16>
       <Position17>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="251" TopLine="219"/>
+        <Caret Line="75" Column="26" TopLine="54"/>
       </Position17>
       <Position18>
-        <Filename Value="../Utils/iu_strechutils.pas"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="80" Column="26" TopLine="54"/>
       </Position18>
       <Position19>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="247" TopLine="219"/>
+        <Caret Line="82" Column="26" TopLine="54"/>
       </Position19>
       <Position20>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="413" TopLine="413"/>
+        <Caret Line="85" Column="28" TopLine="54"/>
       </Position20>
       <Position21>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="214" Column="11" TopLine="183"/>
+        <Caret Line="94" Column="27" TopLine="63"/>
       </Position21>
       <Position22>
         <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="248" TopLine="189"/>
+        <Caret Line="99" Column="27" TopLine="68"/>
       </Position22>
+      <Position23>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="275" Column="34" TopLine="243"/>
+      </Position23>
+      <Position24>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="308" Column="34" TopLine="276"/>
+      </Position24>
+      <Position25>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="337" Column="34" TopLine="305"/>
+      </Position25>
+      <Position26>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="347" Column="34" TopLine="315"/>
+      </Position26>
+      <Position27>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="362" Column="36" TopLine="330"/>
+      </Position27>
+      <Position28>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="593" Column="35" TopLine="561"/>
+      </Position28>
+      <Position29>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="187" Column="134" TopLine="156"/>
+      </Position29>
+      <Position30>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="168" Column="64" TopLine="133"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

@@ -33,7 +33,7 @@
         <UnitName Value="IU_TimControls"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="381"/>
+        <TopLine Value="3743"/>
         <CursorPos X="31" Y="400"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>
@@ -43,7 +43,7 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_Types"/>
         <EditorIndex Value="4"/>
-        <TopLine Value="78"/>
+        <TopLine Value="227"/>
         <CursorPos X="15" Y="97"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>

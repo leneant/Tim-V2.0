@@ -255,26 +255,7 @@ function IU_BackGroudExtractionArea (size : T_IU_MaxPix) : T_IU_MaxPix;
     // Div by MaxThread because there are MaxThreads to work on a pix and there are one frame for one thread
   end;
 
-// ***
-// * Return coef adaptation for allocated memory according to installed RAM
-// *
-// * @author : Pascal Lemaître
-// *
-// * return : adaptation coef
-// *
-// ***
-function IU_getAdaptationRAMCoef : real;
-// function return a real has an allocation memory coef to adapt size of frame according to installed RAM
-const
-  _K = 0.04;
-var
-  RAM : real;
-  coef : real;
-begin
-  RAM := IU_getInstalledRAM / 1024 / 1024 / 1024 ;
-  coef := min(2.25, 1+(RAM*_K));
-  IU_getAdaptationRAMCoef := coef;
-end;
+
 
 // ***
 // * Globals var initialization when program start up
@@ -296,10 +277,9 @@ begin
 
   // Init of frame's memory size
   // ***
-  // * Modified V0.3
-  // V_IU_MaxOutWindowSize := (K_IU_MaxMemorySize div K_IU_MaxThreads);
+  // * Delete V0.3 move to IU_Frames init section
+  {
   V_IU_MaxOutWindowSize := trunc (K_IU_MaxMemorySize * IU_getAdaptationRAMCoef / K_IU_MaxThreads);
-  // ***
   V_IU_MaxInWindowSize :=  V_IU_MaxOutWindowSize + (K_IU_BKGRDSigExtract_MaxWindow * 32 * 10000) ;
   // RecoveryArea is the half of the windows for background signal extraction.
   //
@@ -332,5 +312,7 @@ begin
   // The we need 2.5 Gb + 0.05 Gb + 0.02 Gb = 2.57 Gb.
   // Now, normaly, PC have 4 Gb. Some one (low powered) have only 3 Gb.
   // We can assume that Tim need 4 Gb to work correctly.
+  }
+  // ***
 end.
 

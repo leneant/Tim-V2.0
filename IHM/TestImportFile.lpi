@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="8">
       <Unit0>
         <Filename Value="TestImportFile.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -68,6 +68,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_strechutils"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="../Images32/iu_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Types"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../Utils/iu_timcontrols.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_TimControls"/>
+      </Unit7>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

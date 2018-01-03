@@ -5,9 +5,11 @@ unit IU_TimControls;
 // * Unit defining controls objects like progress bar, scroll bars, tracks bars...
 // * Creation date : 2017 November
 // *
-// * Version : 0.12
-// * Version Date : 2017 December
+// * Version : 0.13
+// * Version Date : 2018 January
 // * Version contributors : Pascal Lemaître
+// *
+// * V0.13 : Adding default colors for buttons
 // *
 // * V0.12 : Adding autofocus on the parent form of personnal controls
 // *
@@ -37,7 +39,7 @@ unit IU_TimControls;
 // *
 // * Team : TIm (Traitement d'IMages)
 // *
-// * 2017
+// * 2017-2018
 // ***
 
 interface
@@ -716,6 +718,16 @@ type
       V_IU_Box_Color_CheckedHigh : T_IU_Progress_Line_Color;  // highlight color for checked
       V_IU_Box_TextColorDefault : T_IU_Progress_Line_Color;   // Default text color
       V_IU_Box_TextColorHigh : T_IU_Progress_Line_Color;      // higlight text color
+
+      // ***
+      // * Add v0.13
+      // *
+      V_IU_Button_unfocused : T_IU_Progress_Line_Color;
+      V_IU_Button_focused : T_IU_Progress_Line_Color;
+      // *
+      // * End Add v0.13
+      // ***
+
 
 implementation
 
@@ -3774,6 +3786,24 @@ begin
         green := $F0;
         blue := $F0;
       end;
+
+      // ***
+      // * Add v0.13
+      // *
+      with V_IU_Button_unfocused do begin
+        red := $2c;
+        green := $2c;
+        blue := $2c;
+       end;
+
+      with V_IU_Button_focused do begin
+        red := $50;
+        green := $50;
+        blue := $50;
+       end;
+      // *
+      // * End Add v0.13
+      // ***
 
 
 end.

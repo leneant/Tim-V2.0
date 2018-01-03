@@ -33,8 +33,8 @@
         <UnitName Value="IU_TimControls"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="2496"/>
-        <CursorPos X="22" Y="2530"/>
+        <TopLine Value="381"/>
+        <CursorPos X="31" Y="400"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -119,123 +119,127 @@
         <UsageCount Value="10"/>
       </Unit12>
     </Units>
-    <JumpHistory Count="29" HistoryIndex="28">
+    <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1651" Column="15" TopLine="1618"/>
+        <Caret Line="3218" Column="19" TopLine="3185"/>
       </Position1>
       <Position2>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1894" TopLine="1857"/>
+        <Caret Line="3300" Column="66" TopLine="3267"/>
       </Position2>
       <Position3>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1895" Column="15" TopLine="1862"/>
+        <Caret Line="3343" Column="34" TopLine="3310"/>
       </Position3>
       <Position4>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1937" TopLine="1900"/>
+        <Caret Line="3413" Column="60" TopLine="3380"/>
       </Position4>
       <Position5>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1938" Column="15" TopLine="1905"/>
+        <Caret Line="3465" Column="13" TopLine="3432"/>
       </Position5>
       <Position6>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2364" TopLine="2327"/>
+        <Caret Line="3534" Column="97" TopLine="3501"/>
       </Position6>
       <Position7>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2365" Column="15" TopLine="2332"/>
+        <Caret Line="3535" Column="98" TopLine="3502"/>
       </Position7>
       <Position8>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2494" TopLine="2457"/>
+        <Caret Line="3537" Column="19" TopLine="3504"/>
       </Position8>
       <Position9>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2495" Column="15" TopLine="2462"/>
+        <Caret Line="3709" Column="101" TopLine="3676"/>
       </Position9>
       <Position10>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2537" TopLine="2500"/>
+        <Caret Line="250" Column="57" TopLine="230"/>
       </Position10>
       <Position11>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2538" Column="15" TopLine="2505"/>
+        <Caret Line="251" Column="16" TopLine="230"/>
       </Position11>
       <Position12>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2833" TopLine="2796"/>
+        <Caret Line="258" Column="37" TopLine="230"/>
       </Position12>
       <Position13>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2834" Column="15" TopLine="2801"/>
+        <Caret Line="604" Column="69" TopLine="571"/>
       </Position13>
       <Position14>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2857" TopLine="2820"/>
+        <Caret Line="629" Column="86" TopLine="597"/>
       </Position14>
       <Position15>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2858" Column="15" TopLine="2825"/>
+        <Caret Line="630" Column="87" TopLine="598"/>
       </Position15>
       <Position16>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3422" TopLine="3385"/>
+        <Caret Line="699" Column="84" TopLine="666"/>
       </Position16>
       <Position17>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3423" Column="15" TopLine="3390"/>
+        <Caret Line="760" Column="75" TopLine="727"/>
       </Position17>
       <Position18>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3447" TopLine="3410"/>
+        <Caret Line="764" Column="14" TopLine="731"/>
       </Position18>
       <Position19>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3448" Column="15" TopLine="3415"/>
+        <Caret Line="767" Column="56" TopLine="734"/>
       </Position19>
       <Position20>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3444" Column="28" TopLine="3415"/>
+        <Caret Line="1354" Column="53" TopLine="1322"/>
       </Position20>
       <Position21>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2855" Column="20" TopLine="2834"/>
+        <Caret Line="1661" Column="41" TopLine="1630"/>
       </Position21>
       <Position22>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2831" Column="19" TopLine="2810"/>
+        <Caret Line="1911" Column="9" TopLine="1875"/>
       </Position22>
       <Position23>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="3420" Column="20" TopLine="3386"/>
+        <Caret Line="2378" Column="42" TopLine="2345"/>
       </Position23>
       <Position24>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2362" Column="21" TopLine="2341"/>
+        <Caret Line="2514" Column="7" TopLine="2478"/>
       </Position24>
       <Position25>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1643" Column="21" TopLine="1622"/>
+        <Caret Line="400" Column="31" TopLine="381"/>
       </Position25>
       <Position26>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1645" TopLine="1622"/>
+        <Caret Line="489" Column="31" TopLine="457"/>
       </Position26>
       <Position27>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1887" Column="23" TopLine="1853"/>
+        <Caret Line="1661" Column="39" TopLine="1628"/>
       </Position27>
       <Position28>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="1930" Column="22" TopLine="1896"/>
+        <Caret Line="1910" Column="25" TopLine="1877"/>
       </Position28>
       <Position29>
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
-        <Caret Line="2487" Column="22" TopLine="2453"/>
+        <Caret Line="2378" Column="40" TopLine="2345"/>
       </Position29>
+      <Position30>
+        <Filename Value="../../Utils/iu_timcontrols.pas"/>
+        <Caret Line="2513" Column="24" TopLine="2480"/>
+      </Position30>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

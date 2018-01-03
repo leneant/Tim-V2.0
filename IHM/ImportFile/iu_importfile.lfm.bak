@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 335
+  Left = 511
   Height = 449
-  Top = 309
+  Top = 128
   Width = 1042
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682
@@ -299,6 +299,7 @@ object ImportFile: TImportFile
     Height = 28
     Top = 19
     Width = 160
+    AutoDropDown = True
     Color = 2894892
     Font.Color = clSilver
     Font.Height = -12
