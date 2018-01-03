@@ -5,10 +5,11 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.5
+// * Version : 0.6
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.6 : For dedicated linux -> Adding text for list invert font color
 // * v0.5 : Adding loading image file error message.
 // * v0.4 : Adding text for import 1 file windows
 // * v0.3 : Adding informationnal message
@@ -123,6 +124,14 @@ const
   // * End Add v0.5
   // ***
 
+  // ***
+  // * Add v0.5
+  K_IU_HIMSG_ListInvFontColor = 20;
+  // *
+  // * End Add v0.5
+  // ***
+
+
   type
     T_IU_ExceptionMessages = array [K_IU_I18N_FRENCH..K_IU_I18N_ENGLISH, 0..500] of string;
     // Error messages
@@ -232,6 +241,15 @@ begin
   // *
   // * End Add v0.5
   // ***
+
+  // ***
+  // * Add v0.5
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_ListInvFontColor] := 'Liste : inverser la couleur du texte';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_ListInvFontColor] := 'List : invert font color';
+  // *
+  // * End Add v0.5
+  // ***
+
 
   // init exception messages
   IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_TmpCreationFail] := 'Création impossible du fichier temporaire de l''image !';

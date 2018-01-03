@@ -3,10 +3,11 @@ unit IU_importfile;
 // * Unit provides an import file windows
 // * Creation Date : 2017 December
 // *
-// * Version : 0.4
+// * Version : 0.5
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 0.5 : Add list invert font color command
 // * Version 0.4 : Add default colors from IU_TimControls
 // * Version 0.3 : Add change for CentOS. Try to control BG color of ListBox when there are not empty
 // * Version 0.2 : Adding management of horizontals scrollbars
@@ -50,6 +51,7 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    Button7: TButton;
     ComboBox1: TComboBox;
     Image1: TImage;
     Label1: TLabel;
@@ -80,6 +82,9 @@ type
     procedure Button5Exit(Sender: TObject);
     procedure Button6Enter(Sender: TObject);
     procedure Button6Exit(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button7Enter(Sender: TObject);
+    procedure Button7Exit(Sender: TObject);
     procedure ComboBox1Change(Sender: TObject);
     procedure ComboBox1Enter(Sender: TObject);
     procedure ComboBox1Exit(Sender: TObject);
@@ -115,6 +120,7 @@ type
 
 var
   ImportFile: TImportFile;
+  fontColorInverted : boolean;
 
 
   // ***
@@ -143,48 +149,53 @@ var
 // ***
 // * Add v0.4
 procedure setColors;
+var listFontColor : TColor;
 begin
+  if fontColorInverted then
+    listFontColor := rgbtocolor(255-V_IU_Box_TextColorHigh.red, 255-V_IU_Box_TextColorHigh.green, 255-V_IU_Box_TextColorHigh.blue)
+  else
+    listFontColor := rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
   ImportFile.Color:=V_IU_TB_DefaultBG;
   with ImportFile do begin
     // Setting default background colors
     Shape1.Color:=V_IU_TB_DefaultBG;
     Label1.Color:=V_IU_TB_DefaultBG;
-    Label1.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label1.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label2.Color:=V_IU_TB_DefaultBG;
-    Label2.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label2.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label3.Color:=V_IU_TB_DefaultBG;
-    Label3.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label3.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label4.Color:=V_IU_TB_DefaultBG;
-    Label4.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label4.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label5.Color:=V_IU_TB_DefaultBG;
-    Label5.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label5.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label6.Color:=V_IU_TB_DefaultBG;
-    Label6.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label6.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label7.Color:=V_IU_TB_DefaultBG;
-    Label7.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label7.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label8.Color:=V_IU_TB_DefaultBG;
-    Label8.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label8.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label9.Color:=V_IU_TB_DefaultBG;
-    Label9.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label9.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Label10.Color:=V_IU_TB_DefaultBG;
-    Label10.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    Label10.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Button1.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
     Button2.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
     Button5.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
     Button6.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
     ListBox1.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
     ListBox1.Brush.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox1.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    ListBox1.Font.Color:=listFontColor;
     ListBox2.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
     ListBox2.Brush.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox2.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    ListBox2.Font.Color:=listFontColor;
     Splitter1.Color:=V_IU_TB_DefaultBG;
     Splitter1.Brush.Color:=V_IU_TB_DefaultBG;
     Splitter2.Color:=V_IU_TB_DefaultBG;
     Splitter2.Brush.Color:=V_IU_TB_DefaultBG;
     ComboBox1.Color:=V_IU_TB_DefaultBG;
     ComboBox1.Brush.Color:=V_IU_TB_DefaultBG;
-    ComboBox1.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red, V_IU_Box_TextColorDefault.green, V_IU_Box_TextColorDefault.blue);
+    ComboBox1.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
     Image1.Color:=V_IU_TB_DefaultBG;
     Image1.Canvas.Brush.Color:=V_IU_TB_DefaultBG;
     Image1.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
@@ -233,6 +244,10 @@ begin
   // Commands
   Button5.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_ImportCommand];
   Button6.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_CancelCommand];
+  // ***
+  // * Add v0.5
+  Button7.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_ListInvFontColor];
+  // ***
 end;
 
 // *
@@ -362,6 +377,22 @@ begin
   button6.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
 end;
 
+procedure TImportFile.Button7Click(Sender: TObject);
+begin
+  fontColorInverted := not fontColorInverted;
+  setColors;
+end;
+
+procedure TImportFile.Button7Enter(Sender: TObject);
+begin
+  button7.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+end;
+
+procedure TImportFile.Button7Exit(Sender: TObject);
+begin
+  button6.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+end;
+
 procedure TImportFile.ComboBox1Change(Sender: TObject);
 begin
   ListBox1DblClick(Sender);
@@ -403,6 +434,8 @@ begin
   Splitter1.Height := ImportFile.Height;
   Splitter2.Height := ImportFile.Height;
   Button5.Top := ImportFile.Height - Button5.Height - 5;
+  button7.Left := ImportFile.Width - Button7.Width -5;
+  if Button7.Left < Button6.Left+Button6.Width + 2 then Button7.Left := Button6.Left+Button6.Width + 2
 end;
 
 
@@ -417,6 +450,7 @@ var
   _coef : int64;
   _scale : string;
 begin
+  fontColorInverted := false;
   setColors;
   Shape1.Top := Image1.Top-1;
   Shape1.Left := Image1.Left - 1;
@@ -725,6 +759,8 @@ begin
   Shape1.Left := Splitter2.Left+Splitter2.Width + 4;
   Label9.Left := Splitter2.Left+Splitter2.Width + 5;
   Label10.Left := Splitter2.Left+Splitter2.Width + 5;
+  button7.Left := ImportFile.Width - Button7.Width -5;
+  if Button7.Left < Button6.Left+Button6.Width + 2 then Button7.Left := Button6.Left+Button6.Width + 2
 end;
 
 procedure TImportFile.Splitter2Moved(Sender: TObject);

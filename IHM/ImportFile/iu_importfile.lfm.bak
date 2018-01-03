@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 511
+  Left = 502
   Height = 449
-  Top = 128
+  Top = 152
   Width = 1042
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682
@@ -322,5 +322,19 @@ object ImportFile: TImportFile
     BorderSpacing.Top = 1
     BorderSpacing.Right = 1
     BorderSpacing.Bottom = 1
+  end
+  object Button7: TButton
+    Left = 768
+    Height = 18
+    Top = 4
+    Width = 265
+    Caption = 'List invert font color'
+    Font.Height = -13
+    Font.Name = 'Sans'
+    OnClick = Button7Click
+    OnEnter = Button7Enter
+    OnExit = Button7Exit
+    ParentFont = False
+    TabOrder = 11
   end
 end

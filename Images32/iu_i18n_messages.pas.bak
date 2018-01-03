@@ -5,10 +5,12 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.4
-// * Version Date : 2017 December
+// * Version : 0.6
+// * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.6 : For dedicated linux -> Adding text for list invert font color
+// * v0.5 : Adding loading image file error message.
 // * v0.4 : Adding text for import 1 file windows
 // * v0.3 : Adding informationnal message
 // * v0.2 : Adding exception messages for IU_T_StringDoubleChainedList
@@ -20,7 +22,7 @@ unit IU_I18N_Messages;
 // *
 // * Team : TIm (Traitement d'Images)
 // *
-// * 2017
+// * 2017-2018
 // ***
 
 interface
@@ -114,6 +116,22 @@ const
   // *
   // * End Add v0.4
   // ***
+
+  // ***
+  // * Add v0.5
+  K_IU_HIMSG_LoadingFileError = 19;
+  // *
+  // * End Add v0.5
+  // ***
+
+  // ***
+  // * Add v0.5
+  K_IU_HIMSG_ListInvFontColor = 20;
+  // *
+  // * End Add v0.5
+  // ***
+
+
   type
     T_IU_ExceptionMessages = array [K_IU_I18N_FRENCH..K_IU_I18N_ENGLISH, 0..500] of string;
     // Error messages
@@ -214,6 +232,22 @@ begin
 
   // *
   // * End Add v0.4
+  // ***
+
+  // ***
+  // * Add v0.5
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_LoadingFileError] := 'Erreur inattendue lors du chargement de l''image !';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_LoadingFileError] := 'Unexcepted error when loading image file !';
+  // *
+  // * End Add v0.5
+  // ***
+
+  // ***
+  // * Add v0.5
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_ListInvFontColor] := 'Liste : inverser la couleur du text';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_ListInvFontColor] := 'List : invert font color';
+  // *
+  // * End Add v0.5
   // ***
 
 
