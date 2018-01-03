@@ -3,10 +3,11 @@ unit IU_importfile;
 // * Unit provides an import file windows
 // * Creation Date : 2017 December
 // *
-// * Version : 0.2
+// * Version : 0.3
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 0.3 : Add change for CentOS. Try to control BG color of ListBox when there are not empty
 // * Version 0.2 : Adding management of horizontals scrollbars
 // * Version 0.1 : Creation
 // *
@@ -201,13 +202,19 @@ begin
   _directory := getCurrentDir + '/';
   {$endif}
   // ListBox1.Items.Add(_directory);
-  if length(_directory) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(_directory) * 10;
   for i := 1 to dirsList.getItemsNumbers - 1 do begin
     ListBox1.Items.Add(dirsList.getText);
+    if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
     dirsList.next;
   end;
   ListBox1.Items.Add(dirsList.getText);
   if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
+  // ***
+  // * Add v0.3
+  ListBox1.Color:=rgbtocolor($2b,$29,$29);
+  // *
+  // * End Add V0.3
+  // ***
 end;
 
 procedure TImportFile.Button1Enter(Sender: TObject);
@@ -235,6 +242,12 @@ begin
   end;
   ListBox2.Items.Add(filesList.getText);
   if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
+  // ***
+  // * Add v0.3
+  ListBox2.Color:=rgbtocolor($2b,$29,$29);
+  // *
+  // * End Add V0.3
+  // ***
 end;
 
 procedure TImportFile.Button2Enter(Sender: TObject);
@@ -384,6 +397,13 @@ begin
     ListBox2.Items.Add(filesList.getText);
     if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
   end;
+  // ***
+  // * Add v0.3
+  if ListBox2.Focused then ListBox2.Color := rgbtocolor($29,$29,$2b) else
+    ListBox2.Color := rgbtocolor($30,$30,$30);
+  // *
+  // * End Add V0.3
+  // ***
   // Dir list
   for R := 1 to dirsList.getItemsNumbers do begin
     // No current item selected then must start with next for selecting the first
@@ -391,6 +411,13 @@ begin
     ListBox1.Items.Add(dirsList.getText);
     if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
   end;
+  // ***
+  // * Add v0.3
+  if ListBox1.Focused then ListBox1.Color := rgbtocolor($29,$29,$2b) else
+    ListBox1.Color := rgbtocolor($30,$30,$30);
+  // *
+  // * End Add V0.3
+  // ***
 end;
 // *
 // * End Add V1.5 IU_GeneralUtils
@@ -484,6 +511,13 @@ begin
      ListBox2.Items.Add(filesList.getText);
      if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
    end;
+   // ***
+   // * Add v0.3
+   if ListBox2.Focused then ListBox2.Color := rgbtocolor($30,$30,$30) else
+     ListBox2.Color := rgbtocolor($2b,$29,$29);
+   // *
+   // * End Add V0.3
+   // ***
    // Dir list
    for R := 1 to dirsList.getItemsNumbers do begin
      // No current item selected then must start with next for selecting the first
@@ -491,7 +525,13 @@ begin
      ListBox1.Items.Add(dirsList.getText);
      if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
    end;
-
+   // ***
+   // * Add v0.3
+   if ListBox1.Focused then ListBox1.Color := rgbtocolor($30,$30,$30) else
+     ListBox1.Color := rgbtocolor($2b,$29,$29);
+   // *
+   // * End Add V0.3
+   // ***
 end;
 
 procedure TImportFile.ListBox1Enter(Sender: TObject);

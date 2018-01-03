@@ -202,17 +202,16 @@ begin
   _directory := getCurrentDir + '/';
   {$endif}
   // ListBox1.Items.Add(_directory);
-  if length(_directory) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(_directory) * 10;
   for i := 1 to dirsList.getItemsNumbers - 1 do begin
     ListBox1.Items.Add(dirsList.getText);
+    if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
     dirsList.next;
   end;
   ListBox1.Items.Add(dirsList.getText);
   if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
   // ***
   // * Add v0.3
-  if ListBox1.Focused then ListBox1.Color := rgbtocolor($29,$29,$2b) else
-    ListBox1.Color := rgbtocolor($30,$30,$30);
+  ListBox1.Color:=rgbtocolor($2b,$29,$29);
   // *
   // * End Add V0.3
   // ***
@@ -245,8 +244,7 @@ begin
   if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
   // ***
   // * Add v0.3
-  if ListBox2.Focused then ListBox2.Color := rgbtocolor($29,$29,$2b) else
-    ListBox2.Color := rgbtocolor($30,$30,$30);
+  ListBox2.Color:=rgbtocolor($2b,$29,$29);
   // *
   // * End Add V0.3
   // ***
@@ -515,8 +513,8 @@ begin
    end;
    // ***
    // * Add v0.3
-   if ListBox2.Focused then ListBox2.Color := rgbtocolor($29,$29,$2b) else
-     ListBox2.Color := rgbtocolor($30,$30,$30);
+   if ListBox2.Focused then ListBox2.Color := rgbtocolor($30,$30,$30) else
+     ListBox2.Color := rgbtocolor($2b,$29,$29);
    // *
    // * End Add V0.3
    // ***
@@ -529,8 +527,8 @@ begin
    end;
    // ***
    // * Add v0.3
-   if ListBox1.Focused then ListBox1.Color := rgbtocolor($29,$29,$2b) else
-     ListBox1.Color := rgbtocolor($30,$30,$30);
+   if ListBox1.Focused then ListBox1.Color := rgbtocolor($30,$30,$30) else
+     ListBox1.Color := rgbtocolor($2b,$29,$29);
    // *
    // * End Add V0.3
    // ***
