@@ -418,6 +418,8 @@ var
   _coef : int64;
   _scale : string;
 begin
+  ListBox1.ScrollWidth := ListBox1.Width;
+  ListBox2.ScrollWidth := ListBox2.Width;
   _olddir := getCurrentDir;
   _directory := ListBox1.GetSelectedText;
   ListBox1.Clear;
