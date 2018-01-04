@@ -3,10 +3,11 @@ unit IU_importfile;
 // * Unit provides an import file windows
 // * Creation Date : 2017 December
 // *
-// * Version : 0.5
+// * Version : 0.6
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 0.6 : Add color personnalization popupmenu
 // * Version 0.5 : Add list invert font color command
 // * Version 0.4 : Add default colors from IU_TimControls
 // * Version 0.3 : Add change for CentOS. Try to control BG color of ListBox when there are not empty
@@ -31,7 +32,7 @@ uses
   StdCtrls, ExtDlgs, ShellCtrls, IU_GeneralUtils, BGRABitmap, BGRABitmapTypes, IU_strechutils, LCLProc
   // ***
   // * Add v0.3 IU_I18N_Messages
-  , IU_I18N_Messages, LCLType, ExtCtrls, PairSplitter
+  , IU_I18N_Messages, LCLType, ExtCtrls, PairSplitter, Menus
   // ***
 
   // ***
@@ -42,6 +43,34 @@ uses
 
 type
 
+  // ***
+  // * Add v0.6
+  T_ImportFile_Colors = record
+    WindowsColor : TColor;
+    TextColor : TColor;
+    ListColor : TColor;
+    ListSelectedColor : TColor;
+    ListTextColor : TColor;
+    DropDownColor : TColor;
+    DropDownSelectedColor : TColor;
+    DropDownTextColor : TColor;
+    ButtonColor : TColor;
+    ButtonSelectedColor : TColor;
+  end;
+
+  T_ImportFile_Bounds = record
+    x,y,widht,height : integer;
+  end;
+
+  T_ImportFile_Properties = record
+    bounds : T_ImportFile_Bounds;
+    colors : T_ImportFile_Colors;
+  end;
+
+  // *
+  // * End Add V0.6
+  // ***
+
   { TImportFile }
 
   TImportFile = class(TForm)
@@ -51,7 +80,7 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
+    ColorDialog1: TColorDialog;
     ComboBox1: TComboBox;
     Image1: TImage;
     Label1: TLabel;
@@ -66,6 +95,18 @@ type
     Label9: TLabel;
     ListBox1: TListBox;
     ListBox2: TListBox;
+    Menu11: TMenuItem;
+    Menu1: TMenuItem;
+    Menu10: TMenuItem;
+    Menu2: TMenuItem;
+    Menu3: TMenuItem;
+    Menu4: TMenuItem;
+    Menu5: TMenuItem;
+    Menu6: TMenuItem;
+    Menu7: TMenuItem;
+    Menu8: TMenuItem;
+    Menu9: TMenuItem;
+    PopupMenu1: TPopupMenu;
     Shape1: TShape;
     Splitter1: TSplitter;
     Splitter2: TSplitter;
@@ -91,8 +132,11 @@ type
     procedure ComboBox1KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormChangeBounds(Sender: TObject);
+    procedure FormClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure ListBox1Click(Sender: TObject);
     procedure ListBox1DblClick(Sender: TObject);
     procedure ListBox1Enter(Sender: TObject);
@@ -102,6 +146,19 @@ type
     procedure ListBox2Click(Sender: TObject);
     procedure ListBox2Enter(Sender: TObject);
     procedure ListBox2Exit(Sender: TObject);
+    procedure ListBox2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+      );
+    procedure Menu10Click(Sender: TObject);
+    procedure Menu11Click(Sender: TObject);
+    procedure Menu1Click(Sender: TObject);
+    procedure Menu2Click(Sender: TObject);
+    procedure Menu3Click(Sender: TObject);
+    procedure Menu4Click(Sender: TObject);
+    procedure Menu5Click(Sender: TObject);
+    procedure Menu6Click(Sender: TObject);
+    procedure Menu7Click(Sender: TObject);
+    procedure Menu8Click(Sender: TObject);
+    procedure Menu9Click(Sender: TObject);
     procedure Splitter1Moved(Sender: TObject);
     procedure Splitter2Moved(Sender: TObject);
   private
@@ -120,7 +177,16 @@ type
 
 var
   ImportFile: TImportFile;
-  fontColorInverted : boolean;
+  // ***
+  // * Del v0.6
+  // fontColorInverted : boolean;
+  // ***
+
+  // ***
+  // * Add v0.6
+  WindowsColors : T_ImportFile_Colors;
+  ImportFile_Properties : T_ImportFile_Properties;
+  // ***
 
 
   // ***
@@ -147,60 +213,88 @@ var
 // ***
 
 // ***
+// * Add v0.6
+procedure initDefaultColors;
+begin
+  with  WindowsColors do begin
+    WindowsColor := V_IU_TB_DefaultBG;
+    TextColor := rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
+    ListColor := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+    ListSelectedColor := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue);
+    ListTextColor := rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
+    DropDownColor := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+    DropDownSelectedColor := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue);
+    DropDownTextColor := rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
+    ButtonColor := rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+    ButtonSelectedColor := rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  end;
+end;
+
+procedure load_userProperties ;
+begin
+
+end;
+// *
+// * End Add v0.6
+// ***
+
+// ***
 // * Add v0.4
 procedure setColors;
 var listFontColor : TColor;
 begin
-  if fontColorInverted then
-    listFontColor := rgbtocolor(255-V_IU_Box_TextColorHigh.red, 255-V_IU_Box_TextColorHigh.green, 255-V_IU_Box_TextColorHigh.blue)
-  else
-    listFontColor := rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-  ImportFile.Color:=V_IU_TB_DefaultBG;
+  ImportFile.Color:=WindowsColors.WindowsColor;
   with ImportFile do begin
     // Setting default background colors
-    Shape1.Color:=V_IU_TB_DefaultBG;
-    Label1.Color:=V_IU_TB_DefaultBG;
-    Label1.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label2.Color:=V_IU_TB_DefaultBG;
-    Label2.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label3.Color:=V_IU_TB_DefaultBG;
-    Label3.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label4.Color:=V_IU_TB_DefaultBG;
-    Label4.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label5.Color:=V_IU_TB_DefaultBG;
-    Label5.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label6.Color:=V_IU_TB_DefaultBG;
-    Label6.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label7.Color:=V_IU_TB_DefaultBG;
-    Label7.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label8.Color:=V_IU_TB_DefaultBG;
-    Label8.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label9.Color:=V_IU_TB_DefaultBG;
-    Label9.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Label10.Color:=V_IU_TB_DefaultBG;
-    Label10.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Button1.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
-    Button2.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
-    Button5.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
-    Button6.Color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
-    ListBox1.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox1.Brush.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox1.Font.Color:=listFontColor;
-    ListBox2.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox2.Brush.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-    ListBox2.Font.Color:=listFontColor;
-    Splitter1.Color:=V_IU_TB_DefaultBG;
-    Splitter1.Brush.Color:=V_IU_TB_DefaultBG;
-    Splitter2.Color:=V_IU_TB_DefaultBG;
-    Splitter2.Brush.Color:=V_IU_TB_DefaultBG;
-    ComboBox1.Color:=V_IU_TB_DefaultBG;
-    ComboBox1.Brush.Color:=V_IU_TB_DefaultBG;
-    ComboBox1.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red, V_IU_Box_TextColorHigh.green, V_IU_Box_TextColorHigh.blue);
-    Image1.Color:=V_IU_TB_DefaultBG;
-    Image1.Canvas.Brush.Color:=V_IU_TB_DefaultBG;
-    Image1.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-    Image1.Canvas.FillRect(0,0,Image1.Width, Image1.Height);
-    Image1.Refresh;
+    with WindowsColors do begin
+      Shape1.Color:=WindowsColor;
+      Label1.Color:=WindowsColor;
+      Label1.Font.Color:=TextColor;
+      Label2.Color:=WindowsColor;
+      Label2.Font.Color:=TextColor;
+      Label3.Color:=WindowsColor;
+      Label3.Font.Color:=TextColor;
+      Label4.Color:=WindowsColor;
+      Label4.Font.Color:=TextColor;
+      Label5.Color:=WindowsColor;
+      Label5.Font.Color:=TextColor;
+      Label6.Color:=WindowsColor;
+      Label6.Font.Color:=TextColor;
+      Label7.Color:=WindowsColor;
+      Label7.Font.Color:=TextColor;
+      Label8.Color:=WindowsColor;
+      Label8.Font.Color:=TextColor;
+      Label9.Color:=WindowsColor;
+      Label9.Font.Color:=TextColor;
+      Label10.Color:=WindowsColor;
+      Label10.Font.Color:=TextColor;
+      if Button1.Focused then Button1.Color := ButtonSelectedColor else
+      Button1.Color:=ButtonColor;
+      if Button2.Focused then Button2.Color := ButtonSelectedColor else
+      Button2.Color:=ButtonColor;
+      if Button5.Focused then Button5.Color := ButtonSelectedColor else
+      Button5.Color:=ButtonColor;
+      if Button6.Focused then Button6.Color := ButtonSelectedColor else
+      Button6.Color:=ButtonColor;
+      if ListBox1.focused then ListBox1.Color := ButtonSelectedColor else
+      ListBox1.Color:=ListColor;
+      ListBox1.Font.Color:=listTextColor;
+      if ListBox2.focused then ListBox2.Color := ButtonSelectedColor else
+      ListBox2.Color:=ListColor;
+      ListBox2.Font.Color:=listTextColor;
+      Splitter1.Color:=WindowsColor;
+      Splitter1.Brush.Color:=WindowsColor;
+      Splitter2.Color:=WindowsColor;
+      Splitter2.Brush.Color:=WindowsColor;
+      if ComboBox1.Focused then ComboBox1.Color := ButtonSelectedColor else
+      ComboBox1.Color:=DropDownColor;
+      ComboBox1.Font.Color:=DropDownTextColor;
+      Image1.Color:=WindowsColor;
+      Image1.Canvas.Brush.Color:=WindowsColor;
+      Image1.Canvas.Pen.Color:=WindowsColor;
+      Image1.Canvas.FillRect(0,0,Image1.Width, Image1.Height);
+      Image1.Refresh;
+    end;
   end;
 end;
 // *
@@ -244,10 +338,25 @@ begin
   // Commands
   Button5.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_ImportCommand];
   Button6.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_CancelCommand];
+
   // ***
-  // * Add v0.5
-  Button7.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_ListInvFontColor];
+  // * Add v0.6
+  Menu1.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setWindowsColor];
+  Menu2.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setTextColor];
+  Menu3.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListColor];
+  Menu10.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListSelectedColor];
+  Menu6.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListTextColor];
+  Menu4.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setDropDownColor];
+  Menu9.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setDropDownSelectedColor];
+  Menu7.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setWindowsColor];
+  Menu5.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setButtonColor];
+  Menu8.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setButtonSelectedColor];
+  Menu11.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setStandardColors];
+  // *
+  // * End Add v0.6
   // ***
+
+
 end;
 
 // *
@@ -287,22 +396,26 @@ begin
   ListBox1.Items.Add(dirsList.getText);
   if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
   // ***
-  // * Add v0.4
-  ListBox1.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-  ListBox1.Brush.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
-  // *
-  // * End Add V0.4
+  // * Modified V0.6
+  ListBox1.Color:=WindowsColors.ListColor;
   // ***
 end;
 
 procedure TImportFile.Button1Enter(Sender: TObject);
 begin
-  button1.Color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Modified v0.6
+    Button1.Color:=WindowsColors.ButtonSelectedColor;
+  ImportFile.Refresh;
+  // ***
 end;
 
 procedure TImportFile.Button1Exit(Sender: TObject);
 begin
-  button1.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // ***
+  // * Modified v0.6
+  Button1.Color:=WindowsColors.ButtonColor;
+  // ***
 end;
 
 
@@ -321,21 +434,27 @@ begin
   ListBox2.Items.Add(filesList.getText);
   if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
   // ***
-  // * Add v0.3
-  ListBox2.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // * Modified v0.6
+  ListBox2.Color:=WindowsColors.ListColor;
   // *
-  // * End Add V0.3
+  // * End Add V0.6
   // ***
 end;
 
 procedure TImportFile.Button2Enter(Sender: TObject);
 begin
-  button2.Color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Modified v0.6
+  button2.Color:=WindowsColors.ButtonSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.Button2Exit(Sender: TObject);
 begin
-  button2.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+  // ***
+  // * Modified v0.6
+  button2.color:=WindowsColors.ButtonColor;
+  // ***
 end;
 
 procedure TImportFile.Button3Click(Sender: TObject);
@@ -359,38 +478,59 @@ end;
 
 procedure TImportFile.Button5Enter(Sender: TObject);
 begin
-  button5.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Modified v0.6
+  button5.color:=WindowsColors.ButtonSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.Button5Exit(Sender: TObject);
 begin
-  button5.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+  // ***
+  // * Modified v0.6
+  button5.color:=WindowsColors.ButtonColor;
+  // ***
 end;
 
 procedure TImportFile.Button6Enter(Sender: TObject);
 begin
-  button6.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Modified v0.6
+  button6.color:=WindowsColors.ButtonSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.Button6Exit(Sender: TObject);
 begin
-  button6.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+  // ***
+  // * Modified v0.6
+  button6.color:=WindowsColors.ButtonColor;
+  // ***
 end;
 
 procedure TImportFile.Button7Click(Sender: TObject);
 begin
-  fontColorInverted := not fontColorInverted;
-  setColors;
+  // ***
+  // * Deleted v0.6
+  //  fontColorInverted := not fontColorInverted;
+  //  setColors;
+  // ***
 end;
 
 procedure TImportFile.Button7Enter(Sender: TObject);
 begin
-  button7.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Del v0.6
+  // button7.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
 end;
 
 procedure TImportFile.Button7Exit(Sender: TObject);
 begin
-  button6.color:=rgbtocolor(V_IU_Button_unfocused.red, V_IU_Button_unfocused.green, V_IU_Button_unfocused.blue);
+  // ***
+  // Modified v0.6
+  button6.color:=WindowsColors.ButtonColor;
+  // ***
 end;
 
 procedure TImportFile.ComboBox1Change(Sender: TObject);
@@ -400,17 +540,27 @@ end;
 
 procedure TImportFile.ComboBox1Enter(Sender: TObject);
 begin
-  ComboBox1.color:=rgbtocolor(V_IU_Button_focused.red, V_IU_Button_focused.green, V_IU_Button_focused.blue);
+  // ***
+  // * Modified v0.6
+  ComboBox1.color:=WindowsColors.DropDownSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.ComboBox1Exit(Sender: TObject);
 begin
-  ComboBox1.Color := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // ***
+  // * Modified v0.6
+  ComboBox1.Color := WindowsColors.DropDownColor;
+  // ***
 end;
 
 procedure TImportFile.ComboBox1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+  // ***
+  // * Modified V0.6
+  Combobox1.Color:=WindowsColors.DropDownSelectedColor;
+  // ***
   // ***
   // To resolve Bug in focus management with combobox.
   // Even if tabstop gives combo , listbox2, button2 the
@@ -434,8 +584,11 @@ begin
   Splitter1.Height := ImportFile.Height;
   Splitter2.Height := ImportFile.Height;
   Button5.Top := ImportFile.Height - Button5.Height - 5;
-  button7.Left := ImportFile.Width - Button7.Width -5;
-  if Button7.Left < Button6.Left+Button6.Width + 2 then Button7.Left := Button6.Left+Button6.Width + 2
+end;
+
+procedure TImportFile.FormClick(Sender: TObject);
+begin
+
 end;
 
 
@@ -450,7 +603,21 @@ var
   _coef : int64;
   _scale : string;
 begin
-  fontColorInverted := false;
+  // ***
+  // * Add v0.6
+  // Trying to load defaults properties
+  try
+    readProperties('ImportFile', Pchar(@ImportFile_Properties), sizeof(ImportFile_Properties));
+    WindowsColors := ImportFile_Properties.colors;
+    ImportFile.Top := ImportFile_Properties.bounds.y;
+    ImportFile.Left := ImportFile_Properties.bounds.x;
+    ImportFile.Width := ImportFile_Properties.bounds.widht;
+    ImportFile.Height := ImportFile_Properties.bounds.height;
+  Except
+    initDefaultColors;
+  end;
+  // * End Add v0.6
+  // ***
   setColors;
   Shape1.Top := Image1.Top-1;
   Shape1.Left := Image1.Left - 1;
@@ -496,11 +663,11 @@ begin
     if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
   end;
   // ***
-  // * Add v0.3
-  if ListBox2.Focused then ListBox2.Color := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue) else
-    ListBox2.Color := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // * Modified v0.6
+  if ListBox2.Focused then ListBox2.Color := WindowsColors.DropDownSelectedColor else
+    ListBox2.Color := WindowsColors.DropDownColor;
   // *
-  // * End Add V0.3
+  // * End Modified V0.3
   // ***
   // Dir list
   for R := 1 to dirsList.getItemsNumbers do begin
@@ -510,11 +677,11 @@ begin
     if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
   end;
   // ***
-  // * Add v0.3
-  if ListBox1.Focused then ListBox1.Color := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue) else
-    ListBox1.Color :=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // * Modified v0.6
+  if ListBox1.Focused then ListBox1.Color := WindowsColors.DropDownSelectedColor else
+    ListBox1.Color := WindowsColors.DropDownColor;
   // *
-  // * End Add V0.3
+  // * End Modified V0.6
   // ***
 end;
 // *
@@ -523,13 +690,39 @@ end;
 
 procedure TImportFile.FormDestroy(Sender: TObject);
 begin
-  dirsList.Destroy;
-  filesList.Destroy;
+  // ***
+  // * Add v0.6
+  // Trying to load defaults properties
+  ImportFile_Properties.colors := WindowsColors;
+  ImportFile_Properties.bounds.y := ImportFile.Top;
+  ImportFile_Properties.bounds.x := ImportFile.Left;
+  ImportFile_Properties.bounds.widht := ImportFile.Width;
+  ImportFile_Properties.bounds.height := ImportFile.Height;
+  try
+    writeProperties('ImportFile', Pchar(@ImportFile_Properties), sizeof(ImportFile_Properties));
+  finally
+  // * End Add v0.6
+  // ***
+    dirsList.Destroy;
+    filesList.Destroy;
+  // ***
+  // * Add v0.6
+  end;
+  // * End Add v0.6
+  // ***
+end;
+
+procedure TImportFile.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
 end;
 
 procedure TImportFile.ListBox1Click(Sender: TObject);
 begin
-
+  // ***
+  // * Add v0.6
+  ListBox1.Color := WindowsColors.ListSelectedColor;
+  // ***
 end;
 
 // ***
@@ -610,11 +803,11 @@ begin
      if length(filesList.getText) * 10 > ListBox2.ScrollWidth then ListBox2.ScrollWidth := length(filesList.getText) * 10;
    end;
    // ***
-   // * Add v0.3
-   if ListBox2.Focused then ListBox2.Color := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue) else
-     ListBox2.Color := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+   // * Modified v0.6
+   if ListBox2.Focused then ListBox2.Color := WindowsColors.ListSelectedColor else
+     ListBox2.Color := WindowsColors.ListColor;
    // *
-   // * End Add V0.3
+   // * End Modified V0.6
    // ***
    // Dir list
    for R := 1 to dirsList.getItemsNumbers do begin
@@ -624,27 +817,37 @@ begin
      if length(dirsList.getText) * 10 > ListBox1.ScrollWidth then ListBox1.ScrollWidth := length(dirsList.getText) * 10;
    end;
    // ***
-   // * Add v0.3
-   if ListBox1.Focused then ListBox1.Color := rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue) else
-     ListBox1.Color := rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+   // * Modified v0.6
+   if ListBox1.Focused then ListBox1.Color := WindowsColors.ListSelectedColor else
+     ListBox1.Color := WindowsColors.ListColor;
    // *
-   // * End Add V0.3
+   // * End Modified V0.6
    // ***
 end;
 
 procedure TImportFile.ListBox1Enter(Sender: TObject);
 begin
-  ListBox1.Color:=rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue);
+  // ***
+  // * Modified V0.6
+  ListBox1.Color:=WindowsColors.ListSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.ListBox1Exit(Sender: TObject);
 begin
-    ListBox1.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // ***
+  // * Modified v0.6
+  ListBox1.Color:=WindowsColors.ListColor;
+  // ***
 end;
 
 procedure TImportFile.ListBox1KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
+  // ***
+  // * Modified V0.6
+  ListBox1.Color:=WindowsColors.ListSelectedColor;
+  // ***
   if Key = Word(13) then
     ListBox1DblClick(Sender);
 end;
@@ -656,7 +859,7 @@ var stretched : TBGRABitmap;
   _error : boolean;
   R : integer;
 begin
-  ListBox2.Color:=rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue);
+  ListBox2.Color:=WindowsColors.ListSelectedColor;
   ListBox2.Repaint;
   ListBox2.Refresh;
   if (ListBox2.Count > 0) and (ListBox2.ItemIndex > -1) then begin
@@ -675,13 +878,11 @@ begin
       on  EAccessViolation do begin
         Image1.Canvas.AutoRedraw:=true;
         // ***
-        // * Modified v0.4
-        // Image1.Canvas.Pen.Color:=rgbtocolor($2c,$2c,$2c);
-        // Image1.Canvas.Brush.Color:=rgbtocolor($2c,$2c,$2c);
-        Image1.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-        Image1.Canvas.Brush.Color:=V_IU_TB_DefaultBG;
+        // * Modified v0.6
+        Image1.Canvas.Pen.Color:=WindowsColors.WindowsColor;
+        Image1.Canvas.Brush.Color:=WindowsColors.WindowsColor;
         // *
-        // * End modified v0.4
+        // * End modified v0.6
         // ***
         Image1.Canvas.FillRect(0,0,Image1.Width, Image1.Height);
         Image1.Refresh;
@@ -705,13 +906,11 @@ begin
       stretched.Draw(Image1.Canvas, x, y, True);                           //affiche la BGRABitmap sur la fenêtre
       Image1.Canvas.AutoRedraw:=true;
       // ***
-      // * Modified v0.4
-      // Image1.Canvas.Pen.Color:=rgbtocolor($2c,$2c,$2c);
-      // Image1.Canvas.Brush.Color:=rgbtocolor($2c,$2c,$2c);
-      Image1.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-      Image1.Canvas.Brush.Color:=V_IU_TB_DefaultBG;
+      // * Modified v0.6
+      Image1.Canvas.Pen.Color:=WindowsColors.WindowsColor;
+      Image1.Canvas.Brush.Color:=WindowsColors.WindowsColor;
       // *
-      // * End modified v0.4
+      // * End modified v0.6
       // ***
       if x > 0 then begin
         Image1.Canvas.FillRect(0,0,x, Image1.Height);
@@ -733,12 +932,156 @@ end;
 
 procedure TImportFile.ListBox2Enter(Sender: TObject);
 begin
-    ListBox2.Color:=rgbtocolor(V_IU_SB_DefaultBGColor.red,V_IU_SB_DefaultBGColor.green,V_IU_SB_DefaultBGColor.blue);
+  // ***
+  // * Modified v0.6
+  ListBox2.Color:=WindowsColors.ListSelectedColor;
+  // ***
 end;
 
 procedure TImportFile.ListBox2Exit(Sender: TObject);
 begin
-    ListBox2.Color:=rgbtocolor(V_IU_Box_BGColor.red,V_IU_Box_BGColor.green,V_IU_Box_BGColor.blue);
+  // ***
+  // * Modified v0.6
+  ListBox2.Color:=WindowsColors.ListColor;
+  // ***
+end;
+
+procedure TImportFile.ListBox2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  // ***
+  // * Modified V0.6
+  ListBox2.Color:=WindowsColors.ListSelectedColor;
+  // ***
+end;
+
+procedure TImportFile.Menu10Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.ListSelectedColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu11Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  initDefaultColors;
+  setColors;
+  // ***
+end;
+
+procedure TImportFile.Menu1Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.WindowsColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu2Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.TextColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu3Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.ListColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu4Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.DropDownColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu5Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.ButtonColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu6Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.ListTextColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu7Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.DropDownTextColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu8Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.ButtonSelectedColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
+end;
+
+procedure TImportFile.Menu9Click(Sender: TObject);
+begin
+  // ***
+  // * Add v0.6
+  ImportFile.PopupMenu1.Close;
+  if ColorDialog1.Execute then begin
+    WindowsColors.DropDownSelectedColor := ColorDialog1.Color;
+    setColors;
+  end;
+  // ***
 end;
 
 procedure TImportFile.Splitter1Moved(Sender: TObject);
@@ -759,8 +1102,6 @@ begin
   Shape1.Left := Splitter2.Left+Splitter2.Width + 4;
   Label9.Left := Splitter2.Left+Splitter2.Width + 5;
   Label10.Left := Splitter2.Left+Splitter2.Width + 5;
-  button7.Left := ImportFile.Width - Button7.Width -5;
-  if Button7.Left < Button6.Left+Button6.Width + 2 then Button7.Left := Button6.Left+Button6.Width + 2
 end;
 
 procedure TImportFile.Splitter2Moved(Sender: TObject);

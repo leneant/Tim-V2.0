@@ -3,10 +3,12 @@ unit IU_GeneralUtils;
 // * Unit provides generals utils services (adapted from TIm V1.x branch)
 // * Creation Date : 2017 September
 // *
-// * Version : 1.6
+// * Version : 1.7
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// *
+// * Version 1.7 : Procedure to save and read user properties for windows
 // * Version 1.6 : Testing equality in file name because under windows x.tiff = x.TIFF
 // *               Then test was added to insert only once the file in the list
 // * Version 1.5 : Adding drives list and files list object
@@ -266,6 +268,34 @@ procedure IU_getCurrentDriveSizes(var _size, _free : int64);
 // * End Add V1.3
 // ***
 
+
+// ***
+// * Add v1.6
+// *
+// ***
+// * Saving in user home dir and sub properties Tim dir the properties for a windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : windowsname : the name of the windows
+// * in : propertiesstructure : pointer on properties data for the windows
+// * in : size of the properties strucure
+// *
+procedure writeProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+
+// ***
+// * Saving in user home dir and sub properties Tim dir the properties for a windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : windowsname : the name of the windows
+// * out : propertiesstructure : pointer on properties data for the windows
+// * in : size of the properties strucure
+// *
+procedure readProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+// * End Add v1.6
+// ***
+
 implementation
 
 // ***
@@ -485,7 +515,7 @@ var
   coef : real;
 begin
   RAM := IU_getInstalledRAM / 1024 / 1024 / 1024 ;
-  coef := real(IU_min(2.25, 1+(RAM*_K)));
+  coef := real(IU_min(2.05, 1+(RAM*_K)));
   IU_getAdaptationRAMCoef := coef;
 end;
 
@@ -1254,6 +1284,131 @@ end;
 // * End Add V1.5
 // ***
 
+// ***
+// * Add v1.6
+// *
+// ***
+// * Saving in user home dir and sub properties Tim dir the properties for a windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : windowsname : the name of the windows
+// * in : propertiesstructure : pointer on properties data for the windows
+// * in : size of the properties strucure
+// *
+procedure writeProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+var
+  userhome : widestring;
+  timpropertiesdir : widestring;
+  filename : widestring;
+  _File : File;
+begin
+  // 1 - getting user home
+  userhome := GetUserDir;
+  {$ifdef windows}
+  timpropertiesdir := userhome + 'tim.ini';
+  {$else}
+  timpropertiesdir := userhome + '.tim';
+  {$endif}
+  // 1 - test if directory already exists
+  if not directoryExists(timpropertiesdir) then begin
+    // trying to creat dir
+    if not createdir(timpropertiesdir) then
+      raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_MkDirError]);
+  end ;
+  // 2 - calc filename
+  {$ifdef windows}
+  filename := timpropertiesdir + windowsname + '.ini' ;
+  {$else}
+  filename := timpropertiesdir + '.' + windowsname + '.rc';
+  {$endif}
+  // 3 - trying to open file
+  try
+    assign(_File, filename);
+    rewrite(_File);
+  except
+    raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_CreateFileError]);
+  end;
+  // 5 - trying to read record
+  try
+    blockwrite(_File, propertiesStructure^, _strucsize);
+  except
+    // if error closing file and raise an error
+    try
+      close(_File);
+    finally
+      raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_FileWriteError]);
+    end;
+  end;
+  // 6 - close file
+  try
+    close(_File);
+  finally
+  end;
+end;
+
+// ***
+// * Saving in user home dir and sub properties Tim dir the properties for a windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : windowsname : the name of the windows
+// * out : propertiesstructure : pointer on properties data for the windows
+// * in : size of the properties strucure
+// *
+procedure readProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+var
+  userhome : widestring;
+  timpropertiesdir : widestring;
+  filename : widestring;
+  _File : File;
+begin
+  // 1 - getting user home
+  userhome := GetUserDir;
+  {$ifdef windows}
+  timpropertiesdir := userhome + 'tim.ini';
+  {$else}
+  timpropertiesdir := userhome + '.tim';
+  {$endif}
+  // 1 - test if directory already exists
+  if directoryExists(timpropertiesdir) then begin
+    // 2 - calc filename
+    {$ifdef windows}
+    filename := timpropertiesdir + windowsname + '.ini' ;
+    {$else}
+    filename := timpropertiesdir + '.' + windowsname + '.rc';
+    {$endif}
+    // 3 - testing if file exists
+    if fileexists(filename) then begin
+      // 4 - trying to open file
+      try
+        assign(_File, filename);
+        reset(_File);
+      except
+        raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_FileReadError]);
+      end;
+      // 5 - trying to read record
+      try
+        blockread(_File, propertiesStructure^, _strucsize);
+      except
+        // if error closing file and raise an error
+        try
+          close(_File);
+        finally
+          raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_FileReadError]);
+        end;
+      end;
+      // 6 - close file
+      try
+        close(_File);
+      finally
+      end;
+    end else raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_FileNotExists]);
+  end else raise IU_EFileError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_DirNotExists]);
+end;
+
+// * End Add v1.6
+// ***
 
 end.
 

@@ -5,10 +5,11 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.6
+// * Version : 0.7
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
 // * v0.6 : For dedicated linux -> Adding text for list invert font color
 // * v0.5 : Adding loading image file error message.
 // * v0.4 : Adding text for import 1 file windows
@@ -87,6 +88,21 @@ const
   // ***
 
   // ***
+  // * Add v0.6
+  K_IU_ExceptMSG_DirNotExists = 45;
+  K_IU_ExceptMSG_FileNotExists = 46;
+  K_IU_ExceptMSG_FileReadError = 47;
+  K_IU_ExceptMSG_MkDirError = 48;
+  K_IU_ExceptMSG_CreateFileError = 49;
+  K_IU_ExceptMSG_FileWriteError = 50;
+  // *
+  // * End Add v0.6
+  // ***
+
+  // *************************************************************
+  // IHM Messages
+
+  // ***
   // * Add v0.3
   K_IU_HIMSG_ErrorBoxTitle = 0;
   K_IU_HIMSG_WarningBoxTitle = 1;
@@ -125,12 +141,33 @@ const
   // ***
 
   // ***
+  // * Del v0.6
+  // ***
   // * Add v0.5
-  K_IU_HIMSG_ListInvFontColor = 20;
+  // K_IU_HIMSG_ListInvFontColor = 20;
   // *
   // * End Add v0.5
   // ***
+  // *
+  // * End Del v0.6
+  // ***
 
+  // ***
+  // * Add v0.6
+  K_IU_HIMSG_setWindowsColor = 20;
+  K_IU_HIMSG_setTextColor = 21;
+  K_IU_HIMSG_setListColor = 22;
+  K_IU_HIMSG_setListSelectedColor = 23;
+  K_IU_HIMSG_setListTextColor = 24;
+  K_IU_HIMSG_setDropDownColor = 25;
+  K_IU_HIMSG_setDropDownSelectedColor = 26;
+  K_IU_HIMSG_setDropDownTextColor = 27;
+  K_IU_HIMSG_setButtonColor = 28;
+  K_IU_HIMSG_setButtonSelectedColor = 29;
+  K_IU_HIMSG_setStandardColors = 30;
+  // *
+  // * End Add v0.6
+  // ***
 
   type
     T_IU_ExceptionMessages = array [K_IU_I18N_FRENCH..K_IU_I18N_ENGLISH, 0..500] of string;
@@ -243,13 +280,55 @@ begin
   // ***
 
   // ***
+  // Del v0.6
+  // ***
   // * Add v0.5
-  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_ListInvFontColor] := 'Liste : inverser la couleur du texte';
-  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_ListInvFontColor] := 'List : invert font color';
+  // IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_ListInvFontColor] := 'Liste : inverser la couleur du texte';
+  // IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_ListInvFontColor] := 'List : invert font color';
   // *
   // * End Add v0.5
   // ***
+  // *
+  // * End Del v0.6
+  // ***
 
+  // ***
+  // * Add v0.6
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setWindowsColor] := 'Couleur de la fenêtre';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setWindowsColor] := 'Windows Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setTextColor] := 'Couleur du texte';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setTextColor] := 'Text Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setListColor] := 'Couleur des listes';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setListColor] := 'Lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setListSelectedColor] := 'Couleur des listes sélectionnées';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setListSelectedColor] := 'Selected lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setListTextColor] := 'Couleur du texte des listes';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setListTextColor] := 'Text of lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setDropDownColor] := 'Couleur des listes déroulantes';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setDropDownColor] := 'Dropdown lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setDropDownSelectedColor] := 'Couleur des listes déroulantes sélectionnées';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setDropDownSelectedColor] := 'Selected Dropdown lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setWindowsColor] := 'Couleur du texte des listes déroulantes';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setWindowsColor] := 'Text of Dropdown lists Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setButtonColor] := 'Couleur des bouttons';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setButtonColor] := 'Buttons Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setButtonSelectedColor] := 'Couleur des bouttons actifs';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setButtonSelectedColor] := 'Active buttons Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setStandardColors] := 'Couleurs standards';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setStandardColors] := 'Standard Colors';
+  // *
+  // * End Add v0.6
+  // ***
 
   // init exception messages
   IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_TmpCreationFail] := 'Création impossible du fichier temporaire de l''image !';
@@ -355,6 +434,28 @@ begin
   // * End Add v0.2
   // ***
 
+  // ***
+  // * Add v0.6
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_DirNotExists] := 'Répertoire inexistant !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_DirNotExists] := 'Dir not exists !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_FileNotExists] := 'Fichier inexistant !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_FileNotExists] := 'File not exists !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_FileReadError] := 'Erreur de lecture de fichier !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_FileReadError] := 'File read error !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_MkDirError] := 'Impossible de créer un répertoire !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_MkDirError] := 'Can''t create directory !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_CreateFileError] := 'Création de fichier impossible !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_CreateFileError] := 'Can''t create file !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_FileWriteError] := 'Création de fichier impossible !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_FileWriteError] := 'Can''t create file !';
+  // *
+  // * End Add v0.6
+  // ***
 
 end.
 

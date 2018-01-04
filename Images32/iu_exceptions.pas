@@ -5,10 +5,11 @@ unit IU_Exceptions;
 // * Unit provides all images with 32 bytes per chanel exceptions
 // * Creation Date : 2017 September
 // *
-// * Version : 0.2
-// * Version Date : 2017 December
+// * Version : 0.3
+// * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.3 : Adding exception for properties file management
 // * v0.2 : Adding exception for IU_T_StringDoubleChainedList
 // *
 // * @authors : Pascal Lemaître
@@ -150,6 +151,13 @@ Type
   // Internal exception when memory can't be allocated
   // *
   // * End Add v0.2
+  // ***
+
+  // ***
+  // * Add v0.3
+  IU_EFileError = class(exception);
+  // *
+  // * End Add v0.3
   // ***
 
 implementation

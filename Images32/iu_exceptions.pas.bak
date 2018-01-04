@@ -145,6 +145,9 @@ Type
 
   IU_EStringDoubleChainedList_AccessError = class(exception);
   // Internal exception when accessing to an item. Item should be exist but memory access raised an exception
+
+  IU_EStringDoubleChainedList_NoMoreAvailableMemory = class(exception);
+  // Internal exception when memory can't be allocated
   // *
   // * End Add v0.2
   // ***
