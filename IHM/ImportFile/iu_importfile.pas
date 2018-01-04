@@ -96,14 +96,14 @@ type
     ListBox1: TListBox;
     ListBox2: TListBox;
     Menu11: TMenuItem;
-    Menu1: TMenuItem;
+    Menu01: TMenuItem;
     Menu10: TMenuItem;
     Menu2: TMenuItem;
     Menu3: TMenuItem;
     Menu4: TMenuItem;
     Menu5: TMenuItem;
     Menu6: TMenuItem;
-    Menu7: TMenuItem;
+    Menu07: TMenuItem;
     Menu8: TMenuItem;
     Menu9: TMenuItem;
     PopupMenu1: TPopupMenu;
@@ -150,13 +150,13 @@ type
       );
     procedure Menu10Click(Sender: TObject);
     procedure Menu11Click(Sender: TObject);
-    procedure Menu1Click(Sender: TObject);
+    procedure Menu01Click(Sender: TObject);
     procedure Menu2Click(Sender: TObject);
     procedure Menu3Click(Sender: TObject);
     procedure Menu4Click(Sender: TObject);
     procedure Menu5Click(Sender: TObject);
     procedure Menu6Click(Sender: TObject);
-    procedure Menu7Click(Sender: TObject);
+    procedure Menu07Click(Sender: TObject);
     procedure Menu8Click(Sender: TObject);
     procedure Menu9Click(Sender: TObject);
     procedure Splitter1Moved(Sender: TObject);
@@ -281,10 +281,10 @@ begin
       Button5.Color:=ButtonColor;
       if Button6.Focused then Button6.Color := ButtonSelectedColor else
       Button6.Color:=ButtonColor;
-      if ListBox1.focused then ListBox1.Color := ButtonSelectedColor else
+      if ListBox1.focused then ListBox1.Color := ListSelectedColor else
       ListBox1.Color:=ListColor;
       ListBox1.Font.Color:=listTextColor;
-      if ListBox2.focused then ListBox2.Color := ButtonSelectedColor else
+      if ListBox2.focused then ListBox2.Color := ListSelectedColor else
       ListBox2.Color:=ListColor;
       ListBox2.Font.Color:=listTextColor;
       Splitter1.Color:=WindowsColor;
@@ -351,14 +351,14 @@ begin
 
   // ***
   // * Add v0.6
-  Menu1.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setWindowsColor];
+  Menu01.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setWindowsColor];
   Menu2.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setTextColor];
   Menu3.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListColor];
   Menu10.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListSelectedColor];
   Menu6.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setListTextColor];
   Menu4.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setDropDownColor];
   Menu9.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setDropDownSelectedColor];
-  Menu7.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setWindowsColor];
+  Menu07.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setDropDownTextColor];
   Menu5.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setButtonColor];
   Menu8.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setButtonSelectedColor];
   Menu11.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_setStandardColors];
@@ -617,7 +617,7 @@ begin
   // * Add v0.6
   // Trying to load defaults properties
   try
-    readProperties('ImportFile', Pchar(@ImportFile_Properties), sizeof(ImportFile_Properties));
+    readProperties('ImportFile', ImportFile_Properties, sizeof(ImportFile_Properties));
     WindowsColors := ImportFile_Properties.colors;
     ImportFile.Top := ImportFile_Properties.bounds.y;
     ImportFile.Left := ImportFile_Properties.bounds.x;
@@ -674,8 +674,8 @@ begin
   end;
   // ***
   // * Modified v0.6
-  if ListBox2.Focused then ListBox2.Color := WindowsColors.DropDownSelectedColor else
-    ListBox2.Color := WindowsColors.DropDownColor;
+  if ListBox2.Focused then ListBox2.Color := WindowsColors.ListSelectedColor else
+    ListBox2.Color := WindowsColors.ListColor;
   // *
   // * End Modified V0.3
   // ***
@@ -688,8 +688,8 @@ begin
   end;
   // ***
   // * Modified v0.6
-  if ListBox1.Focused then ListBox1.Color := WindowsColors.DropDownSelectedColor else
-    ListBox1.Color := WindowsColors.DropDownColor;
+  if ListBox1.Focused then ListBox1.Color := WindowsColors.ListSelectedColor else
+    ListBox1.Color := WindowsColors.ListColor;
   // *
   // * End Modified V0.6
   // ***
@@ -709,7 +709,7 @@ begin
   ImportFile_Properties.bounds.widht := ImportFile.Width;
   ImportFile_Properties.bounds.height := ImportFile.Height;
   try
-    writeProperties('ImportFile', Pchar(@ImportFile_Properties), sizeof(ImportFile_Properties));
+    writeProperties('ImportFile', ImportFile_Properties, sizeof(ImportFile_Properties));
   finally
   // * End Add v0.6
   // ***
@@ -986,7 +986,7 @@ begin
   // ***
 end;
 
-procedure TImportFile.Menu1Click(Sender: TObject);
+procedure TImportFile.Menu01Click(Sender: TObject);
 begin
   // ***
   // * Add v0.6
@@ -1058,7 +1058,7 @@ begin
   // ***
 end;
 
-procedure TImportFile.Menu7Click(Sender: TObject);
+procedure TImportFile.Menu07Click(Sender: TObject);
 begin
   // ***
   // * Add v0.6

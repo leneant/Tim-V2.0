@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 499
+  Left = 496
   Height = 449
-  Top = 68
+  Top = 0
   Width = 1006
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682
@@ -31,7 +31,7 @@ object ImportFile: TImportFile
     Left = 32
     Height = 15
     Top = 66
-    Width = 290
+    Width = 255
     AutoSize = False
     Caption = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
     Color = 2894892
@@ -332,9 +332,9 @@ object ImportFile: TImportFile
   object PopupMenu1: TPopupMenu
     left = 272
     top = 8
-    object Menu1: TMenuItem
+    object Menu01: TMenuItem
       Caption = 'Windows Color'
-      OnClick = Menu1Click
+      OnClick = Menu01Click
     end
     object Menu2: TMenuItem
       Caption = 'Text Color'
@@ -360,9 +360,9 @@ object ImportFile: TImportFile
       Caption = 'DropDown Selected Color'
       OnClick = Menu9Click
     end
-    object Menu7: TMenuItem
+    object Menu07: TMenuItem
       Caption = 'DropDown Text Color'
-      OnClick = Menu7Click
+      OnClick = Menu07Click
     end
     object Menu5: TMenuItem
       Caption = 'Button Color'

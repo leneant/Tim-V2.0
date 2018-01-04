@@ -281,7 +281,7 @@ procedure IU_getCurrentDriveSizes(var _size, _free : int64);
 // * in : propertiesstructure : pointer on properties data for the windows
 // * in : size of the properties strucure
 // *
-procedure writeProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+procedure writeProperties (windowsname : string ; var propertiesStructure ; _strucsize : integer);
 
 // ***
 // * Saving in user home dir and sub properties Tim dir the properties for a windows
@@ -292,7 +292,7 @@ procedure writeProperties (windowsname : string ; propertiesStructure : Pchar ; 
 // * out : propertiesstructure : pointer on properties data for the windows
 // * in : size of the properties strucure
 // *
-procedure readProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+procedure readProperties (windowsname : string ; var propertiesStructure ; _strucsize : integer);
 // * End Add v1.6
 // ***
 
@@ -1296,12 +1296,12 @@ end;
 // * in : propertiesstructure : pointer on properties data for the windows
 // * in : size of the properties strucure
 // *
-procedure writeProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+procedure writeProperties (windowsname : string ; var propertiesStructure ; _strucsize : integer);
 var
   userhome : widestring;
   timpropertiesdir : widestring;
   filename : widestring;
-  _File : File;
+  _File : File of Byte;
 begin
   // 1 - getting user home
   userhome := GetUserDir;
@@ -1331,7 +1331,7 @@ begin
   end;
   // 5 - trying to read record
   try
-    blockwrite(_File, propertiesStructure^, _strucsize);
+    blockwrite(_File, propertiesStructure, _strucsize);
   except
     // if error closing file and raise an error
     try
@@ -1356,12 +1356,12 @@ end;
 // * out : propertiesstructure : pointer on properties data for the windows
 // * in : size of the properties strucure
 // *
-procedure readProperties (windowsname : string ; propertiesStructure : Pchar ; _strucsize : integer);
+procedure readProperties (windowsname : string ; var propertiesStructure ; _strucsize : integer);
 var
   userhome : widestring;
   timpropertiesdir : widestring;
   filename : widestring;
-  _File : File;
+  _File : File of Byte;
 begin
   // 1 - getting user home
   userhome := GetUserDir;
@@ -1389,7 +1389,7 @@ begin
       end;
       // 5 - trying to read record
       try
-        blockread(_File, propertiesStructure^, _strucsize);
+        blockread(_File, propertiesStructure, _strucsize);
       except
         // if error closing file and raise an error
         try

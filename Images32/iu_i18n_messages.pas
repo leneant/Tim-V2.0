@@ -140,17 +140,6 @@ const
   // * End Add v0.5
   // ***
 
-  // ***
-  // * Del v0.6
-  // ***
-  // * Add v0.5
-  // K_IU_HIMSG_ListInvFontColor = 20;
-  // *
-  // * End Add v0.5
-  // ***
-  // *
-  // * End Del v0.6
-  // ***
 
   // ***
   // * Add v0.6
@@ -161,10 +150,10 @@ const
   K_IU_HIMSG_setListTextColor = 24;
   K_IU_HIMSG_setDropDownColor = 25;
   K_IU_HIMSG_setDropDownSelectedColor = 26;
-  K_IU_HIMSG_setDropDownTextColor = 27;
-  K_IU_HIMSG_setButtonColor = 28;
-  K_IU_HIMSG_setButtonSelectedColor = 29;
-  K_IU_HIMSG_setStandardColors = 30;
+  K_IU_HIMSG_setDropDownTextColor = 28;
+  K_IU_HIMSG_setButtonColor = 29;
+  K_IU_HIMSG_setButtonSelectedColor = 30;
+  K_IU_HIMSG_setStandardColors = 32;
   // *
   // * End Add v0.6
   // ***
@@ -315,8 +304,8 @@ begin
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setDropDownSelectedColor] := 'Couleur des listes déroulantes sélectionnées';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setDropDownSelectedColor] := 'Selected Dropdown lists Color';
 
-  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setWindowsColor] := 'Couleur du texte des listes déroulantes';
-  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setWindowsColor] := 'Text of Dropdown lists Color';
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setDropDownTextColor] := 'Couleur du texte des listes déroulantes';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setDropDownTextColor] := 'Text of Dropdown lists Color';
 
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setButtonColor] := 'Couleur des bouttons';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setButtonColor] := 'Buttons Color';
