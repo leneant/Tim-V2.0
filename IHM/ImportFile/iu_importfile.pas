@@ -630,7 +630,11 @@ begin
     ImportFile.Height := ImportFile_Properties.bounds.height;
     ImportFile.Splitter2.Left := ImportFile_Properties.bounds.Split2;
     ImportFile.Splitter1.Left := ImportFile_Properties.bounds.split1;
+    // ***
+    // * Add v0.7 Windows Corrections
     ImportFile.Splitter1Moved(Sender);
+    ImportFile.FormChangeBounds(Sender);
+    // ***
   Except
     initDefaultColors;
   end;
