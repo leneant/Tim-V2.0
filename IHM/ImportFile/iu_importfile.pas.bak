@@ -3,10 +3,11 @@ unit IU_importfile;
 // * Unit provides an import file windows
 // * Creation Date : 2017 December
 // *
-// * Version : 0.6
+// * Version : 0.7
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 0.7 : Add splitter position in windows properties
 // * Version 0.6 : Add color personnalization popupmenu
 // * Version 0.5 : Add list invert font color command
 // * Version 0.4 : Add default colors from IU_TimControls
@@ -60,6 +61,10 @@ type
 
   T_ImportFile_Bounds = record
     x,y,widht,height : integer;
+    // ***
+    // * Add v0.7
+    split1, split2 : integer;
+    // ***
   end;
 
   T_ImportFile_Properties = record
@@ -623,6 +628,9 @@ begin
     ImportFile.Left := ImportFile_Properties.bounds.x;
     ImportFile.Width := ImportFile_Properties.bounds.widht;
     ImportFile.Height := ImportFile_Properties.bounds.height;
+    ImportFile.Splitter2.Left := ImportFile_Properties.bounds.Split2;
+    ImportFile.Splitter1.Left := ImportFile_Properties.bounds.split1;
+    ImportFile.FormChangeBounds(Sender);
   Except
     initDefaultColors;
   end;
@@ -708,8 +716,13 @@ begin
   ImportFile_Properties.bounds.x := ImportFile.Left;
   ImportFile_Properties.bounds.widht := ImportFile.Width;
   ImportFile_Properties.bounds.height := ImportFile.Height;
+  // ***
+  // * Add v0.7
+  ImportFile_Properties.bounds.split1 := ImportFile.Splitter1.Left;
+  ImportFile_Properties.bounds.split2 := ImportFile.Splitter2.Left;
+  // ***
   try
-    writeProperties('ImportFile', ImportFile_Properties, length(ImportFile_Properties));
+    writeProperties('ImportFile', ImportFile_Properties, sizeof(ImportFile_Properties));
   finally
   // * End Add v0.6
   // ***

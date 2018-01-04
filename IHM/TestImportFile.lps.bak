@@ -18,8 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="IU_importfile"/>
-        <TopLine Value="158"/>
-        <CursorPos X="31" Y="188"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="709"/>
+        <CursorPos X="3" Y="711"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,10 +29,9 @@
         <Filename Value="../Images32/iu_generalutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_GeneralUtils"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="1351"/>
-        <CursorPos X="23" Y="1364"/>
+        <TopLine Value="1287"/>
+        <CursorPos X="23" Y="1304"/>
         <UsageCount Value="80"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -179,136 +179,125 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="319" TopLine="270"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1379" TopLine="1357"/>
       </Position1>
       <Position2>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="321" TopLine="278"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1382" TopLine="1357"/>
       </Position2>
       <Position3>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="322" TopLine="278"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1384" TopLine="1357"/>
       </Position3>
       <Position4>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="324" TopLine="278"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1385" TopLine="1357"/>
       </Position4>
       <Position5>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="325" TopLine="278"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1386" TopLine="1357"/>
       </Position5>
       <Position6>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="327" TopLine="278"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1364" Column="23" TopLine="1351"/>
       </Position6>
       <Position7>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="328" TopLine="279"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="620" TopLine="592"/>
       </Position7>
       <Position8>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="334" TopLine="285"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1365" TopLine="1351"/>
       </Position8>
       <Position9>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="164" Column="34" TopLine="136"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1367" TopLine="1351"/>
       </Position9>
       <Position10>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="318" Column="66" TopLine="269"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1371" TopLine="1351"/>
       </Position10>
       <Position11>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="319" Column="67" TopLine="270"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1374" TopLine="1351"/>
       </Position11>
       <Position12>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="164" Column="34" TopLine="136"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1379" TopLine="1351"/>
       </Position12>
       <Position13>
-        <Filename Value="../Images32/iu_i18n_messages.pas"/>
-        <Caret Line="318" Column="66" TopLine="275"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1382" TopLine="1351"/>
       </Position13>
       <Position14>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="361" TopLine="323"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1384" TopLine="1351"/>
       </Position14>
       <Position15>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="354" TopLine="323"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1385" TopLine="1351"/>
       </Position15>
       <Position16>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="620" Column="55" TopLine="781"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1386" TopLine="1351"/>
       </Position16>
       <Position17>
         <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1299" Column="74" TopLine="1279"/>
+        <Caret Line="1391" TopLine="1351"/>
       </Position17>
       <Position18>
         <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1334" Column="42" TopLine="1307"/>
+        <Caret Line="1392" TopLine="1351"/>
       </Position18>
       <Position19>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="712" Column="58" TopLine="684"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1402" TopLine="1353"/>
       </Position19>
       <Position20>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="720" Column="54" TopLine="675"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1403" TopLine="1354"/>
       </Position20>
       <Position21>
-        <Filename Value="ImportFile/iu_importfile.pas"/>
-        <Caret Line="620" TopLine="605"/>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <Caret Line="1402" TopLine="1354"/>
       </Position21>
       <Position22>
         <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1365" TopLine="1357"/>
+        <Caret Line="1408" TopLine="1359"/>
       </Position22>
       <Position23>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1367" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="64" Column="30" TopLine="178"/>
       </Position23>
       <Position24>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1371" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="319" Column="11" TopLine="311"/>
       </Position24>
       <Position25>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1374" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="631" Column="63" TopLine="610"/>
       </Position25>
       <Position26>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1379" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="721" Column="53" TopLine="708"/>
       </Position26>
       <Position27>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1382" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="633" Column="32" TopLine="610"/>
       </Position27>
       <Position28>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1384" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="595" Column="46" TopLine="595"/>
       </Position28>
       <Position29>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1385" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="633" Column="40" TopLine="610"/>
       </Position29>
       <Position30>
-        <Filename Value="../Images32/iu_generalutils.pas"/>
-        <Caret Line="1386" TopLine="1357"/>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <Caret Line="632" Column="69" TopLine="609"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>
-  <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="ImportFile/iu_importfile.pas"/>
-        <Line Value="620"/>
-      </Item1>
-    </BreakPoints>
-  </Debugging>
 </CONFIG>

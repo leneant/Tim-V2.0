@@ -1,5 +1,5 @@
 object ImportFile: TImportFile
-  Left = 496
+  Left = 495
   Height = 449
   Top = 0
   Width = 1006
