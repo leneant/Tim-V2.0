@@ -1301,7 +1301,7 @@ var
   userhome : widestring;
   timpropertiesdir : widestring;
   filename : widestring;
-  _File : File;
+  _File : File of Byte;
 begin
   // 1 - getting user home
   userhome := GetUserDir;
