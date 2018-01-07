@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 495
+  Left = 204
   Height = 449
-  Top = 0
+  Top = 125
   Width = 1006
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682

@@ -1,0 +1,166 @@
+unit IU_Exceptions;
+
+{$mode objfpc}{$H+}
+// ***
+// * Unit provides all images with 32 bytes per chanel exceptions
+// * Creation Date : 2017 September
+// *
+// * Version : 0.3
+// * Version Date : 2018 January
+// * Version Contributors : Pascal Lemaître
+// *
+// * v0.3 : Adding exception for properties file management
+// * v0.2 : Adding exception for IU_T_StringDoubleChainedList
+// *
+// * @authors : Pascal Lemaître
+// *
+// * @see :
+// *
+// *
+// * Team : TIm (Traitement d'Images)
+// *
+// * 2017
+// ***
+
+
+interface
+
+uses
+  Classes, SysUtils;
+
+Type
+  IU_EOutOfBounds = class (exception);
+  // Error when pixel try to be addressed out of height ou width picture's limits
+
+  IU_ECreateTemporartyPixFile = class (exception);
+  // Error when creating temporary file image of the picture on disk
+
+  IU_EBufferToSmall = class (exception);
+  // Memorybuffer too small for read / write operations
+
+  IU_EOpenFileError = class (exception);
+  // Can't open an existing file
+
+  IU_EDirectAccessError = class(exception);
+  // File direct access error
+
+  IU_EBynaryFileWritingError = class(exception);
+  // Bynary file writing error
+
+  IU_EBynaryFileReadingError = class(exception);
+  // Bynary file reading error
+
+  IU_ERegisteringTempFileError = class(exception);
+  // Can't register a new temporary file
+
+   IU_EUnRegisteringTempFileError = class(exception);
+  // Can't unregister a new temporary file
+
+  IU_ENoEnoughtMemoryError = class(exception);
+  // Memory couldn't allocated
+
+  IU_ETooBigPix = class(exception);
+  // Pix loaded too big for Tim Sorry...
+  // Couldn't happen.
+
+  IU_EMemoryFrameAccessError = class(exception);
+  // a memory block try to be accessed out of bound of a memoryframe
+  // or memoryframe memory area is not allocated
+
+  IU_EMemoryManagerTempFileCreationError = class(exception);
+  // a memory block try to be accessed out of bound of a memoryframe
+  // or memoryframe memory area is not allocated
+
+  IU_EPreviewPixMemoryCreationError = class(exception);
+  // Trying to create a preview pix with dimension bigger than fixed limits (see IU_Types Unit)
+
+  IU_EPixCreationSwapFileError = class(exception);
+  // When memory manager was initialized swap file couldn't be created (see IU_Frames Unit)
+
+  IU_ENoStatsForFramesAccess = class(exception);
+  // If we need stats for define swap optimization and there is no access in frame the we haven't stats to chose the
+  // best swap politics
+
+  IU_EOutOfMemoryFrameBounds = class(exception);
+  // If a pixel access is made before the first row or after the last row or before the first line or after the last line
+  // then an exception must occurs
+
+  IU_ERowMemoryNotAllocated = class(exception);
+  // If memory not allocated no data could be written in it...
+
+  IU_EIncoherentSizeBetweenSwapFileAndPicture = class(exception);
+  // If size between swapFile and picture to be swaped is incoherent
+
+  IU_ESwapSourceReadingBGRABitmapError = class(exception) ;
+  // If direct pixel access read on BGRABitmap error then swap translate its own exception
+
+  IU_ESwapInitWrittingError = class(exception);
+  // Writting swap file error when swap init sequence
+
+  IU_EOutOfSwapFileBoundsError = class(exception);
+  // Out of swap file limits
+
+  IU_ESwappingWrittingError = class(exception);
+  // Error when writting access in a swap file
+
+  IU_EAccessFrameManager_SwapManagerCreationError = class(exception);
+  // Error when access frame manager tries to create a swap manager
+
+  IU_EAccessFrameManager_StatsManagerCreationError = class(exception);
+  // Error when access frame manager tries to create a stats manager
+
+  IU_EAccessFrameManager_MemoryFrameManagerCreationError = class(exception);
+  // Error when access frame manager tries to create a memory frame manager
+
+  IU_EGraphicControlQueue_MemoryAllocationError = class(exception);
+  // Error when allocating memory for queue manager to focus on graphics controls
+
+  IU_EGraphicControlQueue_AddError = class(exception);
+  // Error when adding a control in the queue
+
+  IU_EGraphicControlQueue_AddFullError = class(exception);
+  // Error when adding a control in the queue
+
+  IU_EGraphicControlQueue_MoveError = class(exception);
+  // Error when move next or move previous in a queue
+
+  IU_EGraphicControlQueue_setFocusError = class(exception);
+  // Error when a focus is trying to set on a control
+
+  IU_EGraphicControlRBGroup_MemoryAllocationError = class(exception);
+  // Error when allocating memory for RG group Manager
+
+  IU_EGraphicControlRBGroup_AddError = class(exception);
+  // Error when adding a RB in the group
+
+  IU_EGraphicControlRBGroup_AddFullError = class(exception);
+  // Error when adding a control in the group
+
+  //***
+  //* Add v0.2
+  IU_EStringDoubleChainedList_NoItem = class(exception);
+  // Error when try to move or access of an item when list is empty
+
+  IU_EStringDoubleChainedList_NoMoreItem = class(exception);
+  // No more (next or previous) item in the list
+
+  IU_EStringDoubleChainedList_AccessError = class(exception);
+  // Internal exception when accessing to an item. Item should be exist but memory access raised an exception
+
+  IU_EStringDoubleChainedList_NoMoreAvailableMemory = class(exception);
+  // Internal exception when memory can't be allocated
+  // *
+  // * End Add v0.2
+  // ***
+
+  // ***
+  // * Add v0.3
+  IU_EFileError = class(exception);
+  // *
+  // * End Add v0.3
+  // ***
+
+implementation
+
+end.
+

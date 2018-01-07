@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="TestImportFile"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="BGRABitmapPack"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="8">
+      <Unit0>
+        <Filename Value="TestImportFile.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="ImportFile/iu_importfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ImportFile"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="IU_importfile"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../Images32/iu_generalutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_GeneralUtils"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../Images32/iu_i18n_messages.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_I18N_Messages"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../Images32/iu_exceptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Exceptions"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../Utils/iu_strechutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_strechutils"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../Images32/iu_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_Types"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../Utils/iu_timcontrols.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_TimControls"/>
+      </Unit7>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="TestImportFile"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../Images32;../Utils;ImportFile"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <Linking>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

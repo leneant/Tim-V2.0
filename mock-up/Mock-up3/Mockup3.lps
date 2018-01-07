@@ -20,9 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="143"/>
-        <CursorPos X="22" Y="166"/>
+        <TopLine Value="116"/>
+        <CursorPos Y="122"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -31,9 +32,8 @@
         <Filename Value="../../Utils/iu_timcontrols.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_TimControls"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="3743"/>
+        <TopLine Value="3741"/>
         <CursorPos X="31" Y="400"/>
         <UsageCount Value="78"/>
         <Loaded Value="True"/>

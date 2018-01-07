@@ -2149,7 +2149,7 @@ begin
   end;
   self._width := self.Parent.Width;
   self._height := self.Parent.Height;
-  self._currentvalue:=0.5; // mid in the [0..1] interval
+  self._currentvalue:=01; // mid in the [0..1] interval
 end ;
 
 
