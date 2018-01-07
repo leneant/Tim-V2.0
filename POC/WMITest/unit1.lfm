@@ -24,6 +24,5 @@ object Form1: TForm1
     ItemHeight = 0
     ScrollWidth = 325
     TabOrder = 1
-    TopIndex = -1
   end
 end
