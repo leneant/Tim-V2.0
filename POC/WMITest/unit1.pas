@@ -60,7 +60,6 @@ procedure wmi_LOGICALDISK;
   plFlavor             : Integer;
   Succeed              : HRESULT;
 
-  var
   _currentDir : string;
   _dirs : string;
   _dsize, _free : int64;

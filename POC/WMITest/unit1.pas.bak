@@ -88,7 +88,7 @@ procedure wmi_LOGICALDISK;
         Succeed := FWbemServices.ExecQuery('WQL', WQL, WBEM_FLAG_FORWARD_ONLY, nil, ppEnum);
         if Succeeded(Succeed) then
         begin
-           _currentdit := getCurrentDir;
+           _currentdir := getCurrentDir;
            // Get the data from the query
            while (ppEnum.Next(WBEM_INFINITE, 1, apObjects, puReturned)=0) do
            begin
@@ -103,6 +103,7 @@ procedure wmi_LOGICALDISK;
              VarClear(pVal1);
              VarClear(pVal2);
            end;
+           chdir(_currentdir);
         end
         else
         form1.ListBox1.Items.Add(Format('Error executing WQL sentence %x',[Succeed]));

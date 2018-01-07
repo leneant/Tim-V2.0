@@ -3,11 +3,11 @@ unit IU_GeneralUtils;
 // * Unit provides generals utils services (adapted from TIm V1.x branch)
 // * Creation Date : 2017 September
 // *
-// * Version : 1.7
+// * Version : 1.8
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
-// *
+// * Version 1.8 : Adding Linux and Windows drives properties (conditionnal compilations)
 // * Version 1.7 : Procedure to save and read user properties for windows
 // * Version 1.6 : Testing equality in file name because under windows x.tiff = x.TIFF
 // *               Then test was added to insert only once the file in the list
@@ -24,7 +24,7 @@ unit IU_GeneralUtils;
 // *
 // * Team : TIm (Traitement d'Images)
 // *
-// * 2017
+// * 2017-2018
 // ***
 
 {$mode objfpc}{$H+}
@@ -34,10 +34,14 @@ interface
 uses
   Classes, SysUtils, IU_Types, math
   {$ifdef Linux}
-  ,linux, BaseUnix, unixtype
+  ,linux, BaseUnix, unixtype, unix
   {$endif}
   {$ifdef windows}
   ,windows
+  // ***
+  // * Add V1.8
+  ,Variants,ActiveX,JwaWbemCli
+  // ***
   {$endif}
 
   // ***
@@ -47,6 +51,21 @@ uses
   // * End Add V1.4
   // ***
   ;
+
+// ***
+// * Add v1.8
+{$ifdef windows}
+const
+  RPC_C_AUTHN_LEVEL_DEFAULT = 0;
+  RPC_C_IMP_LEVEL_IMPERSONATE = 3;
+  RPC_C_AUTHN_WINNT = 10;
+  RPC_C_AUTHZ_NONE = 0;
+  RPC_C_AUTHN_LEVEL_CALL = 3;
+  EOAC_NONE = 0;
+{$endif}
+// *
+// * End Add v1.8
+// ***
 
 type
 
@@ -132,6 +151,19 @@ type
   end;
 // *
 // * End Add V1.5
+// ***
+
+// ***
+// * Add v1.8
+IU_T_SystemDriveItem = record
+  Entry : string;
+  SystemFileType : string;
+  SSD : boolean;
+end;
+
+IU_T_SystemDrivesLists = array of IU_T_SystemDriveItem;
+// *
+// * End Add v1.8
 // ***
 
 // ***
@@ -295,6 +327,83 @@ procedure writeProperties (windowsname : string ; var propertiesStructure ; _str
 procedure readProperties (windowsname : string ; var propertiesStructure ; _strucsize : integer);
 // * End Add v1.6
 // ***
+
+
+// ***
+// * Add v1.8
+{$ifdef linux}
+// ***
+// * Return true if line is a disk mount point under linux os
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : line to test if it is a disk mount point (only Hard Drives) like /dev/sda... /home...
+// *
+// * return true if it is a Hard Drive mount point
+function isDiskMount(line : string) : boolean;
+
+// ***
+// * Return /dev entry and mounting point and system file type
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : line to filter if is disk mount point (only Hard Drives) like /dev/sda... /home...
+// *
+// * return /dev/ entry and / mounting point and file type system (ej. msdos, ext3, ext4...)
+// * or return an empty string if it is not an Hard Drive entry in /dev
+function filteringMountingLine(line : string) : string;
+
+// ***
+// * Return mounting point from a filteringMountingLine
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingLine string
+// *
+// * return mounting point or empty string
+function filteringMountingPoint(line : string) : string;
+
+// ***
+// * Return File system type from a filteringMountingLine
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingLine string
+// *
+// * return file system type (msdos, ext3, ext4...) or empty string
+function filteringFileSystemType(line : string) : string;
+
+// ***
+// * Check if Mounting point is on an SSD drive or not
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingPoint string
+// *
+// * return true if mounting point is on SSD Hard Drive else return false
+function isSSD(mountpoint : string) : boolean;
+
+// ***
+// * Set mounting point list descriptors
+// *
+// @ author : Pascal Lemaitre
+// *
+// * Return arrays of descriptors
+function getHDDMountingPointsDescriptions :  IU_T_SystemDrivesLists ;
+{$endif}
+{$ifdef windows}
+// ***
+// * Set list of drives and file system type under windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * return array of drive entry descriptor
+function wmi_LOGICALDISK : IU_T_SystemDrivesLists ;
+{$endif}
+// *
+// * End Add v1.8
+// ***
+
 
 implementation
 
@@ -1409,6 +1518,281 @@ end;
 
 // * End Add v1.6
 // ***
+
+// ***
+// * Add v1.8
+{$ifdef linux}
+// ***
+// * Return true if line is a disk mount point under linux os
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : line to test if it is a disk mount point (only Hard Drives) like /dev/sda... /home...
+// *
+// * return true if it is a Hard Drive mount point
+function isDiskMount(line : string) : boolean;
+var i : integer;
+  _detect : string;
+  _return : boolean;
+begin
+  if line[1] <> '/' then begin
+    _return := false ;
+
+  end else begin
+    _detect := '';
+     for i := 1 to 5 do begin
+        _detect := _detect + line[i];
+     end;
+     if _detect = '/dev/' then _return := true else _return := false;
+  end;
+  isDiskMount := _return;
+end;
+
+// ***
+// * Return /dev entry and mounting point and system file type
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : line to filter if is disk mount point (only Hard Drives) like /dev/sda... /home...
+// *
+// * return /dev/ entry and / mounting point and file type system (ej. msdos, ext3, ext4...)
+// * or return an empty string if it is not an Hard Drive entry in /dev
+function filteringMountingLine(line : string) : string;
+var i : integer;
+  _return : string;
+  _spaces : integer;
+begin
+  _return := '';
+  _spaces := 0;
+  for i := 1 to length(line) do begin
+    if line[i] = ' ' then inc(_spaces);
+    if _spaces < 3 then _return := _return + line[i];
+  end;
+  filteringMountingLine := _return;
+end;
+
+// ***
+// * Return mounting point from a filteringMountingLine
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingLine
+// *
+// * return mounting point or empty string
+function filteringMountingPoint(line : string) : string;
+var i : integer;
+  _return : string;
+  _ok : boolean;
+  _end : boolean;
+begin
+  _ok := false;
+  _end := false;
+  _return := '';
+  for i := 1 to length(line) do begin
+     if line[i] = ' ' then begin
+       if _ok then _end := true else
+       _ok := true;
+       end else begin
+         if (_ok and not _end) then begin
+           _return := _return + Line[i];
+         end;
+     end;
+  end;
+  filteringMountingPoint := _return;
+end;
+
+// ***
+// * Return File system type from a filteringMountingLine
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingLine
+// *
+// * return file system type (msdos, ext3, ext4...) or empty string
+function filteringFileSystemType(line : string) : string;
+var i : integer;
+  _return : string;
+  _space : integer;
+  _end : boolean;
+begin
+  _space := 0;
+  _return := '';
+  for i := 1 to length(line) do begin
+     if line[i] = ' ' then begin
+       inc(_space);
+     end else
+     if (_space = 2) then begin
+       _return := _return + Line[i];
+     end;
+  end;
+  filteringFileSystemType := _return;
+end;
+
+// ***
+// * Check if Mounting point is on an SSD drive or not
+// *
+// @author : Pascal Lemaitre
+// *
+// * in : filteringMountingPoint string
+// *
+// * return true if mounting point is on SSD Hard Drive else return false
+function isSSD(mountpoint : string) : boolean;
+var
+  _tempdir : string;
+  _File : TextFile;
+  _inputLine : string;
+  i : integer;
+  _return : boolean;
+begin
+  // getting temporaty dir
+  _tempdir := GetTempDir;
+  // exec linux command
+  if fpSystem('lsblk -o ROTA,MOUNTPOINT,RM | grep '''+ mountpoint + '  ''>' + _tempdir + 'tim.txt') <> 127 then begin
+    // open file
+    assignFile(_File, _tempdir + '/tim.txt');
+    reset(_File);
+    if not eof(_File) then  readln(_File, _inputLine)
+    else                    _inputLine := '';
+    CloseFile(_File);
+    if _inputLine <> '' then begin
+      i := 1;
+      while ((_inputLine[i] =  ' ') and (i < Length(_inputLine))) do inc(i);
+      if i < length(_inputLine) then _return := '0' = _inputLine[i];
+    end else _return := false;
+  end;
+  DeleteFile(_tempdir + 'tim.txt');
+  isSSD := _return;
+end;
+
+// ***
+// * Set mounting point list descriptors
+// *
+// @ author : Pascal Lemaitre
+// *
+// * Return arrays of descriptors
+function getHDDMountingPointsDescriptions :  IU_T_SystemDrivesLists ;
+var
+  _File : TextFile ;
+  _line : string;
+  _currentDir : string;
+  _mounting, sizetxt, freetxt : string;
+  _Item : string;
+  _sysfile : string;
+  _return : IU_T_SystemDrivesLists;
+  _returnidx : integer;
+begin
+  _currentDir := getCurrentDir;
+  // Opening mounts in /procs
+  assignFile (_File, '/proc/mounts');
+  reset(_File);
+  readln (_File, _Line);
+  _returnidx := 0;
+  while not eof(_File) do begin
+    if isDiskMount(_line) then begin
+      inc(_returnidx);
+      SetLength(_return, _returnidx);
+      _mounting := filteringMountingPoint(FilteringMountingLine(_line));
+      _sysfile := FilteringFileSystemType(FilteringMountingLine(_line));
+      _return[_returnidx-1].Entry:=_mounting;
+      _return[_returnidx-1].SystemFileType:=_sysfile;
+      _return[_returnidx-1].SSD:=isSSD(_mounting);
+    end;
+    readln(_File, _line);
+  end;
+  closeFile(_File);
+  getHDDMountingPointsDescriptions := _return;
+end;
+
+{$endif}
+
+{$ifdef windows}
+// ***
+// * Set list of drives and file system type under windows
+// *
+// @author : Pascal Lemaitre
+// *
+// * return array of drive entry descriptor
+function wmi_LOGICALDISK : IU_T_SystemDrivesLists ;
+  const
+  strLocale    = '';
+  strUser      = '';
+  strPassword  = '';
+  strNetworkResource = 'root\cimv2';
+  strAuthority       = '';
+  WQL                = 'SELECT DeviceID,FileSystem FROM Win32_logicaldisk where (DriveType=''3'')';
+  var
+  FWbemLocator         : IWbemLocator;
+  FWbemServices        : IWbemServices;
+  FUnsecuredApartment  : IUnsecuredApartment;
+  ppEnum               : IEnumWbemClassObject;
+  apObjects            : IWbemClassObject;
+  puReturned           : ULONG;
+  pVal1, pVal2         : OleVariant;
+  pType                : Integer;
+  plFlavor             : Integer;
+  Succeed              : HRESULT;
+
+  _currentDir : string;
+  _dirs : string;
+  _dsize, _free : int64;
+  _fsize, _ffree : string;
+  _return : IU_T_SystemDrivesLists;
+  _returnidx : integer;
+
+  begin
+  // Set general COM security levels --------------------------
+  // Note: If you are using Windows 2000, you need to specify -
+  // the default authentication credentials for a user by using
+  // a SOLE_AUTHENTICATION_LIST structure in the pAuthList ----
+  // parameter of CoInitializeSecurity ------------------------
+  if Failed(CoInitializeSecurity(nil, -1, nil, nil, RPC_C_AUTHN_LEVEL_DEFAULT, RPC_C_IMP_LEVEL_IMPERSONATE, nil, EOAC_NONE, nil)) then Exit;
+  // Obtain the initial locator to WMI -------------------------
+  if Succeeded(CoCreateInstance(CLSID_WbemLocator, nil, CLSCTX_INPROC_SERVER, IID_IWbemLocator, FWbemLocator)) then
+  try
+    // Connect to WMI through the IWbemLocator::ConnectServer method
+    if Succeeded(FWbemLocator.ConnectServer(strNetworkResource, strUser, strPassword, strLocale,  WBEM_FLAG_CONNECT_USE_MAX_WAIT, strAuthority, nil, FWbemServices)) then
+    try
+      // Set security levels on the proxy -------------------------
+      if Failed(CoSetProxyBlanket(FWbemServices, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, nil, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, nil, EOAC_NONE)) then Exit;
+      if Succeeded(CoCreateInstance(CLSID_UnsecuredApartment, nil, CLSCTX_LOCAL_SERVER, IID_IUnsecuredApartment, FUnsecuredApartment)) then
+      try
+        // Use the IWbemServices pointer to make requests of WMI
+        //Succeed := FWbemServices.ExecQuery('WQL', WQL, WBEM_FLAG_FORWARD_ONLY OR WBEM_FLAG_RETURN_IMMEDIATELY, nil, ppEnum);
+        Succeed := FWbemServices.ExecQuery('WQL', WQL, WBEM_FLAG_FORWARD_ONLY, nil, ppEnum);
+        if Succeeded(Succeed) then
+        begin
+           _currentdir := getCurrentDir;
+           _returnidx := 0;
+           // Get the data from the query
+           while (ppEnum.Next(WBEM_INFINITE, 1, apObjects, puReturned)=0) do
+           begin
+             apObjects.Get('DeviceID', 0, pVal1, pType, plFlavor);
+             apObjects.Get('FileSystem', 0, pVal2, pType, plFlavor);
+             inc(_returnidx);
+             SetLength(_return,_returnidx);
+             _return[_returnidx-1].Entry := pVal1;
+             _return[_returnidx-1].SystemFileType := pVal2;
+             _return[_returnidx-1].SSD := false;
+             VarClear(pVal1);
+             VarClear(pVal2);
+           end;
+        end;
+      finally
+        FUnsecuredApartment := nil;
+      end;
+    finally
+      FWbemServices := nil;
+    end;
+  finally
+    FWbemLocator := nil;
+  end;
+  wmi_LOGICALDISK := _return;
+end;
+{$endif}
+// *
+// * End Add v1.8
+// ***
+
 
 end.
 
