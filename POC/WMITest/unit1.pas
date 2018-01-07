@@ -44,7 +44,7 @@ var
   _fsize, _ffree : string;
 begin
   ListBox1.Clear;
-  _driveslist := wmi_LOGICALDISK;
+  _driveslist := getHDDMountingPointsDescriptions;
   _currentdir := GetCurrentDir;
   for i := Low(_drivesList) to High(_drivesList) do begin
       chdir (_drivesList[i].Entry);
