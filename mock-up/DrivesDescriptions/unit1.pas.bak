@@ -89,7 +89,11 @@ begin
     DrivesDescriptors[j].Drive.Top := j*40 + 5 ;
     DrivesDescriptors[j].Drive.Left := 5;
     DrivesDescriptors[j].Drive.Font.Size:=9;
+    {$ifdef windows}
+    DrivesDescriptors[j].Drive.Caption := Drives[Low(Drives) - Low(DrivesDescriptors)+j].Entry;
+    {$else}
     DrivesDescriptors[j].Drive.Caption := Drives[Low(Drives) - Low(DrivesDescriptors)+j].Entry + ' : ';
+    {$endif}
     DrivesDescriptors[j].Drive.Font.Color:=V_IU_PB_TextColor;
     DrivesDescriptors[j].FS := TLabel.Create(Form1.Panel1);
     DrivesDescriptors[j].FS.Name := 'LabelFS' + inttostr(j);
@@ -110,7 +114,11 @@ begin
       DrivesDescriptors[j].DDType.Picture := SSD.Picture
     else
       DrivesDescriptors[j].DDType.Picture := HDD.Picture;
+    {$ifdef windows}
+    chdir(DrivesDescriptors[j].Drive.Caption);
+    {$else}
     chdir(LeftSTR(DrivesDescriptors[j].Drive.Caption, length(DrivesDescriptors[j].Drive.Caption)-3));
+    {$endif}
     IU_getCurrentDriveSizes(_size, _free);
     _fsize := IU_realToString(_size/1024/1024/1024, 2);
     _ffree := IU_realToString(_free/1024/1024/1024, 2);
