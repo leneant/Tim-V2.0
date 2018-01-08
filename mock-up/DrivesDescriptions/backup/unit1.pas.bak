@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls,
-  ExtCtrls, IU_GeneralUtils, IU_TimControls, math;
+  ExtCtrls, IU_GeneralUtils, IU_TimControls, math, IU_I18N_Messages;
 
 type
 
@@ -76,6 +76,7 @@ var i,j : integer;
     _curdir : string;
     _maxy : integer;
 begin
+  form1.Color:=V_IU_DefaultBG;
   Drives := getHDDMountingPointsDescriptions;
   i := High(Drives) - Low(Drives) + 1;
   SetLength(DrivesDescriptors, i);
@@ -87,15 +88,21 @@ begin
     DrivesDescriptors[j].Drive.Parent := Form1.Panel1;
     DrivesDescriptors[j].Drive.Top := j*40 + 5 ;
     DrivesDescriptors[j].Drive.Left := 5;
+    DrivesDescriptors[j].Drive.Font.Size:=9;
+    {$ifdef windows}
     DrivesDescriptors[j].Drive.Caption := Drives[Low(Drives) - Low(DrivesDescriptors)+j].Entry;
-    DrivesDescriptors[j].Drive.Font.Color:=rgbtocolor($E0,$E0,$E0);
+    {$else}
+    DrivesDescriptors[j].Drive.Caption := Drives[Low(Drives) - Low(DrivesDescriptors)+j].Entry + ' : ';
+    {$endif}
+    DrivesDescriptors[j].Drive.Font.Color:=V_IU_PB_TextColor;
     DrivesDescriptors[j].FS := TLabel.Create(Form1.Panel1);
     DrivesDescriptors[j].FS.Name := 'LabelFS' + inttostr(j);
     DrivesDescriptors[j].FS.Parent := Form1.Panel1;
     DrivesDescriptors[j].FS.Top := j*40 + 20 ;
     DrivesDescriptors[j].FS.Left := 10;
+    DrivesDescriptors[j].FS.Font.Size:=9;
     DrivesDescriptors[j].FS.Caption := Drives[Low(Drives) - Low(DrivesDescriptors)+j].SystemFileType ;
-    DrivesDescriptors[j].FS.Font.Color:=rgbtocolor($E0,$E0,$E0);
+    DrivesDescriptors[j].FS.Font.Color:=V_IU_PB_TextColor;
     DrivesDescriptors[j].DDType := TImage.Create(Form1.Panel1);
     DrivesDescriptors[j].DDType.Name := 'ImageHDD' + inttostr(j);
     DrivesDescriptors[j].DDType.Parent := Form1.Panel1;
@@ -107,7 +114,11 @@ begin
       DrivesDescriptors[j].DDType.Picture := SSD.Picture
     else
       DrivesDescriptors[j].DDType.Picture := HDD.Picture;
+    {$ifdef windows}
     chdir(DrivesDescriptors[j].Drive.Caption);
+    {$else}
+    chdir(LeftSTR(DrivesDescriptors[j].Drive.Caption, length(DrivesDescriptors[j].Drive.Caption)-3));
+    {$endif}
     IU_getCurrentDriveSizes(_size, _free);
     _fsize := IU_realToString(_size/1024/1024/1024, 2);
     _ffree := IU_realToString(_free/1024/1024/1024, 2);
@@ -115,18 +126,19 @@ begin
     DrivesDescriptors[j].SIZE.Name := 'LabelSIZE' + inttostr(j);
     DrivesDescriptors[j].SIZE.Parent := Form1.Panel1;
     DrivesDescriptors[j].SIZE.Top := j*40 + 4 ;
-    DrivesDescriptors[j].SIZE.Caption := 'Size : ' + _fsize + ' Gb' ;
+    DrivesDescriptors[j].SIZE.Font.Size:=9;
+    DrivesDescriptors[j].SIZE.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_Size] + ' : ' + _fsize + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_GB];
+    IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Free] := 'Couleur du texte';
     DrivesDescriptors[j].SIZE.Alignment:=taRightJustify;
-    DrivesDescriptors[j].SIZE.Font.Color:=rgbtocolor($E0,$E0,$E0);
-    DrivesDescriptors[j].SIZE.Left := DrivesDescriptors[j].DDType.Left - length(DrivesDescriptors[j].SIZE.Caption)*6 + 5 ;
+    DrivesDescriptors[j].SIZE.Font.Color:=V_IU_PB_TextColor;
     DrivesDescriptors[j].FREE := TLabel.Create(Form1.Panel1);
     DrivesDescriptors[j].FREE.Name := 'LabelFREE' + inttostr(j);
     DrivesDescriptors[j].FREE.Parent := Form1.Panel1;
     DrivesDescriptors[j].FREE.Top := j*40 + 20 ;
-    DrivesDescriptors[j].FREE.Caption := 'Disponible : ' + _ffree + ' Gb' ;
-    DrivesDescriptors[j].FREE.Font.Color:=rgbtocolor($E0,$E0,$E0);
+    DrivesDescriptors[j].FREE.Font.Size:=9;
+    DrivesDescriptors[j].FREE.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_Free] + ' : ' + _ffree + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_GB];
+    DrivesDescriptors[j].FREE.Font.Color:=V_IU_PB_TextColor;
     DrivesDescriptors[j].FREE.Alignment:=taRightJustify;
-    DrivesDescriptors[j].FREE.Left := DrivesDescriptors[j].DDType.Left - length(DrivesDescriptors[j].FREE.Caption)*6 + 5 ;
     _maxy := DrivesDescriptors[j].FREE.Top + DrivesDescriptors[j].FREE.Height + 5;
   end;
   scrollBar := T_IU_ScrollBar.Create(iu_tb_cursordirection_standard, _maxy - form1.Panel1.height, Image1);
@@ -136,6 +148,7 @@ begin
   scrollBar._setValue(0);
   scrollBar._draw;
   Form1.Refresh;
+  chdir(_curdir);
 end;
 
 procedure TForm1.FormPaint(Sender: TObject);
@@ -148,6 +161,8 @@ begin
     b := max(DrivesDescriptors[i].SIZE.width,DrivesDescriptors[i].FREE.width);
     c := DrivesDescriptors[i].DDType.width;
     _xmin := max(_xmin, a+b+c+20+5+Image1.width+5);
+    DrivesDescriptors[i].SIZE.Left := DrivesDescriptors[i].DDType.Left - DrivesDescriptors[i].SIZE.Width - 5 ;
+    DrivesDescriptors[i].FREE.Left := DrivesDescriptors[i].DDType.Left - DrivesDescriptors[i].FREE.Width - 5 ;
   end;
   form1.Constraints.MinWidth:=_xmin;
 end;
@@ -160,8 +175,9 @@ begin
     DrivesDescriptors[i].Drive.Left := 5;
     DrivesDescriptors[i].FS.Left := 10;
     DrivesDescriptors[i].DDType.Left := Form1.Panel1.Width - 42;
-    DrivesDescriptors[i].SIZE.Left := DrivesDescriptors[i].DDType.Left - length(DrivesDescriptors[i].SIZE.Caption)*6 + 5 ;
-    DrivesDescriptors[i].FREE.Left := DrivesDescriptors[i].DDType.Left - length(DrivesDescriptors[i].FREE.Caption)*6 + 5 ;
+    DrivesDescriptors[i].SIZE.Left := DrivesDescriptors[i].DDType.Left - DrivesDescriptors[i].SIZE.Width - 5 ;
+    DrivesDescriptors[i].FREE.Left := DrivesDescriptors[i].DDType.Left - DrivesDescriptors[i].FREE.Width - 5 ;
+    Image1.Left := form1.Panel1.Left + form1.Panel1.width + 1;
   end;
 end;
 

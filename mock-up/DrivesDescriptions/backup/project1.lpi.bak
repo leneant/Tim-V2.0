@@ -81,7 +81,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="D:\Developpements\Tim-V2.0\Utils\;D:\Developpements\Tim-V2.0\Images32\"/>
+      <OtherUnitFiles Value="D:\Developpements\Tim-V2.0\Utils\;D:\Developpements\Tim-V2.0\Images32\;..\..\Images32;..\..\Utils"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
