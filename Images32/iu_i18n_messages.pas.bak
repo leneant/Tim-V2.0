@@ -5,10 +5,11 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.7
+// * Version : 0.8
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.8 : Adding text for drives status list
 // * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
 // * v0.6 : For dedicated linux -> Adding text for list invert font color
 // * v0.5 : Adding loading image file error message.
@@ -140,20 +141,9 @@ const
   // * End Add v0.5
   // ***
 
-  // ***
-  // * Del v0.6
-  // ***
-  // * Add v0.5
-  // K_IU_HIMSG_ListInvFontColor = 20;
-  // *
-  // * End Add v0.5
-  // ***
-  // *
-  // * End Del v0.6
-  // ***
 
   // ***
-  // * Add v0.6
+  // * Add v0.7
   K_IU_HIMSG_setWindowsColor = 20;
   K_IU_HIMSG_setTextColor = 21;
   K_IU_HIMSG_setListColor = 22;
@@ -161,12 +151,20 @@ const
   K_IU_HIMSG_setListTextColor = 24;
   K_IU_HIMSG_setDropDownColor = 25;
   K_IU_HIMSG_setDropDownSelectedColor = 26;
-  K_IU_HIMSG_setDropDownTextColor = 28;
-  K_IU_HIMSG_setButtonColor = 29;
-  K_IU_HIMSG_setButtonSelectedColor = 30;
-  K_IU_HIMSG_setStandardColors = 32;
+  K_IU_HIMSG_setDropDownTextColor = 27;
+  K_IU_HIMSG_setButtonColor = 28;
+  K_IU_HIMSG_setButtonSelectedColor = 29;
+  K_IU_HIMSG_setStandardColors = 30;
   // *
-  // * End Add v0.6
+  // * End Add v0.7
+  // ***
+
+  // ***
+  // * Add v0.8
+  K_IU_HIMSG_Size = 31;
+  K_IU_HIMSG_Free = 32;
+  // *
+  // * End Add v0.8
   // ***
 
   type
@@ -293,7 +291,7 @@ begin
   // ***
 
   // ***
-  // * Add v0.6
+  // * Add v0.7
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setWindowsColor] := 'Couleur de la fenêtre';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setWindowsColor] := 'Windows Color';
 
@@ -327,8 +325,20 @@ begin
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setStandardColors] := 'Couleurs standards';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setStandardColors] := 'Standard Colors';
   // *
-  // * End Add v0.6
+  // * End Add v0.7
   // ***
+
+  // ***
+  // * Add v0.8
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Size] := 'Couleur de la fenêtre';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Size] := 'Windows Color';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Free] := 'Couleur du texte';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Free] := 'Text Color';
+  // *
+  // * End Add v0.8
+  // ***
+
 
   // init exception messages
   IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_TmpCreationFail] := 'Création impossible du fichier temporaire de l''image !';

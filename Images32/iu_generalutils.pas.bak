@@ -398,7 +398,7 @@ function getHDDMountingPointsDescriptions :  IU_T_SystemDrivesLists ;
 // @author : Pascal Lemaitre
 // *
 // * return array of drive entry descriptor
-function wmi_LOGICALDISK : IU_T_SystemDrivesLists ;
+function getHDDMountingPointsDescriptions : IU_T_SystemDrivesLists ;
 {$endif}
 // *
 // * End Add v1.8
@@ -1712,7 +1712,7 @@ end;
 // @author : Pascal Lemaitre
 // *
 // * return array of drive entry descriptor
-function wmi_LOGICALDISK : IU_T_SystemDrivesLists ;
+function getHDDMountingPointsDescriptions : IU_T_SystemDrivesLists ;
   const
   strLocale    = '';
   strUser      = '';
@@ -1786,7 +1786,7 @@ function wmi_LOGICALDISK : IU_T_SystemDrivesLists ;
   finally
     FWbemLocator := nil;
   end;
-  wmi_LOGICALDISK := _return;
+  getHDDMountingPointsDescriptions := _return;
 end;
 {$endif}
 // *
