@@ -26,6 +26,7 @@ var
   {$ifdef linux}
   s : longint;
   {$else}
+  s : integer;
   {$endif}
 begin
   // exec command
