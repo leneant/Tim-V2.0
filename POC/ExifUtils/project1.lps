@@ -16,6 +16,7 @@
         <Filename Value="unit1.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
         <CursorPos X="20" Y="35"/>
@@ -29,12 +30,13 @@
         <UnitName Value="IU_ExifUtils"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <CursorPos X="92" Y="35"/>
+        <TopLine Value="5"/>
+        <CursorPos X="15" Y="29"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
       </Unit2>
     </Units>
-    <JumpHistory Count="6" HistoryIndex="5">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
         <Filename Value="unit1.pas"/>
         <Caret Line="35" Column="31"/>
@@ -58,6 +60,14 @@
         <Filename Value="iu_exifutils.pas"/>
         <Caret Line="10" Column="4"/>
       </Position6>
+      <Position7>
+        <Filename Value="iu_exifutils.pas"/>
+        <Caret Line="35" Column="92"/>
+      </Position7>
+      <Position8>
+        <Filename Value="iu_exifutils.pas"/>
+        <Caret Line="36" Column="14" TopLine="4"/>
+      </Position8>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>
