@@ -26,14 +26,14 @@ var
   {$ifdef linux}
   s : longint;
   {$else}
-  s : integer;
+  s : widestring;
   {$endif}
 begin
   // exec command
   {$ifdef linux}
   s := fpSystem('exiv2 -g Exif ' + filename + ' > test.txt');
   {$else}
-  s := ShellExecute(0,nil, PChar('"exiv2 -g Exif ' + filename + ' > test.txt"'),nil,nil,1);
+  ShellExecute(0, 'open', PWideChar(getcurrentdir + '\exiv2 -g Exif ' + filename + ' > test.txt'), nil,nil, 1);
   {$endif}
 end;
 
