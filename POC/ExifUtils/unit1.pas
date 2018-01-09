@@ -13,7 +13,7 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    ListBox1: TListBox;
+    Memo1: TMemo;
     OpenDialog1: TOpenDialog;
     procedure Button1Click(Sender: TObject);
   private
@@ -35,7 +35,7 @@ procedure TForm1.Button1Click(Sender: TObject);
 var _return : IU_T_StringArray;
 begin
   if Opendialog1.Execute then begin
-    getExif (OpenDialog1.FileName);
+    _return := getExif (OpenDialog1.FileName);
   end;
 end;
 

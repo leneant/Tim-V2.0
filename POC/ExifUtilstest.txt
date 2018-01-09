@@ -1,0 +1,3 @@
+Usage: exiv2.exe [ options ] [ action ] file ...
+
+Manipulate the Exif metadata of images.
