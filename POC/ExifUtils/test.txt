@@ -1,0 +1,190 @@
+Exif.Image.ImageDescription                  Ascii      32  OLYMPUS DIGITAL CAMERA         
+Exif.Image.Make                              Ascii      24  OLYMPUS IMAGING CORP.  
+Exif.Image.Model                             Ascii      17  E-PL6           
+Exif.Image.Orientation                       Short       1  top, left
+Exif.Image.XResolution                       Rational    1  350
+Exif.Image.YResolution                       Rational    1  350
+Exif.Image.ResolutionUnit                    Short       1  inch
+Exif.Image.Software                          Ascii      32  Version 1.1                    
+Exif.Image.DateTime                          Ascii      20  2016:11:20 14:41:50
+Exif.Image.Artist                            Ascii      64  
+Exif.Image.YCbCrPositioning                  Short       1  Co-sited
+Exif.Image.Copyright                         Ascii      64  
+Exif.Image.ExifTag                           Long        1  218
+Exif.Photo.ExposureTime                      Rational    1  1/50 s
+Exif.Photo.FNumber                           Rational    1  F4.2
+Exif.Photo.ExposureProgram                   Short       1  Shutter priority
+Exif.Photo.ISOSpeedRatings                   Short       1  1600
+Exif.Photo.SensitivityType                   Short       1  1
+Exif.Photo.ExifVersion                       Undefined   4  2.30
+Exif.Photo.DateTimeOriginal                  Ascii      20  2016:11:20 14:41:50
+Exif.Photo.DateTimeDigitized                 Ascii      20  2016:11:20 14:41:50
+Exif.Photo.ComponentsConfiguration           Undefined   4  YCbCr
+Exif.Photo.ExposureBiasValue                 SRational   1  +7/10 EV
+Exif.Photo.MaxApertureValue                  Rational    1  F3.5
+Exif.Photo.MeteringMode                      Short       1  Multi-segment
+Exif.Photo.LightSource                       Short       1  Unknown
+Exif.Photo.Flash                             Short       1  Yes, did not fire
+Exif.Photo.FocalLength                       Rational    1  22.0 mm
+Exif.Photo.MakerNote                         Undefined 11352  (Binary value suppressed)
+Exif.MakerNote.Offset                        Long        1  3312
+Exif.MakerNote.ByteOrder                     Ascii       3  II
+Exif.Olympus2.SpecialMode                    Long        3  Normal
+Exif.Olympus2.CameraID                       Undefined  32  OLYMPUS DIGITAL CAMERA         
+Exif.Olympus2.Equipment                      Ifd         1  102
+Exif.OlympusEq.EquipmentVersion              Undefined   4  1.00
+Exif.OlympusEq.CameraType                    Ascii       6  S0045
+Exif.OlympusEq.SerialNumber                  Ascii      32  V5TF68463                      
+Exif.OlympusEq.InternalSerialNumber          Ascii      32  4146509004427101               
+Exif.OlympusEq.FocalPlaneDiagonal            Rational    1  2160/100
+Exif.OlympusEq.BodyFirmwareVersion           Long        1  4352
+Exif.OlympusEq.LensType                      Byte        6  Olympus M.Zuiko Digital ED 14-42mm F3.5-5.6 II R
+Exif.OlympusEq.LensSerialNumber              Ascii      32  ABGD90903
+Exif.OlympusEq.LensModel                     Ascii      32  OLYMPUS M.14-42mm F3.5-5.6 II R
+Exif.OlympusEq.LensFirmwareVersion           Long        1  4357
+Exif.OlympusEq.MaxApertureAtMinFocal         Short       1  925
+Exif.OlympusEq.MaxApertureAtMaxFocal         Short       1  1273
+Exif.OlympusEq.MinFocalLength                Short       1  14
+Exif.OlympusEq.MaxFocalLength                Short       1  42
+Exif.OlympusEq.MaxApertureAtCurrentFocal     Short       1  1085
+Exif.OlympusEq.LensProperties                Short       1  49472
+Exif.OlympusEq.Extender                      Byte        6  None
+Exif.OlympusEq.ExtenderSerialNumber          Ascii      32  
+Exif.OlympusEq.ExtenderModel                 Ascii      32  
+Exif.OlympusEq.ExtenderFirmwareVersion       Long        1  0
+Exif.OlympusEq.ConversionLens                Ascii      32  
+Exif.OlympusEq.FlashType                     Short       1  None
+Exif.OlympusEq.FlashModel                    Short       1  None
+Exif.OlympusEq.FlashFirmwareVersion          Long        1  0
+Exif.OlympusEq.FlashSerialNumber             Ascii      32  
+Exif.Olympus2.CameraSettings                 Ifd         1  408
+Exif.OlympusCs.CameraSettingsVersion         Undefined   4  1.00
+Exif.OlympusCs.PreviewImageValid             Long        1  No
+Exif.OlympusCs.PreviewImageStart             Long        1  0
+Exif.OlympusCs.PreviewImageLength            Long        1  0
+Exif.OlympusCs.ExposureMode                  Short       1  Shutter speed priority AE
+Exif.OlympusCs.AELock                        Short       1  Off
+Exif.OlympusCs.MeteringMode                  Short       1  ESP
+Exif.OlympusCs.ExposureShift                 SRational   1  0/100
+Exif.OlympusCs.MacroMode                     Short       1  Off
+Exif.OlympusCs.FocusMode                     Short       2  Single AF0
+Exif.OlympusCs.FocusProcess                  Short       2  AF Used
+Exif.OlympusCs.AFSearch                      Short       1  Ready
+Exif.OlympusCs.AFAreas                       Long       64  1902874257 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Exif.OlympusCs.AFPointSelected               SRational   5  0/0 319/640 239/480 319/640 239/480
+Exif.OlympusCs.AFFineTuneAdj                 SShort      3  0 0 0
+Exif.OlympusCs.FlashMode                     Short       1  Fill-in
+Exif.OlympusCs.FlashExposureComp             SRational   1  0/256
+Exif.OlympusCs.FlashRemoteControl            Short       1  Off
+Exif.OlympusCs.FlashControlMode              Short       4  Off
+Exif.OlympusCs.FlashIntensity                SRational   4  0/0 0/0 0/0 0/0
+Exif.OlympusCs.ManualFlashStrength           SRational   4  0/0 0/0 0/0 0/0
+Exif.OlympusCs.WhiteBalance                  Short       1  Auto
+Exif.OlympusCs.WhiteBalanceTemperature       Short       1  0
+Exif.OlympusCs.WhiteBalanceBracket           SShort      2  0 0
+Exif.OlympusCs.CustomSaturation              SShort      3  0 -5 5
+Exif.OlympusCs.ModifiedSaturation            Short       1  Off
+Exif.OlympusCs.ContrastSetting               SShort      3  0 -5 5
+Exif.OlympusCs.SharpnessSetting              SShort      3  0 -5 5
+Exif.OlympusCs.ColorSpace                    Short       1  sRGB
+Exif.OlympusCs.SceneMode                     Short       1  Standard
+Exif.OlympusCs.NoiseReduction                Short       1  Auto
+Exif.OlympusCs.DistortionCorrection          Short       1  Off
+Exif.OlympusCs.ShadingCompensation           Short       1  Off
+Exif.OlympusCs.CompressionFactor             Rational    1  8/1
+Exif.OlympusCs.Gradation                     SShort      4  Normal, User-Selected
+Exif.OlympusCs.PictureMode                   Short       2  Natural
+Exif.OlympusCs.PictureModeSaturation         SShort      3  0 -2 2
+Exif.OlympusCs.PictureModeHue                Short       1  0
+Exif.OlympusCs.PictureModeContrast           SShort      3  0 -2 2
+Exif.OlympusCs.PictureModeSharpness          SShort      3  0 -2 2
+Exif.OlympusCs.PictureModeBWFilter           SShort      1  n/a
+Exif.OlympusCs.PictureModeTone               SShort      1  n/a
+Exif.OlympusCs.NoiseFilter                   SShort      3  Standard
+Exif.OlympusCs.ArtFilter                     Short       4  Off
+Exif.OlympusCs.DriveMode                     Short       3  0 0 0
+Exif.OlympusCs.PanoramaMode                  Short       2  0 0
+Exif.OlympusCs.ImageStabilization            Long        1  On, Mode 1
+Exif.OlympusCs.ManometerPressure             Short       1  0
+Exif.OlympusCs.ManometerReading              SLong       2  0 0
+Exif.OlympusCs.ExtendedWBDetect              Short       1  Off
+Exif.Olympus2.RawDevelopment                 Ifd         1  1182
+Exif.OlympusRd.RawDevVersion                 Undefined   4  1.00
+Exif.OlympusRd.ExposureBiasValue             SRational   1  0/1
+Exif.OlympusRd.WhiteBalanceValue             Short       1  0
+Exif.OlympusRd.WBFineAdjustment              SShort      1  0
+Exif.OlympusRd.GrayPoint                     Short       3  0 0 0
+Exif.OlympusRd.SaturationEmphasis            SShort      3  0 0 0
+Exif.OlympusRd.MemoryColorEmphasis           Short       1  0
+Exif.OlympusRd.ContrastValue                 SShort      3  0 0 0
+Exif.OlympusRd.SharpnessValue                SShort      3  0 0 0
+Exif.OlympusRd.ColorSpace                    Short       1  sRGB
+Exif.OlympusRd.Engine                        Short       1  High Speed
+Exif.OlympusRd.NoiseReduction                Short       1  
+Exif.OlympusRd.EditStatus                    Short       1  Original
+Exif.OlympusRd.Settings                      Short       1  
+Exif.Olympus2.ImageProcessing                Ifd         1  1356
+Exif.OlympusIp.ImageProcessingVersion        Undefined   4  1.12
+Exif.OlympusIp.WB_RBLevels                   Short       4  500 504 256 256
+Exif.OlympusIp.ColorMatrix                   Short       9  404 65428 65496 65472 376 65480 8 65412 372
+Exif.OlympusIp.BlackLevel                    Short       4  253 252 252 253
+Exif.OlympusIp.GainBase                      Short       1  256
+Exif.OlympusIp.CropLeft                      Short       2  8 0
+Exif.OlympusIp.CropTop                       Short       2  8 0
+Exif.OlympusIp.CropWidth                     Long        1  4608
+Exif.OlympusIp.CropHeight                    Long        1  3456
+Exif.OlympusIp.NoiseReduction                Short       1  
+Exif.OlympusIp.DistortionCorrection          Short       1  Off
+Exif.OlympusIp.ShadingCompensation           Short       1  Off
+Exif.OlympusIp.MultipleExposureMode          Short       2  Off
+Exif.OlympusIp.AspectRatio                   Byte        2  16:9
+Exif.OlympusIp.AspectFrame                   Short       4  0 0 4607 2591
+Exif.OlympusIp.FaceDetect                    Long        3  Off
+Exif.OlympusIp.FaceDetectArea                Short     192  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Exif.Olympus2.FocusInfo                      Ifd         1  2478
+Exif.OlympusFi.FocusInfoVersion              Undefined   4  1.00
+Exif.OlympusFi.AutoFocus                     Short       1  Off
+Exif.OlympusFi.SceneDetect                   Short       1  0
+Exif.OlympusFi.SceneArea                     Long        8  0 0 0 0 0 0 0 2046824464
+Exif.OlympusFi.SceneDetectData               Long      800  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 513 153616645 0 1 64 0 0 0 0 72025163 1169 37880029 196609 19 2147516416 2147516416 2147516416 2147516416 4292673362 26346043 11600141 2883711 47251871 49152750 49152750 17826426 14156048 7995560 31916676 14156097 4587684 49152453 49152750 42533614 17432945 14680323 8650933 32178791 16777548 6029501 45416901 43123438 26346065 19661121 15139075 9240765 30212716 16777559 7078093 31719852 25756120 22085975 16056602 15401222 9568449 30212673 15597927 6750401 17826016 4587612 15401137 16777292 15597830 10158273 29950520 14156091 6357156 12124345 4286578540 4283236085 16121835 15597827 10420421 24773120 12386589 5308557 4286840987 4285333394 4274913017 11665175 15597824 10748109 20447647 10158325 113 4286578645 4286250976 4273864448 4288413325 15139051 10420429 15597937 7995593 4271374239 4291428143 4279304133 4279500544 4276158124 14942284 10158277 11010327 5701778 4278190086 4288413553 4272226140 4267507364 4274912844 9633574 9240761 7405813 3670108 4289789993 4283236214 4273864513 4267179638 4271898188 4290641657 8323236 2752501 3866705 4292608023 4288151464 4270456708 4272225969 4270718632 4281138908 6750273 7995430 6357110 3670097 4287758339 4277993440 4268883633 4273602170 4278910673 5046225 14418155 11862217 8323231 4980817 4278910933 4269473407 4272750193 4277993195 3538843 17170720 13959410 10748097 6750335 4280156124 4274912838 4269473388 4277534405 4294573927 18284841 15401219 12648653 8978591 4283170869 4273340142 4271898209 4278451936 4287233851 19071273 14942477 13172941 12648633 4288086129 4276879049 4277337751 4274126513 4281925395 17629463 14680316 14156004 13697237 4293329028 4279959349 4275633841 4271898249 4277534480 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Exif.OlympusFi.ZoomStepCount                 Short       1  10
+Exif.OlympusFi.FocusStepCount                Short       1  362
+Exif.OlympusFi.FocusStepInfinity             Short       1  0
+Exif.OlympusFi.FocusStepNear                 Short       1  0
+Exif.OlympusFi.FocusDistance                 Rational    1  0.94 m
+Exif.OlympusFi.AFPoint                       Short       1  Left (or n/a)
+Exif.OlympusFi.ExternalFlash                 Short       2  Off
+Exif.OlympusFi.ExternalFlashGuideNumber      SRational   1  0/1
+Exif.OlympusFi.ExternalFlashBounce           Short       1  Bounce or Off
+Exif.OlympusFi.ExternalFlashZoom             Rational    1  0/1
+Exif.OlympusFi.InternalFlash                 Short       1  Off
+Exif.OlympusFi.ManualFlash                   Short       2  Off 0
+Exif.OlympusFi.SensorTemperature             SShort      1  465
+Exif.OlympusFi.ImageStabilization            Undefined 128  33 48 48 0 0 11 3 108 2 108 2 131 233 185 237 80 88 55 0 87 0 0 0 0 0 55 0 87 0 54 0 85 0 0 0 1 0 254 255 0 0 3 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+Exif.Photo.UserComment                       Undefined 125                                                                                                                       
+Exif.Photo.FlashpixVersion                   Undefined   4  1.00
+Exif.Photo.ColorSpace                        Short       1  sRGB
+Exif.Photo.PixelXDimension                   Long        1  1000
+Exif.Photo.PixelYDimension                   Long        1  563
+Exif.Photo.InteroperabilityTag               Long        1  722
+Exif.Iop.InteroperabilityIndex               Ascii       4  R98
+Exif.Iop.InteroperabilityVersion             Undefined   4  1.00
+Exif.Photo.FileSource                        Undefined   1  Digital still camera
+Exif.Photo.CustomRendered                    Short       1  Normal process
+Exif.Photo.ExposureMode                      Short       1  Manual
+Exif.Photo.WhiteBalance                      Short       1  Auto
+Exif.Photo.DigitalZoomRatio                  Rational    1  1.0
+Exif.Photo.SceneCaptureType                  Short       1  Standard
+Exif.Photo.GainControl                       Short       1  High gain up
+Exif.Photo.Contrast                          Short       1  Normal
+Exif.Photo.Saturation                        Short       1  Normal
+Exif.Photo.Sharpness                         Short       1  Normal
+Exif.Photo.LensSpecification                 Rational    4  14/1 42/1 35/10 56/10
+Exif.Photo.LensModel                         Ascii      32  OLYMPUS M.14-42mm F3.5-5.6 II R
+Exif.Image.PrintImageMatching                Undefined 528  (Binary value suppressed)
+Exif.Thumbnail.Compression                   Short       1  JPEG (old-style)
+Exif.Thumbnail.XResolution                   Rational    1  72
+Exif.Thumbnail.YResolution                   Rational    1  72
+Exif.Thumbnail.ResolutionUnit                Short       1  inch
+Exif.Thumbnail.JPEGInterchangeFormat         Long        1  14676
+Exif.Thumbnail.JPEGInterchangeFormatLength   Long        1  4312
