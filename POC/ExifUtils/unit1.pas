@@ -32,10 +32,15 @@ implementation
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
-var _return : IU_T_StringArray;
+var _return : IU_T_ExifArray;
+  i : integer;
 begin
   if Opendialog1.Execute then begin
     _return := getExif (OpenDialog1.FileName);
+    Form1.Memo1.Clear;
+    for i := Low(_return) to High(_return) do begin
+      Form1.Memo1.Append(_return[i].Exif + ' = ' + _return[i].value);
+    end;
   end;
 end;
 

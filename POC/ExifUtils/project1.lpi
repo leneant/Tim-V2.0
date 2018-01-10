@@ -46,7 +46,7 @@
         <UnitName Value="Unit1"/>
       </Unit1>
       <Unit2>
-        <Filename Value="iu_exifutils.pas"/>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_ExifUtils"/>
       </Unit2>
@@ -59,6 +59,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="../../Utils"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

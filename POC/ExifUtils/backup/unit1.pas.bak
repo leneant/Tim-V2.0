@@ -32,11 +32,10 @@ implementation
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
-var _return : IU_T_StringArray;
+var _return : IU_T_ExifArray;
 begin
   if Opendialog1.Execute then begin
     _return := getExif (OpenDialog1.FileName);
-    Memo1.Append(_return[0]);
   end;
 end;
 

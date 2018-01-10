@@ -1,0 +1,2 @@
+echo off
+exiv2 -K Exif.Image.Model -K Exif.Image.Artist -K Exif.Image.Copyright -K Exif.Photo.DateTimeOriginal -K Exif.Image.Orientation -K Exif.Photo.ISOSpeedRatings -K Exif.Photo.FNumber -K Exif.Photo.ShutterSpeedValue -K Exif.Photo.FocalLength -K Exif.Photo.ColorSpace -K Exif.Photo.DateTimeOriginal %1
