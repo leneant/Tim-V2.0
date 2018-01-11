@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="27" Y="21"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,9 +19,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="13"/>
         <CursorPos X="68" Y="43"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -31,9 +30,9 @@
         <UnitName Value="IU_ExifUtils"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="89"/>
-        <CursorPos X="5" Y="107"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="145"/>
+        <CursorPos X="12" Y="160"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -51,11 +50,67 @@
         <UsageCount Value="10"/>
       </Unit4>
     </Units>
-    <JumpHistory Count="1">
+    <JumpHistory Count="15" HistoryIndex="14">
       <Position1>
         <Filename Value="../../Utils/iu_exifutils.pas"/>
         <Caret Line="143"/>
       </Position1>
+      <Position2>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="147" TopLine="110"/>
+      </Position2>
+      <Position3>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="149" TopLine="110"/>
+      </Position3>
+      <Position4>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="150" TopLine="110"/>
+      </Position4>
+      <Position5>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="155" TopLine="112"/>
+      </Position5>
+      <Position6>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="156" TopLine="113"/>
+      </Position6>
+      <Position7>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="272" TopLine="236"/>
+      </Position7>
+      <Position8>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="273" TopLine="236"/>
+      </Position8>
+      <Position9>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="274" TopLine="236"/>
+      </Position9>
+      <Position10>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="272" TopLine="236"/>
+      </Position10>
+      <Position11>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="273" TopLine="236"/>
+      </Position11>
+      <Position12>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="170" TopLine="144"/>
+      </Position12>
+      <Position13>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="167" Column="29" TopLine="134"/>
+      </Position13>
+      <Position14>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="172" TopLine="122"/>
+      </Position14>
+      <Position15>
+        <Filename Value="../../Utils/iu_exifutils.pas"/>
+        <Caret Line="137" Column="34" TopLine="109"/>
+      </Position15>
     </JumpHistory>
   </ProjectSession>
 </CONFIG>

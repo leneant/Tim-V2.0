@@ -1,22 +1,12 @@
 object Form1: TForm1
-  Left = 409
+  Left = 350
   Height = 600
-  Top = 146
+  Top = 50
   Width = 809
   Caption = 'Form1'
   ClientHeight = 600
   ClientWidth = 809
   LCLVersion = '1.6.0.4'
-  object ListBox1: TListBox
-    Left = 4
-    Height = 587
-    Top = 3
-    Width = 596
-    ItemHeight = 0
-    ScrollWidth = 594
-    TabOrder = 0
-    TopIndex = -1
-  end
   object Button1: TButton
     Left = 619
     Height = 32
@@ -24,6 +14,16 @@ object Form1: TForm1
     Width = 106
     Caption = 'Open'
     OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 8
+    Height = 582
+    Top = 8
+    Width = 600
+    Lines.Strings = (
+      'Memo1'
+    )
     TabOrder = 1
   end
   object OpenDialog1: TOpenDialog

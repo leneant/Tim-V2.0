@@ -22,8 +22,7 @@ unit IU_ExifUtils;
 interface
 
 uses
-  Classes, SysUtils, Process
-  ;
+  Classes, SysUtils, Process ;
 
 const
   // ***
@@ -38,6 +37,7 @@ const
   IU_K_Exif_Speed            = 'Speed';
   IU_K_Exif_Focal            = 'Focal';
   IU_K_Exif_ColorSpace       = 'ColorSpace';
+  IU_K_Exif_Flash            = 'Flash';
 
 type
   // ***
@@ -77,6 +77,7 @@ const
   Speed                   = 'Exif.Photo.ShutterSpeedValue';
   Focal                   = 'Exif.Photo.FocalLength';
   ColorSpace              = 'Exif.Photo.ColorSpace';
+  Flash                   = 'Exif.Photo.Flash';
 
 
 // ***
@@ -94,15 +95,15 @@ var
 
 begin
   // exec command
-
-  // This is where our program starts to run
+    // This is where our program starts to run
     // Now we will create the TProcess object, and
     // assign it to the var AProcess.
     AProcess := TProcess.Create(nil);
 
     // Tell the new AProcess what the command to execute is.
+    AProcess.PipeBufferSize := 2048;
+    {$ifdef windows}
     AProcess.Executable := getcurrentdir + '\exiv2.exe';
-
     AProcess.Parameters.Add('-K');
     AProcess.Parameters.Add(CameraModel);
     AProcess.Parameters.Add('-K');
@@ -123,6 +124,33 @@ begin
     AProcess.Parameters.Add(Focal);
     AProcess.Parameters.Add('-K');
     AProcess.Parameters.Add(ColorSpace);
+    AProcess.Parameters.Add('-K');
+    AProcess.Parameters.Add(Flash);
+    {$else}
+    AProcess.Executable := 'exiv2';
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(CameraModel);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(Artist);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(CopyRight);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(ShootDate);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(PhotoOrientation);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(ISO);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(Aperture);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(Speed);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(Focal);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(ColorSpace);
+    AProcess.Parameters.Add('-g');
+    AProcess.Parameters.Add(Flash);
+    {$endif}
     AProcess.Parameters.Add(filename);
 
     // We will define an option for when the program
@@ -135,7 +163,6 @@ begin
     AProcess.Execute;
 
     // After AProcess has finished, the rest of the program will be executed.
-
     // Now read the output of the program we just ran into a TStringList.
     AStringList.Clear;
     AStringList.LoadFromStream(AProcess.Output);
@@ -190,8 +217,11 @@ begin
                       _test := leftstr(line, length(ColorSpace) + 1);
                       if (_test = ColorSpace + ' ') then _return := IU_K_Exif_ColorSpace else begin
                         _test := leftstr(line, length(PhotoOrientation) + 1);
-                        if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else
-                          _return := '';
+                        if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
+                          _test := leftstr(line, length(Flash) + 1);
+                          if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
+                            _return := '';
+                        end;
                       end;
                     end;
                   end;
