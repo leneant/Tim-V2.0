@@ -19,7 +19,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="6"/>
         <CursorPos X="12" Y="50"/>
         <UsageCount Value="31"/>
@@ -30,8 +29,9 @@
         <Filename Value="../../Utils/iu_exifutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_ExifUtils"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="208"/>
+        <TopLine Value="106"/>
         <CursorPos X="24" Y="261"/>
         <UsageCount Value="31"/>
         <Loaded Value="True"/>
