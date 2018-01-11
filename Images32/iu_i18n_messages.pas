@@ -5,10 +5,11 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.8
+// * Version : 0.9
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.9 : Adding exception and text for Exif reading
 // * v0.8 : Adding text for drives status list
 // * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
 // * v0.6 : For dedicated linux -> Adding text for list invert font color
@@ -100,6 +101,13 @@ const
   // * End Add v0.6
   // ***
 
+  // ***
+  // * Add v0.9
+  K_IU_ExceptMSG_ProcessError = 51;
+  K_IU_ExceptMSG_GetExifListError = 52;
+  // *
+  // * End Add v0.9
+
   // *************************************************************
   // IHM Messages
 
@@ -165,6 +173,18 @@ const
   K_IU_HIMSG_Free = 32;
   // *
   // * End Add v0.8
+  // ***
+
+  // ***
+  // * Add v0.9
+  K_IU_HIMSG_Yes = 33;
+  K_IU_HIMSG_No = 34;
+  K_IU_HIMSG_TopLeft = 35;
+  K_IU_HIMSG_RightTop = 36;
+  K_IU_HIMSG_BottomRight = 37;
+  K_IU_HIMSG_LeftBottom = 38;
+  // *
+  // * End Add v0.9
   // ***
 
   type
@@ -339,6 +359,28 @@ begin
   // * End Add v0.8
   // ***
 
+  // ***
+  // * Add v0.9
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Yes] := 'Oui';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Yes] := 'Yes';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_No] := 'Non';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_No] := 'No';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_TopLeft] := 'Dessus, Gauche';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_TopLeft] := 'Top, Left';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_RightTop] := 'Droit, Dessus';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_TopLeft] := 'Right, Top';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_BottomRight] := 'Dessous, Droit';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_BottomRight] := 'Bottom, Right';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_LeftBottom] := 'Gauche, Dessous';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_LeftBottom] := 'Left, Bottom';
+  // *
+  // * End Add v0.9
+  // ***
 
   // init exception messages
   IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_TmpCreationFail] := 'Création impossible du fichier temporaire de l''image !';
@@ -465,6 +507,18 @@ begin
   IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_FileWriteError] := 'Can''t create file !';
   // *
   // * End Add v0.6
+  // ***
+
+  // ***
+  // * Add v0.9
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ProcessError] := 'Erreur dans l''exécution de la commande exiv2. Vérifier si exiv2 est installé !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ProcessError] := 'exiv2 run error. Check if exiv2 is installed !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_GetExifListError] := 'Impossible de récupérer les informations sortantes de exiv2 !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_GetExifListError] := 'Can''t get outputs from exiv2 !';
+
+  // *
+  // End Add v0.9
   // ***
 
 end.

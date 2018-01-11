@@ -5,10 +5,11 @@ unit IU_Exceptions;
 // * Unit provides all images with 32 bytes per chanel exceptions
 // * Creation Date : 2017 September
 // *
-// * Version : 0.3
+// * Version : 0.4
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.4 : Adding exception for exif reading
 // * v0.3 : Adding exception for properties file management
 // * v0.2 : Adding exception for IU_T_StringDoubleChainedList
 // *
@@ -158,6 +159,17 @@ Type
   IU_EFileError = class(exception);
   // *
   // * End Add v0.3
+  // ***
+
+  // ***
+  // * Add v0.4
+  IU_EProcessError = class(exception);
+  // external process (ej : command line) execution error
+
+  IU_EReadingProcessReturnError = class(exception);
+  // Can't read output stream of exeternal process
+  // *
+  // * End Add v0.4
   // ***
 
 implementation

@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, IU_ExifUtils;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls, IU_ExifUtils, IU_I18N_Messages;
 
 type
 
@@ -13,7 +13,7 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    ListBox1: TListBox;
+    Memo1: TMemo;
     OpenDialog1: TOpenDialog;
     procedure Button1Click(Sender: TObject);
   private
@@ -32,10 +32,20 @@ implementation
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
-var _return : IU_TStringArray;
+var _return : IU_T_ExifArray;
+  i : integer;
+  _value : string;
 begin
+  IU_CurrentLang := K_IU_I18N_FRENCH;
   if Opendialog1.Execute then begin
-    getExif (OpenDialog1.FileName);
+    _return := getExif (OpenDialog1.FileName);
+    Form1.Memo1.Clear;
+    for i := Low(_return) to High(_return) do begin
+      if _return[i].value = 'No' then _value := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_No]
+      else if _return[i].value = 'Yes' then _value := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_Yes]
+      else _value := _return[i].value;
+      Form1.Memo1.Append(_return[i].Exif + ' = ' + _value);
+    end;
   end;
 end;
 

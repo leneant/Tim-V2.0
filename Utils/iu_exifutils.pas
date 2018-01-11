@@ -22,7 +22,7 @@ unit IU_ExifUtils;
 interface
 
 uses
-  Classes, SysUtils, Process ;
+  Classes, SysUtils, Process, IU_I18N_Messages, IU_Exceptions ;
 
 const
   // ***
@@ -101,71 +101,91 @@ begin
     AProcess := TProcess.Create(nil);
 
     // Tell the new AProcess what the command to execute is.
-    AProcess.PipeBufferSize := 2048;
-    {$ifdef windows}
-    AProcess.Executable := getcurrentdir + '\exiv2.exe';
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(CameraModel);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(Artist);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(CopyRight);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(ShootDate);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(PhotoOrientation);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(ISO);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(Aperture);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(Speed);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(Focal);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(ColorSpace);
-    AProcess.Parameters.Add('-K');
-    AProcess.Parameters.Add(Flash);
-    {$else}
-    AProcess.Executable := 'exiv2';
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(CameraModel);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(Artist);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(CopyRight);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(ShootDate);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(PhotoOrientation);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(ISO);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(Aperture);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(Speed);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(Focal);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(ColorSpace);
-    AProcess.Parameters.Add('-g');
-    AProcess.Parameters.Add(Flash);
-    {$endif}
-    AProcess.Parameters.Add(filename);
+    try
+      AProcess.PipeBufferSize := 2048;
+      {$ifdef windows}
+      AProcess.Executable := getcurrentdir + '\exiv2.exe';
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(CameraModel);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(Artist);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(CopyRight);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(ShootDate);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(PhotoOrientation);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(ISO);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(Aperture);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(Speed);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(Focal);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(ColorSpace);
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(Flash);
+      {$else}
+      AProcess.Executable := 'exiv2';
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(CameraModel);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(Artist);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(CopyRight);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(ShootDate);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(PhotoOrientation);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(ISO);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(Aperture);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(Speed);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(Focal);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(ColorSpace);
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(Flash);
+      {$endif}
+      AProcess.Parameters.Add(filename);
 
-    // We will define an option for when the program
-    // is run. This option will make sure that our program
-    // does not continue until the program we will launch
-    // has stopped running. Also now we will tell it that
-    // we want to read the output of the file.
-    AProcess.Options :=  [poWaitOnExit, poUsePipes, poNoConsole];
-    // Now that AProcess knows what the commandline is it can be run.
-    AProcess.Execute;
+      // We will define an option for when the program
+      // is run. This option will make sure that our program
+      // does not continue until the program we will launch
+      // has stopped running. Also now we will tell it that
+      // we want to read the output of the file.
+      AProcess.Options :=  [poWaitOnExit, poUsePipes, poNoConsole];
+      // Now that AProcess knows what the commandline is it can be run.
+      AProcess.Execute;
+    except
+      // trying to free TProcess Object
+      try
+        AProcess.Free;
+      finally
+        // Raise process execution error
+        raise IU_EProcessError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_ProcessError]);
+      end;
+    end;
 
     // After AProcess has finished, the rest of the program will be executed.
     // Now read the output of the program we just ran into a TStringList.
-    AStringList.Clear;
-    AStringList.LoadFromStream(AProcess.Output);
+    // Trying to get output from exiv2
+    try
+      AStringList.Clear;
+      AStringList.LoadFromStream(AProcess.Output);
+    except
+      // trying to reset return list
+      try
+        AStringList.Clear;
+      finally
+        raise IU_EReadingProcessReturnError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_GetExifListError]);
+      end;
+    end;
 
     // Save the output to a file and clean up the TStringList.
 
@@ -186,41 +206,44 @@ function extractExif(line : string) : string;
 var
   _return, _test : string;
 begin
-    // Camera Model
-    _test := leftstr(line, length(CameraModel) + 1);
-    if (_test = CameraModel + ' ') then _return := IU_K_Exif_APN else begin
-      // Artist
-      _test := leftstr(line, length(Artist) + 1);
-      if (_test = Artist + ' ') then _return := IU_K_Exif_Artist else begin
-        // Copyright
-        _test := leftstr(line, length(Copyright) + 1);
-        if (_test = Copyright + ' ') then _return := IU_K_Exif_Copyright else begin
-          // ShootDate
-          _test := leftstr(line, length(ShootDate) + 1);
-          if (_test = ShootDate + ' ') then _return := IU_K_Exif_ShootDate else begin
-            // PhotoOrientation
-            _test := leftstr(line, length(ShootDate) + 1) ;
-            if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
-              // ISO
-              _test := leftstr(line, length(ISO) + 1) ;
-              if (_test = ISO + ' ') then _return := IU_K_Exif_ISO else begin
-                // Aperture
-                _test := leftstr(line, length(Aperture) + 1) ;
-                if (_test = Aperture + ' ') then _return := IU_K_Exif_Aperture else begin
-                  // shoot speed
-                  _test := leftstr(line, length(Speed) + 1);
-                  if (_test = Speed + ' ') then _return := IU_K_Exif_Speed else begin
-                    // Focal
-                    _test := leftstr(line, length(Focal) + 1);
-                    if (_test = Focal + ' ') then _return := IU_K_Exif_Focal else begin
-                      // Color Space
-                      _test := leftstr(line, length(ColorSpace) + 1);
-                      if (_test = ColorSpace + ' ') then _return := IU_K_Exif_ColorSpace else begin
-                        _test := leftstr(line, length(PhotoOrientation) + 1);
-                        if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
-                          _test := leftstr(line, length(Flash) + 1);
-                          if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
-                            _return := '';
+    // trying to read exiv2 return
+    try
+      // Camera Model
+      _test := leftstr(line, length(CameraModel) + 1);
+      if (_test = CameraModel + ' ') then _return := IU_K_Exif_APN else begin
+        // Artist
+        _test := leftstr(line, length(Artist) + 1);
+        if (_test = Artist + ' ') then _return := IU_K_Exif_Artist else begin
+          // Copyright
+          _test := leftstr(line, length(Copyright) + 1);
+          if (_test = Copyright + ' ') then _return := IU_K_Exif_Copyright else begin
+            // ShootDate
+            _test := leftstr(line, length(ShootDate) + 1);
+            if (_test = ShootDate + ' ') then _return := IU_K_Exif_ShootDate else begin
+              // PhotoOrientation
+              _test := leftstr(line, length(ShootDate) + 1) ;
+              if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
+                // ISO
+                _test := leftstr(line, length(ISO) + 1) ;
+                if (_test = ISO + ' ') then _return := IU_K_Exif_ISO else begin
+                  // Aperture
+                  _test := leftstr(line, length(Aperture) + 1) ;
+                  if (_test = Aperture + ' ') then _return := IU_K_Exif_Aperture else begin
+                    // shoot speed
+                    _test := leftstr(line, length(Speed) + 1);
+                    if (_test = Speed + ' ') then _return := IU_K_Exif_Speed else begin
+                      // Focal
+                      _test := leftstr(line, length(Focal) + 1);
+                      if (_test = Focal + ' ') then _return := IU_K_Exif_Focal else begin
+                        // Color Space
+                        _test := leftstr(line, length(ColorSpace) + 1);
+                        if (_test = ColorSpace + ' ') then _return := IU_K_Exif_ColorSpace else begin
+                          _test := leftstr(line, length(PhotoOrientation) + 1);
+                          if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
+                            _test := leftstr(line, length(Flash) + 1);
+                            if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
+                              _return := '';
+                          end;
                         end;
                       end;
                     end;
@@ -230,6 +253,15 @@ begin
             end;
           end;
         end;
+      end;
+
+    Except
+      // trying to resize din array
+      try
+        SetLength(_return, 0) ; // no dimension
+      finally
+        // Raise the error
+        raise IU_EReadingProcessReturnError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_GetExifListError]);
       end;
     end;
     extractExif := _return;
@@ -285,19 +317,40 @@ var
   ExifID, ExifValue : string;
 begin
     _count := 0;
-    AStringList := TStringList.Create;
-    loadExif(filename, AStringList);
-    for i := 0 to AStringList.Count - 1 do begin
-        ExifID := extractExif (AStringList[i]);
-        if exifID <> '' then begin
-           ExifValue:=extractExifValue(AStringList[i]);
-           inc(_count);
-           SetLength(_return, _count);
-           _return[_count-1].Exif:=ExifID;
-           _return[_count-1].value:=ExifValue;
-        end;
+    try
+       AStringList := TStringList.Create;
+       loadExif(filename, AStringList);
+
+    Except
+      // Trying to free Stringlist
+      try
+        AStringList.Free;
+      finally
+        // raise error
+        raise IU_EProcessError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_ProcessError]);
+      end;
     end;
-    AStringList.free;
+    try
+      for i := 0 to AStringList.Count - 1 do begin
+          ExifID := extractExif (AStringList[i]);
+          if exifID <> '' then begin
+             ExifValue:=extractExifValue(AStringList[i]);
+             inc(_count);
+             SetLength(_return, _count);
+             _return[_count-1].Exif:=ExifID;
+             if ExifID = IU_K_Exif_Flash then begin
+               if leftstr(ExifValue, 3) = ' No' then
+                 _return[_count-1].value:='No' else
+                 _return[_count-1].value:='Yes';
+             end else _return[_count-1].value := ExifValue;
+          end;
+      end;
+    finally
+    end;
+    try
+      AStringList.free;
+    finally
+    end;
     getExif := _return;
 end;
 
