@@ -258,7 +258,7 @@ begin
     Except
       // trying to resize din array
       try
-        SetLength(_retirn, 0) ; // no dimension
+        SetLength(_return, 0) ; // no dimension
       finally
         // Raise the error
         raise IU_EReadingProcessReturnError.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_GetExifListError]);

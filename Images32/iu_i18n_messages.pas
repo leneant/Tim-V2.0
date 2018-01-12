@@ -5,10 +5,11 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.9
+// * Version : 0.10
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v.10 * Adding current dir caption for import file
 // * v0.9 : Adding exception and text for Exif reading
 // * v0.8 : Adding text for drives status list
 // * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
@@ -185,6 +186,23 @@ const
   K_IU_HIMSG_LeftBottom = 38;
   // *
   // * End Add v0.9
+  // ***
+
+  // ***
+  // * Add v0.10
+  K_IU_HIMSG_CurrentDir = 39;
+  K_IU_HIMSG_PhotoOrientation = 40;
+  K_IU_HIMSG_PhotoUnknowOrientation=41;
+  K_IU_HIMSG_PhotoAperture=42;
+  K_IU_HIMSG_PhotoSpeed=43;
+  K_IU_HIMSG_PhotoISO=44;
+  K_IU_HIMSG_PhotoFocal=45;
+  K_IU_HIMSG_PhotoColorSpace=46;
+  K_IU_HIMSG_PhotoFlash=47;
+  K_IU_HIMSG_PhotoShootDate=48;
+  K_IU_HIMSG_PhotoArtist=49;
+  K_IU_HIMSG_PhotoCopyrights=50;
+  K_IU_HIMSG_APN=51;
   // ***
 
   type
@@ -371,7 +389,7 @@ begin
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_TopLeft] := 'Top, Left';
 
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_RightTop] := 'Droit, Dessus';
-  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_TopLeft] := 'Right, Top';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_RightTop] := 'Right, Top';
 
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_BottomRight] := 'Dessous, Droit';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_BottomRight] := 'Bottom, Right';
@@ -380,6 +398,50 @@ begin
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_LeftBottom] := 'Left, Bottom';
   // *
   // * End Add v0.9
+  // ***
+
+  // ***
+  // * Add v0.10
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_CurrentDir] := 'Répertoire courant :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_CurrentDir] := 'Current dir :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_APN] := 'Appareil :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_APN] := 'Camera :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoUnknowOrientation] := 'Non reconnue';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoUnknowOrientation] := 'Unknow';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoAperture] := 'Ouverture :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoAperture] := 'Aperture :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoSpeed] := 'Vitesse :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoSpeed] := 'Speed :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoISO] := 'ISO :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoISO] := 'ISO :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoFocal] := 'Focale :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoFocal] := 'Focal :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoColorSpace] := 'Espace couleur :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoColorSpace] := 'Space color :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoFlash] := 'Flash :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoFlash] := 'Flash :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoShootDate] := 'Date prise de vue :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoShootDate] := 'Shooting date :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoArtist] := 'Auteur :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoArtist] := 'Artist :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoCopyrights] := 'Copyrights :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoCopyrights] := 'Copyrights :';
+  // *
+  // * End Add v0.10
   // ***
 
   // init exception messages

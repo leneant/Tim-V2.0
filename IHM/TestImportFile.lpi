@@ -35,7 +35,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="TestImportFile.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -78,6 +78,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_TimControls"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="../Utils/iu_exifutils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_ExifUtils"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

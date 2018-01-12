@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos X="27" Y="21"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -19,9 +19,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit1"/>
-        <TopLine Value="6"/>
-        <CursorPos X="12" Y="50"/>
-        <UsageCount Value="31"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="22"/>
+        <CursorPos Y="50"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -29,11 +30,10 @@
         <Filename Value="../../Utils/iu_exifutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_ExifUtils"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="106"/>
-        <CursorPos X="24" Y="261"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="239"/>
+        <CursorPos X="16" Y="30"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -43,7 +43,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="343"/>
         <CursorPos X="58" Y="377"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -53,7 +53,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="122"/>
         <CursorPos X="40" Y="169"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>

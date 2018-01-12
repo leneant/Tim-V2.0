@@ -8,7 +8,7 @@ uses
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms, IU_importfile, IU_GeneralUtils, IU_I18N_Messages, IU_Exceptions,
-  IU_Types, IU_strechutils, IU_TimControls
+  IU_Types, IU_strechutils, IU_TimControls, IU_ExifUtils
   { you can add units after this };
 
 {$R *.res}

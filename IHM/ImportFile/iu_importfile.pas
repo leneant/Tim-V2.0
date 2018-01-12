@@ -3,10 +3,11 @@ unit IU_importfile;
 // * Unit provides an import file windows
 // * Creation Date : 2017 December
 // *
-// * Version : 0.7
+// * Version : 0.8
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 0.8 : Changing geolocalisation of components to set space for current directory indicator
 // * Version 0.7 : Add splitter position in windows properties
 // * Version 0.6 : Add color personnalization popupmenu
 // * Version 0.5 : Add list invert font color command
@@ -39,6 +40,11 @@ uses
   // ***
   // * Add v0.4
   , IU_TimControls
+  // ***
+
+  // ***
+  // * Add v0.8
+  , IU_ExifUtils
   // ***
   ;
 
@@ -90,7 +96,19 @@ type
     Image1: TImage;
     Label1: TLabel;
     Label10: TLabel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
     Label2: TLabel;
+    Label20: TLabel;
+    Label21: TLabel;
+    Label22: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
@@ -111,6 +129,7 @@ type
     Menu07: TMenuItem;
     Menu8: TMenuItem;
     Menu9: TMenuItem;
+    Panel1: TPanel;
     PopupMenu1: TPopupMenu;
     Shape1: TShape;
     Splitter1: TSplitter;
@@ -257,6 +276,12 @@ begin
   with ImportFile do begin
     // Setting default background colors
     with WindowsColors do begin
+      // ***
+      // * Add v0.8
+      Panel1.Color := WindowsColor;
+      Label11.Color := WindowsColor;
+      Label11.Font.Color := TextColor;
+      // ***
       Shape1.Color:=WindowsColor;
       Label1.Color:=WindowsColor;
       Label1.Font.Color:=TextColor;
@@ -371,7 +396,10 @@ begin
   // * End Add v0.6
   // ***
 
-
+  // ***
+  // * Add v0.8
+  Label11.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_CurrentDir];
+  // ***
 end;
 
 // *
@@ -672,7 +700,11 @@ begin
   _directory := getCurrentDir + '/';
   {$endif}
   // ListBox1.Items.Add(_directory);
-  Label7.Caption := _directory + ' :';
+  // ***
+  // * Modified v0.8
+  // * Del ' : ' at the end of the path
+  Label7.Caption := _directory;
+  // ***
   // create dirs list
   dirsList.initDirectoriesList;
   // create files list
@@ -800,7 +832,11 @@ begin
   _directory := getCurrentDir + '/';
   {$endif}
   // ListBox1.Items.Add(_directory);
-  Label7.Caption := _directory + ' :';
+  // ***
+  // * Modified v0.8
+  // * Dell + ' :' after _directory
+  Label7.Caption := _directory;
+  // ***
   // init dirs list
   dirsList.initDirectoriesList;
   // init files list
@@ -881,10 +917,15 @@ end;
 
 procedure TImportFile.ListBox2Click(Sender: TObject);
 var stretched : TBGRABitmap;
-  _width, _height, x, y : integer;
+  _width, _height, x, y, i : integer;
   _file, _dir : string;
   _error : boolean;
   R : integer;
+  // ***
+  // * Add v0.8
+  _exifsList : IU_T_ExifArray ;
+  _value : string;
+  // ***
 begin
   ListBox2.Color:=WindowsColors.ListSelectedColor;
   ListBox2.Repaint;
@@ -949,9 +990,95 @@ begin
       SelectedFile :=  utf8toutf16(_dir + _file);
       Label9.Caption := _file;
       Label10.Caption := inttostr(bmp1.Width) + 'x' + inttostr(bmp1.height);
-      Image1.Refresh;
-      stretched.free;
-      screen.cursor := crDefault;
+
+      // ***
+      // * Add v0.8
+      try
+        _exifsList := getExif (SelectedFile);
+        // Clearing exif data
+        Label12.Caption := '';
+        Label13.Caption := '';
+        Label14.Caption := '';
+        Label15.Caption := '';
+        Label16.Caption := '';
+        Label17.Caption := '';
+        Label18.Caption := '';
+        Label19.Caption := '';
+        Label20.Caption := '';
+        Label21.Caption := '';
+        Label22.Caption := '';
+        // FullFill exifs values
+        for i := Low(_exifsList) to High(_exifsList) do begin
+          // 1 APN - Label12
+          if _exifsList[i].Exif = IU_K_Exif_APN then
+             Label12.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_APN] + _exifsList[i].value
+          else
+          // 2 Orientation - Label13
+          if _exifsList[i].Exif = IU_K_Exif_Orientation then begin
+            _value := _exifsList[i].value;
+            if _value = ' top, left' then begin
+              Label13.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoOrientation] + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_TopLeft] ;
+            end else begin
+              if _value = ' right, top' then begin
+                Label13.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoOrientation] + ' ' +   IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_RightTop];
+              end else begin
+                if _value = ' bottom, right' then begin
+                  Label13.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoOrientation] + ' ' +  IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_BottomRight];
+                end else begin
+                  if _value = ' left, bottom' then begin
+                    Label13.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoOrientation] +  ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_LeftBottom];
+                  end else begin
+                    Label13.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoOrientation] + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoUnknowOrientation];
+                  end;
+                end;
+              end;
+            end;
+          end else
+          // 3 Aperture - Label14
+          if _exifsList[i].Exif = IU_K_Exif_Aperture then
+             Label14.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoAperture]  + _exifsList[i].value
+          else
+          // 4 Speed - Label 15
+          if _exifsList[i].Exif = IU_K_Exif_Speed then
+             Label15.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoSpeed] + _exifsList[i].value
+          else
+          // 5 ISO - Label 16
+          if _exifsList[i].Exif = IU_K_Exif_ISO then
+             Label16.Caption :=  IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoISO] + _exifsList[i].value
+          else
+          // 6 Flash - Label 17
+          if _exifsList[i].Exif = IU_K_Exif_Flash then begin
+            if _exifsList[i].value = 'No' then Label17.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoFlash]  + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_No]
+            else Label17.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoFlash] + ' ' + IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_Yes];
+          end else
+          // 7 Focal - Label 18
+          if _exifsList[i].Exif = IU_K_Exif_Focal then
+            Label18.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoFocal] + _exifsList[i].value
+          else
+          // 8 Color Space - Label 19
+          if _exifsList[i].Exif = IU_K_Exif_ColorSpace then
+            Label19.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoColorSpace] +  _exifsList[i].value
+          else
+          // 9 Shoot Date - Label 20
+          if _exifsList[i].Exif = IU_K_Exif_ShootDate then
+            Label20.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoShootDate]  +  _exifsList[i].value
+          else
+          // 10 Artist - Label 21
+          if _exifsList[i].Exif = IU_K_Exif_Artist then
+            Label21.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoArtist] +  _exifsList[i].value
+          else
+          // 11 Copyrights
+          if _exifsList[i].Exif = IU_K_Exif_Copyright then
+            Label22.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoCopyrights] +  _exifsList[i].value
+        end;
+      finally
+        Image1.Refresh;
+        stretched.free;
+        screen.cursor := crDefault;
+      end;
+      // *
+      // * End Add v0.8
+      // ***
     end;
     bmp1.Free;
   end;
@@ -1114,21 +1241,45 @@ end;
 procedure TImportFile.Splitter1Moved(Sender: TObject);
 begin
   if Splitter1.Left < 250 then Splitter1.Left := 250;
-  if Splitter2.Left - Splitter1.Left - Splitter1.Width < 300 then  Splitter2.Left := Splitter1.Left + Splitter1.Width + 300;
-  Label7.Width := Splitter1.Left - Label7.Left ;
+  // ***
+  // * Modified v0.8
+  // * Changing limits os splitter2 to 320 after splitter1
+  if Splitter2.Left - Splitter1.Left - Splitter1.Width < 320 then  Splitter2.Left := Splitter1.Left + Splitter1.Width + 320;
+  // ***
+  // ***
+  // * Add v0.8
+  // * Panel1 added in v0.8
+  Panel1.Width := Splitter2.Left - 1 ;
+  // ***
+  // ***
+  // * Modified v0.8
+  // * Text positionned after the reverse list button
+  Label7.Width := Splitter2.Left - Label7.Left - 2 ;
+  // ***
   ListBox1.Width := Splitter1.Left - 2;
   ListBox2.Left := Splitter1.Left + Splitter1.Width+2;
   ListBox2.Width := Splitter2.left - 4 - (Splitter1.Left + Splitter1.Width);
   Button2.Left := Splitter1.Left + Splitter1.Width + 1 ;
   Label6.Left := Splitter1.Left + Splitter1.Width + 3 ;
-  Label8.Left := Splitter1.Left + Splitter1.Width + 3 ;
-  ComboBox1.Left := Splitter1.Left + Splitter1.Width + 126 ;
+  Label8.Left := Button2.Left + Button2.Width + 5 ;
+  ComboBox1.Left := Button2.Left + Button2.Width + 131 ;
   Button5.Left := Splitter2.Left + Splitter2.Width + 5;
   Button6.Left := Splitter2.Left + Splitter2.Width + 5;
   Image1.Left := Splitter2.Left+Splitter2.Width + 5;
   Shape1.Left := Splitter2.Left+Splitter2.Width + 4;
   Label9.Left := Splitter2.Left+Splitter2.Width + 5;
   Label10.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label12.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label13.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label14.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label15.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label16.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label17.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label18.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label19.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label20.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label21.Left := Splitter2.Left+Splitter2.Width + 5;
+  Label22.Left := Splitter2.Left+Splitter2.Width + 5;
 end;
 
 procedure TImportFile.Splitter2Moved(Sender: TObject);
