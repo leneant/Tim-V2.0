@@ -1,7 +1,7 @@
 object ImportFile: TImportFile
-  Left = 571
+  Left = 570
   Height = 597
-  Top = 180
+  Top = 152
   Width = 1006
   HorzScrollBar.Page = 682
   HorzScrollBar.Range = 682
@@ -46,7 +46,6 @@ object ImportFile: TImportFile
     ParentFont = False
     ScrollWidth = 286
     TabOrder = 0
-    TopIndex = -1
   end
   object ListBox2: TListBox
     Left = 299
@@ -65,7 +64,6 @@ object ImportFile: TImportFile
     ParentFont = False
     ScrollWidth = 308
     TabOrder = 3
-    TopIndex = -1
   end
   object Button1: TButton
     Left = 0
@@ -114,9 +112,9 @@ object ImportFile: TImportFile
   end
   object Label5: TLabel
     Left = 4
-    Height = 15
+    Height = 16
     Top = 96
-    Width = 80
+    Width = 68
     Caption = 'Directories'
     Color = 2894892
     Font.Color = clSilver
@@ -129,9 +127,9 @@ object ImportFile: TImportFile
   end
   object Label6: TLabel
     Left = 300
-    Height = 15
+    Height = 16
     Top = 96
-    Width = 34
+    Width = 30
     Caption = 'Files'
     Color = 2894892
     Font.Color = clSilver
@@ -144,9 +142,9 @@ object ImportFile: TImportFile
   end
   object Label8: TLabel
     Left = 336
-    Height = 15
+    Height = 16
     Top = 116
-    Width = 70
+    Width = 65
     Caption = 'Files type :'
     Color = 2894892
     Font.Color = clSilver
@@ -185,9 +183,9 @@ object ImportFile: TImportFile
   end
   object Label9: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 289
-    Width = 63
+    Width = 55
     Caption = 'PictName'
     Color = 2894892
     Font.Color = clSilver
@@ -198,9 +196,9 @@ object ImportFile: TImportFile
   end
   object Label10: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 309
-    Width = 68
+    Width = 61
     Caption = 'Resolution'
     Color = 2894892
     Font.Color = clSilver
@@ -211,7 +209,7 @@ object ImportFile: TImportFile
   end
   object ComboBox1: TComboBox
     Left = 424
-    Height = 28
+    Height = 23
     Top = 110
     Width = 160
     AutoDropDown = True
@@ -219,7 +217,7 @@ object ImportFile: TImportFile
     Font.Color = clSilver
     Font.Height = -12
     Font.Name = 'Sans'
-    ItemHeight = 0
+    ItemHeight = 15
     OnChange = ComboBox1Change
     OnEnter = ComboBox1Enter
     OnExit = ComboBox1Exit
@@ -265,9 +263,9 @@ object ImportFile: TImportFile
     end
     object Label1: TLabel
       Left = 4
-      Height = 15
+      Height = 16
       Top = 6
-      Width = 100
+      Width = 91
       Caption = 'Total disk size :'
       Color = 2894892
       Font.Color = clSilver
@@ -279,9 +277,9 @@ object ImportFile: TImportFile
     end
     object Label2: TLabel
       Left = 148
-      Height = 15
+      Height = 16
       Top = 6
-      Width = 43
+      Width = 38
       Caption = 'Label2'
       Color = 2894892
       Font.Color = clSilver
@@ -293,9 +291,9 @@ object ImportFile: TImportFile
     end
     object Label3: TLabel
       Left = 4
-      Height = 15
+      Height = 16
       Top = 23
-      Width = 67
+      Width = 59
       Caption = 'Disk free :'
       Color = 2894892
       Font.Color = clSilver
@@ -307,9 +305,9 @@ object ImportFile: TImportFile
     end
     object Label4: TLabel
       Left = 148
-      Height = 15
+      Height = 16
       Top = 23
-      Width = 43
+      Width = 38
       Caption = 'Label4'
       Color = 2894892
       Font.Color = clSilver
@@ -321,9 +319,9 @@ object ImportFile: TImportFile
     end
     object Label11: TLabel
       Left = 4
-      Height = 14
+      Height = 15
       Top = 49
-      Width = 74
+      Width = 63
       Caption = 'Current dir :'
       ParentColor = False
     end
@@ -354,9 +352,9 @@ object ImportFile: TImportFile
   end
   object Label12: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 328
-    Width = 27
+    Width = 25
     Caption = 'APN'
     Font.Height = -13
     ParentColor = False
@@ -364,9 +362,9 @@ object ImportFile: TImportFile
   end
   object Label13: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 346
-    Width = 73
+    Width = 65
     Caption = 'Orientation'
     Font.Height = -13
     ParentColor = False
@@ -374,9 +372,9 @@ object ImportFile: TImportFile
   end
   object Label14: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 365
-    Width = 56
+    Width = 51
     Caption = 'Aperture'
     Font.Height = -13
     ParentColor = False
@@ -384,9 +382,9 @@ object ImportFile: TImportFile
   end
   object Label15: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 385
-    Width = 40
+    Width = 37
     Caption = 'Speed'
     Font.Height = -13
     ParentColor = False
@@ -394,9 +392,9 @@ object ImportFile: TImportFile
   end
   object Label16: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 405
-    Width = 22
+    Width = 20
     Caption = 'ISO'
     Font.Height = -13
     ParentColor = False
@@ -404,9 +402,9 @@ object ImportFile: TImportFile
   end
   object Label17: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 424
-    Width = 34
+    Width = 29
     Caption = 'Flash'
     Font.Height = -13
     ParentColor = False
@@ -414,9 +412,9 @@ object ImportFile: TImportFile
   end
   object Label18: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 442
-    Width = 34
+    Width = 30
     Caption = 'Focal'
     Font.Height = -13
     ParentColor = False
@@ -424,9 +422,9 @@ object ImportFile: TImportFile
   end
   object Label19: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 460
-    Width = 77
+    Width = 71
     Caption = 'Color Space'
     Font.Height = -13
     ParentColor = False
@@ -434,9 +432,9 @@ object ImportFile: TImportFile
   end
   object Label20: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 479
-    Width = 72
+    Width = 65
     Caption = 'Shoot Date'
     Font.Height = -13
     ParentColor = False
@@ -444,9 +442,9 @@ object ImportFile: TImportFile
   end
   object Label21: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 497
-    Width = 35
+    Width = 30
     Caption = 'Artist'
     Font.Height = -13
     ParentColor = False
@@ -454,9 +452,9 @@ object ImportFile: TImportFile
   end
   object Label22: TLabel
     Left = 628
-    Height = 15
+    Height = 17
     Top = 514
-    Width = 63
+    Width = 57
     Caption = 'Copyright'
     Font.Height = -13
     ParentColor = False

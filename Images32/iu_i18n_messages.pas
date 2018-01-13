@@ -109,6 +109,11 @@ const
   // *
   // * End Add v0.9
 
+  // ***
+  // * Add v0.10
+  K_IU_ExceptMSG_ExecError=53;
+  // ***
+
   // *************************************************************
   // IHM Messages
 
@@ -581,6 +586,16 @@ begin
 
   // *
   // End Add v0.9
+  // ***
+  // ***
+  // * Add v0.10
+  {$ifdef windows}
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ExecError] := 'exiv2.exe non installé. Il doit être dans le répertoire de l''application !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ExecError] := 'exiv2 not found. It must be located in application directory !';
+  {$else}
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ExecError] := 'exiv2.exe non installé. L''installer depuis les dépôts !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ExecError] := 'exiv2 not found. Could be install from repositories !';
+  {$endif}
   // ***
 
 end.

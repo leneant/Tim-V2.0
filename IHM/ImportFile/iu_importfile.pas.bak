@@ -44,7 +44,7 @@ uses
 
   // ***
   // * Add v0.8
-  , IU_ExifUtils
+  ,IU_ExifUtils
   // ***
   ;
 
@@ -189,6 +189,7 @@ type
     { private declarations }
     bmp1 : TBGRABitmap;
     SelectedFile : widestring;
+    firstwarning : boolean;
   public
     { public declarations }
     // ***
@@ -303,6 +304,33 @@ begin
       Label9.Font.Color:=TextColor;
       Label10.Color:=WindowsColor;
       Label10.Font.Color:=TextColor;
+      // ***
+      // * Add v0.8
+      Label12.Color:=WindowsColor;
+      Label12.Font.Color:=TextColor;
+      Label13.Color:=WindowsColor;
+      Label13.Font.Color:=TextColor;
+      Label14.Color:=WindowsColor;
+      Label14.Font.Color:=TextColor;
+      Label15.Color:=WindowsColor;
+      Label15.Font.Color:=TextColor;
+      Label16.Color:=WindowsColor;
+      Label16.Font.Color:=TextColor;
+      Label17.Color:=WindowsColor;
+      Label17.Font.Color:=TextColor;
+      Label18.Color:=WindowsColor;
+      Label18.Font.Color:=TextColor;
+      Label19.Color:=WindowsColor;
+      Label19.Font.Color:=TextColor;
+      Label20.Color:=WindowsColor;
+      Label20.Font.Color:=TextColor;
+      Label21.Color:=WindowsColor;
+      Label21.Font.Color:=TextColor;
+      Label22.Color:=WindowsColor;
+      Label22.Font.Color:=TextColor;
+      // *
+      // * End Add v0.8
+      // ***
       if Button1.Focused then Button1.Color := ButtonSelectedColor else
       Button1.Color:=ButtonColor;
       if Button2.Focused then Button2.Color := ButtonSelectedColor else
@@ -647,6 +675,23 @@ var
   _scale : string;
 begin
   // ***
+  // * Add v0.8
+  ImportFile.firstwarning := false;
+  ImportFile.Label9.Caption := '';
+  ImportFile.Label10.Caption:='';
+  ImportFile.Label12.Caption:='';
+  ImportFile.Label13.Caption:='';
+  ImportFile.Label14.Caption:='';
+  ImportFile.Label15.Caption:='';
+  ImportFile.Label16.Caption:='';
+  ImportFile.Label17.Caption:='';
+  ImportFile.Label18.Caption:='';
+  ImportFile.Label19.Caption:='';
+  ImportFile.Label20.Caption:='';
+  ImportFile.Label21.Caption:='';
+  ImportFile.Label22.Caption:='';
+  // * End Add v0.8
+  // ***
   // * Add v0.6
   // Trying to load defaults properties
   try
@@ -832,7 +877,11 @@ begin
   _directory := getCurrentDir + '/';
   {$endif}
   // ListBox1.Items.Add(_directory);
-  Label7.Caption := _directory + ' :';
+  // ***
+  // * Modified v0.8
+  // * Dell + ' :' after _directory
+  Label7.Caption := _directory;
+  // ***
   // init dirs list
   dirsList.initDirectoriesList;
   // init files list
@@ -1067,14 +1116,20 @@ begin
           if _exifsList[i].Exif = IU_K_Exif_Copyright then
             Label22.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoCopyrights] +  _exifsList[i].value
         end;
-      finally
-        Image1.Refresh;
-        stretched.free;
-        screen.cursor := crDefault;
+      Except
+        if not ImportFile.firstwarning then begin
+          ImportFile.firstwarning := true;
+          MessageDlg(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_ExecError],
+                     IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_WarningBoxTitle],
+                     mtWarning, mbOK,'');
+        end;
       end;
       // *
       // * End Add v0.8
       // ***
+      Image1.Refresh;
+      stretched.free;
+      screen.cursor := crDefault;
     end;
     bmp1.Free;
   end;

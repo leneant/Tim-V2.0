@@ -22,7 +22,10 @@ unit IU_ExifUtils;
 interface
 
 uses
-  Classes, SysUtils, Process, IU_I18N_Messages, IU_Exceptions ;
+  Classes, SysUtils, Process, IU_I18N_Messages, IU_Exceptions
+  {$ifdef windows}
+  , forms
+  {$endif};
 
 const
   // ***
@@ -104,7 +107,7 @@ begin
     try
       AProcess.PipeBufferSize := 2048;
       {$ifdef windows}
-      AProcess.Executable := getcurrentdir + '\exiv2.exe';
+      AProcess.Executable := ExtractFilePath(Application.ExeName) + 'exiv2.exe';
       AProcess.Parameters.Add('-K');
       AProcess.Parameters.Add(CameraModel);
       AProcess.Parameters.Add('-K');

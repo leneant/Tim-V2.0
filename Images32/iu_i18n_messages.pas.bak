@@ -202,6 +202,7 @@ const
   K_IU_HIMSG_PhotoShootDate=48;
   K_IU_HIMSG_PhotoArtist=49;
   K_IU_HIMSG_PhotoCopyrights=50;
+  K_IU_HIMSG_APN=51;
   // ***
 
   type
@@ -403,6 +404,9 @@ begin
   // * Add v0.10
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_CurrentDir] := 'Répertoire courant :';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_CurrentDir] := 'Current dir :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_APN] := 'Appareil :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_APN] := 'Camera :';
 
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
