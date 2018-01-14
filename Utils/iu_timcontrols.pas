@@ -5,9 +5,11 @@ unit IU_TimControls;
 // * Unit defining controls objects like progress bar, scroll bars, tracks bars...
 // * Creation date : 2017 November
 // *
-// * Version : 0.13
+// * Version : 0.14
 // * Version Date : 2018 January
 // * Version contributors : Pascal Lemaître
+// *
+// * V0.14 : Adding differences between init colors by programmation and default colors set by user
 // *
 // * V0.13 : Adding default colors for buttons
 // *
@@ -728,6 +730,13 @@ type
       // * End Add v0.13
       // ***
 
+
+// ***
+// * Set used colors to default (defined by program)
+// *
+// @author : Pascal Lemaitre
+// *
+procedure IU_setControlsColorsToDefault;
 
 implementation
 
@@ -3672,8 +3681,129 @@ begin
 
 end;
 
+// ***
+// * Add v0.14
+// ***
+// * Set used colors to default (defined by program)
+// *
+// @author : Pascal Lemaitre
+// *
+procedure IU_setControlsColorsToDefault;
+begin
+  V_IU_DefaultBG := rgbtocolor($44,$44,$44); // default BG color
+  with V_IU_PB_DefaultBGColor do begin // default BG color of the shape
+    red := $0;
+    green := $0;
+    blue := $0;
+  end ;
+  with V_IU_PB_ActivateBG do begin // activated color of the shape
+    red := $70;
+    green := $70;
+    blue := $70;
+  end ;
+  with V_IU_PB_DistantEndBG do begin // activated color when end is near
+    red := $3F;
+    green := $80;
+    blue :=$3F;
+  end;
+  with V_IU_PB_NearEndBG  do begin // activated color when end is near
+    red := $35;
+    green := $95;
+    blue := $35;
+  end;
+  with V_IU_PB_EndBG do begin // acivated color when end
+    red := $11;
+    green := $C9;
+    blue := $11;
+  end;
+  V_IU_PB_TextColor := rgbtocolor($CC,$CC,$CC); // Color of text
+
+  V_IU_PB_CoefHihgLight_Shape := 100 / K_IU_PB_NbIndicators; // calc here then not to do every time
+
+  V_IU_TB_DefaultBG := rgbtocolor($44,$44,$44) ; // Color of unactived curve for track Bar
+  V_IU_TB_ActivatedCurve := rgbtocolor($88,$88,$88) ; // Color for activated cirve for ftrack bar
+  V_IU_TB_TextColor := rgbtocolor($CC,$CC,$CC) ; // Color of the text into the Edit box of the Track Bar
+  V_IU_TB_TextBGColor := rgbtocolor($44,$44,$44) ; // Back Ground Color of Edit box of the track bar
+  V_IU_TB_SelectedActiviatedCurve := rgbtocolor($99,$99,$CF) ; // Color of the cursor of the activated curve
+  V_IU_TB_ScaleColor := rgbtocolor($7F,$39,$39); // Color of a scale line
+  V_IU_TB_unselectedScaleColor := rgbtocolor($44,$44,$44); // Color of a scale line for unselected track bar
 
 
+  with V_IU_SB_DefaultBGColor do begin // default BG color of the shape
+    red := $50;
+    green := $50;
+    blue := $50;
+  end ;
+
+  with V_IU_SB_CursorColor do begin // default scroll bar color
+    red := $B0;
+    green := $15;
+    blue := $15;
+  end;
+
+  with V_IU_SB_CursorColorHigh do begin // HighLight scroll bar cursor color
+    red := $D0 + K_IU_ScrollBar_HighLight;
+    green := $0 ;
+    blue := 0 ;
+  end;
+
+  with V_IU_Box_BGColor do begin      // default color for unchecked
+    red := $2F;
+    green :=$2F;
+    blue := $2F;
+  end;
+
+  with V_IU_Box_DefaultColor do begin      // default color for unchecked
+    red := $50;
+    green := $50;
+    blue := $50;
+  end;
+
+  with V_IU_Box_ColorHigh do begin          // highlight color for unchecked
+    red := $80;
+    green := $80;
+    blue := $80;
+  end;
+
+  with V_IU_Box_Color_Checked do begin      // default color for checked
+    red := $40;
+    green := $B0;
+    blue := $40;
+  end;
+
+  with V_IU_Box_Color_CheckedHigh do begin  // highlight color for checked
+    red := $40;
+    green := $E0;
+    blue := $40;
+  end;
+
+  with V_IU_Box_TextColorDefault do begin   // Default text color
+    red := $A0;
+    green := $A0;
+    blue := $A0;
+  end;
+
+  with V_IU_Box_TextColorHigh do begin      // higlight text color
+    red := $F0;
+    green := $F0;
+    blue := $F0;
+  end;
+
+  with V_IU_Button_unfocused do begin
+    red := $2c;
+    green := $2c;
+    blue := $2c;
+   end;
+
+  with V_IU_Button_focused do begin
+    red := $50;
+    green := $50;
+    blue := $50;
+   end;
+end;
+// *
+// * End Add v0.14
+// ***
 
 begin
       // ***
@@ -3688,6 +3818,9 @@ begin
       ReturnNilIfGrowHeapFails := true ; // According to IU_Frames unit
       // if getmem fail then nil pointer is returned
 
+      // ***
+      // * Modified V0.14
+      {
       V_IU_DefaultBG := rgbtocolor($44,$44,$44); // default BG color
       with V_IU_PB_DefaultBGColor do begin // default BG color of the shape
         red := $0;
@@ -3804,7 +3937,8 @@ begin
       // *
       // * End Add v0.13
       // ***
-
+      }
+      IU_setControlsColorsToDefault;
 
 end.
 
