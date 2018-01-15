@@ -5,9 +5,11 @@ unit IU_TimControls;
 // * Unit defining controls objects like progress bar, scroll bars, tracks bars...
 // * Creation date : 2017 November
 // *
-// * Version : 0.14
+// * Version : 0.15
 // * Version Date : 2018 January
 // * Version contributors : Pascal Lemaître
+// *
+// * V0.15 : Adding visible propertie on Tim Control And updating focus list management according to it
 // *
 // * V0.14 : Adding differences between init colors by programmation and default colors set by user
 // *
@@ -378,7 +380,6 @@ type
       _DisplayStartingValue : extended ; // First value displayed when cursor is on the left
       _DisplayNumBerOfDecimalsPlace : integer ; // How many decimal places should be displayed
 
-
       function convertGetingDisplayValue (_getValue : string) : extended ; // Converting get value from Edit box into _currentvalue
       function convertCurrentValueForDisplaying : string ; // Converting _currentvalue into displayed format
 
@@ -431,6 +432,14 @@ type
       // *
       // ***
 
+      // ***
+      // * Add v0.15
+      procedure _setVisible (value : boolean) ;
+      function _getVisible : boolean;
+
+      // *
+      // End Add v0.15
+      // ***
   end;
 
 
@@ -518,6 +527,15 @@ type
       // *
       // ***
 
+      // ***
+      // * Add v0.15
+      procedure _setVisible (value : boolean) ;
+      function _getVisible : boolean;
+
+      // *
+      // End Add v0.15
+      // ***
+
   end;
 
 
@@ -543,6 +561,7 @@ type
       _caption : TLabel ; // for caption and adding all event ans setting styles
 
       checked : boolean ; // check box checked or not
+
 
     public
       onChange : T_IU_Box_onChange; // onChange Call back
@@ -573,6 +592,16 @@ type
       procedure Paint(Sender: TObject);
       // *
       // ***
+
+      // ***
+      // * Add v0.15
+      procedure _setVisible (value : boolean) ;
+      function _getVisible : boolean;
+
+      // *
+      // End Add v0.15
+      // ***
+
   end;
 
 
@@ -608,6 +637,7 @@ type
       canUnselect : boolean; // if true radio button can be unselect else not
       // ***
 
+
     public
       onChange : T_IU_Box_onChange; // onChange Call back
 
@@ -642,6 +672,15 @@ type
       procedure MouseLeave(Sender: TObject);
       procedure Paint(Sender: TObject);
       // *
+      // ***
+
+      // ***
+      // * Add v0.15
+      procedure _setVisible (value : boolean) ;
+      function _getVisible : boolean;
+
+      // *
+      // End Add v0.15
       // ***
 
   end;
@@ -1326,80 +1365,92 @@ var i : integer ;
 
 
 begin
-  // erasing top line
-  // Black Line
-  self.Parent.Canvas.Pen.Color:=clBlack;
-  _translateXY (1,self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval-1,self._InternalHeight-1, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  nbLines := self._InternalInterval div (K_IU_TB_LineWidth + K_IU_TB_LineSepWidth); // Defining the numbers of the lines for drawing the curve
-  coefPosX := (self._InternalInterval - 3)/(nbLines - 1) ; // Defining the translation to have the position of the curve in the track bar
-  coefScale := coefPosX;
-  cursorScale := K_IU_TB_CursorScale * 1 / coefScale;
-  for i := 0 to nbLines - 1 do begin
-    // calc the position of the bar in the shape
-    targetPos := i * coefPosX +1;
-    // From x position of the bar transform it into a value in [_startvalue.._endvalue]
-    targetValue := i * coefScale;
-    // getting the y value of the line (apply spline fonction)
-    x := ((self._currentvalue * (self._InternalInterval - 2) - targetvalue)*cursorScale)/10.0;
-    if abs(x)>1 then lineHeight := 1 else lineHeight := round(self._InternalHeight * splineBars(x));
-    if lineHeight < 0 then lineHeight :=0;
-    // Drawing the line
-    if isSelected then
-      self.Parent.Canvas.Pen.Color := V_IU_TB_SelectedActiviatedCurve
-    else
-        self.Parent.Canvas.Pen.Color:=V_IU_TB_ActivatedCurve;
-    _translateXY(trunc(targetPos), 1, _x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-    self.Parent.Canvas.MoveTo(_x,_y);
-    _translateXY(trunc(targetPos),lineHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-    self.Parent.Canvas.LineTo(_x,_y);
-    if self.Edition <> nil then
-      self.Edition.Text := self.convertCurrentValueForDisplaying;
-  end;
+  // ***
+  // * Add v0.15
+  if (not self.Parent.Visible) and (self._getID = _IU_TimControls_selectedID) then raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+  if self.Parent.Visible then begin
+  // *
+  // * End Add v0.15
+  // ***
 
-  // Drawing a pseudo scale
-  // How many line ?
-  // scalenumber := self._width div (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
-  scalenumber := self._InternalInterval div (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
-  scalewidth := scalenumber * (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
-  // scalemarging := (self._width - scalewidth) div 2;
-  scalemarging := (self._InternalInterval - scalewidth) div 2;
-  // drawing scale lines
-  self.Parent.Canvas.Pen.Style:=psSolid;
-  self.Parent.Canvas.Pen.Width:=1;
-  if isSelected then
-    self.Parent.Canvas.Pen.Color := V_IU_TB_ScaleColor
-  else
-      self.Parent.Canvas.Pen.Color:=V_IU_TB_unselectedScaleColor;
-  scalePosFactor := K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep;
-  for i := 0 to scalenumber do begin
-      // self.Parent.Canvas.MoveTo(i*scalePosFactor + scalemarging, 0);
-      _translateXY(i*scalePosFactor + scalemarging, self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    // erasing top line
+    // Black Line
+    self.Parent.Canvas.Pen.Color:=clBlack;
+    _translateXY (1,self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (self._InternalInterval-1,self._InternalHeight-1, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    nbLines := self._InternalInterval div (K_IU_TB_LineWidth + K_IU_TB_LineSepWidth); // Defining the numbers of the lines for drawing the curve
+    coefPosX := (self._InternalInterval - 3)/(nbLines - 1) ; // Defining the translation to have the position of the curve in the track bar
+    coefScale := coefPosX;
+    cursorScale := K_IU_TB_CursorScale * 1 / coefScale;
+    for i := 0 to nbLines - 1 do begin
+      // calc the position of the bar in the shape
+      targetPos := i * coefPosX +1;
+      // From x position of the bar transform it into a value in [_startvalue.._endvalue]
+      targetValue := i * coefScale;
+      // getting the y value of the line (apply spline fonction)
+      x := ((self._currentvalue * (self._InternalInterval - 2) - targetvalue)*cursorScale)/10.0;
+      if abs(x)>1 then lineHeight := 1 else lineHeight := round(self._InternalHeight * splineBars(x));
+      if lineHeight < 0 then lineHeight :=0;
+      // Drawing the line
+      if isSelected then
+        self.Parent.Canvas.Pen.Color := V_IU_TB_SelectedActiviatedCurve
+      else
+          self.Parent.Canvas.Pen.Color:=V_IU_TB_ActivatedCurve;
+      _translateXY(trunc(targetPos), 1, _x,_y, self._height, self._width, self._direction, self._cursorOrientation);
       self.Parent.Canvas.MoveTo(_x,_y);
-      // self.Parent.Canvas.LineTo(i*scalePosFactor+scalemarging+K_IU_TB_ScaleWidth,0);
-      _translateXY(i*scalePosFactor+scalemarging+K_IU_TB_ScaleWidth,self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+      _translateXY(trunc(targetPos),lineHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
       self.Parent.Canvas.LineTo(_x,_y);
+      if self.Edition <> nil then
+        self.Edition.Text := self.convertCurrentValueForDisplaying;
+    end;
+
+    // Drawing a pseudo scale
+    // How many line ?
+    // scalenumber := self._width div (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
+    scalenumber := self._InternalInterval div (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
+    scalewidth := scalenumber * (K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep);
+    // scalemarging := (self._width - scalewidth) div 2;
+    scalemarging := (self._InternalInterval - scalewidth) div 2;
+    // drawing scale lines
+    self.Parent.Canvas.Pen.Style:=psSolid;
+    self.Parent.Canvas.Pen.Width:=1;
+    if isSelected then
+      self.Parent.Canvas.Pen.Color := V_IU_TB_ScaleColor
+    else
+        self.Parent.Canvas.Pen.Color:=V_IU_TB_unselectedScaleColor;
+    scalePosFactor := K_IU_TB_ScaleWidth + K_IU_TB_ScaleSep;
+    for i := 0 to scalenumber do begin
+        // self.Parent.Canvas.MoveTo(i*scalePosFactor + scalemarging, 0);
+        _translateXY(i*scalePosFactor + scalemarging, self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+        self.Parent.Canvas.MoveTo(_x,_y);
+        // self.Parent.Canvas.LineTo(i*scalePosFactor+scalemarging+K_IU_TB_ScaleWidth,0);
+        _translateXY(i*scalePosFactor+scalemarging+K_IU_TB_ScaleWidth,self._InternalHeight-1,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+        self.Parent.Canvas.LineTo(_x,_y);
+    end;
+    // Drawing base of cursor
+    self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
+    _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (self._InternalInterval-1,0, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    // Drawing left Border
+    self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
+    _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (1,self._internalHeight, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    // Drawing right Border
+    self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
+    _translateXY (self._InternalInterval,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (self._InternalInterval,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+  // ***
+  // Add v0.15
   end;
-  // Drawing base of cursor
-  self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-  _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval-1,0, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  // Drawing left Border
-  self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-  _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (1,self._internalHeight, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  // Drawing right Border
-  self.Parent.Canvas.Pen.Color:=V_IU_TB_DefaultBG;
-  _translateXY (self._InternalInterval,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
+  // ***
 end;
 
 
@@ -2045,6 +2096,26 @@ end;
 
 // ***
 
+// ***
+// * Add v0.15
+// ***
+// * overriding _setVisible for hidding or showing graphical objects
+// *
+// @author Pascal Lemaitre
+// *
+procedure T_IU_TrackBar._setVisible (value : boolean) ;
+begin
+  if self.Parent <> nil then self.Parent.visible := value;
+  if self.Edition <> nil then self.Edition.visible := value;
+end;
+
+function T_IU_TrackBar._getVisible : boolean;
+begin
+  _getVisible := self.Parent.Visible;
+end;
+// *
+// * End Add v0.15
+// ***
 
 // **************************
 
@@ -2075,65 +2146,75 @@ var i : integer ;
 
 
 begin
-  nbLines := self._InternalInterval div (K_IU_TB_LineWidth + K_IU_TB_LineSepWidth); // Defining the numbers of the lines for drawing the curve
-  coefPosX := (self._InternalInterval - 3)/(nbLines - 1) ; // Defining the translation to have the position of the curve in the track bar
-  coefScale := coefPosX;
-  cursorScale := K_IU_TB_CursorScale * 1 / coefScale;
-  for i := 0 to nbLines - 2 do begin
-    // calc the position of the bar in the shape
-    targetPos := i * coefPosX +1;
-    // From x position of the bar transform it into a value in [_startvalue.._endvalue]
-    targetValue := i * coefScale;
-    // getting the y value of the line (apply spline fonction)
-    x := ((self._currentvalue * (self._InternalInterval - 2) - targetvalue)*cursorScale)/20.0;
-    if abs(x)>1 then _coefcol := 0 else _coefcol :=  splineBars(x);
-    if _coefcol < 0 then _coefcol := 0 else if _coefcol > 1 then _coefcol := 1;
-    // Drawing the line
-    if isSelected then
-      self.Parent.Canvas.Pen.Color := rgbtocolor(trunc(_coefcol*V_IU_SB_CursorColorHigh.red+(1-_coefcol)*V_IU_SB_DefaultBGColor.red+K_IU_ScrollBar_HighLight) ,
-                                                 trunc(_coefcol*V_IU_SB_CursorColorHigh.green+(1-_coefcol)*V_IU_SB_DefaultBGColor.green+K_IU_ScrollBar_HighLight),
-                                                 trunc(_coefcol*V_IU_SB_CursorColorHigh.blue+(1-_coefcol)*V_IU_SB_DefaultBGColor.blue+K_IU_ScrollBar_HighLight))
-    else
-      self.Parent.Canvas.Pen.Color := rgbtocolor(trunc((_coefcol*V_IU_SB_CursorColor.red+(1-_coefcol)*V_IU_SB_DefaultBGColor.red)) ,
-                                                 trunc((_coefcol*V_IU_SB_CursorColor.green+(1-_coefcol)*V_IU_SB_DefaultBGColor.green)),
-                                                 trunc((_coefcol*V_IU_SB_CursorColor.blue+(1-_coefcol)*V_IU_SB_DefaultBGColor.blue)));
+  // ***
+  // * Add v0.15
+  if (not self.Parent.Visible) and (self.isSelected) then raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+  if self.Parent.Visible then begin
+  // *
+  // * End Add v0.15
+  // ***
 
-    _translateXY(trunc(targetPos), 1, _x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    nbLines := self._InternalInterval div (K_IU_TB_LineWidth + K_IU_TB_LineSepWidth); // Defining the numbers of the lines for drawing the curve
+    coefPosX := (self._InternalInterval - 3)/(nbLines - 1) ; // Defining the translation to have the position of the curve in the track bar
+    coefScale := coefPosX;
+    cursorScale := K_IU_TB_CursorScale * 1 / coefScale;
+    for i := 0 to nbLines - 2 do begin
+      // calc the position of the bar in the shape
+      targetPos := i * coefPosX +1;
+      // From x position of the bar transform it into a value in [_startvalue.._endvalue]
+      targetValue := i * coefScale;
+      // getting the y value of the line (apply spline fonction)
+      x := ((self._currentvalue * (self._InternalInterval - 2) - targetvalue)*cursorScale)/20.0;
+      if abs(x)>1 then _coefcol := 0 else _coefcol :=  splineBars(x);
+      if _coefcol < 0 then _coefcol := 0 else if _coefcol > 1 then _coefcol := 1;
+      // Drawing the line
+      if isSelected then
+        self.Parent.Canvas.Pen.Color := rgbtocolor(trunc(_coefcol*V_IU_SB_CursorColorHigh.red+(1-_coefcol)*V_IU_SB_DefaultBGColor.red+K_IU_ScrollBar_HighLight) ,
+                                                   trunc(_coefcol*V_IU_SB_CursorColorHigh.green+(1-_coefcol)*V_IU_SB_DefaultBGColor.green+K_IU_ScrollBar_HighLight),
+                                                   trunc(_coefcol*V_IU_SB_CursorColorHigh.blue+(1-_coefcol)*V_IU_SB_DefaultBGColor.blue+K_IU_ScrollBar_HighLight))
+      else
+        self.Parent.Canvas.Pen.Color := rgbtocolor(trunc((_coefcol*V_IU_SB_CursorColor.red+(1-_coefcol)*V_IU_SB_DefaultBGColor.red)) ,
+                                                   trunc((_coefcol*V_IU_SB_CursorColor.green+(1-_coefcol)*V_IU_SB_DefaultBGColor.green)),
+                                                   trunc((_coefcol*V_IU_SB_CursorColor.blue+(1-_coefcol)*V_IU_SB_DefaultBGColor.blue)));
+
+      _translateXY(trunc(targetPos), 1, _x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
+      self.Parent.Canvas.MoveTo(_x,_y);
+      _translateXY(trunc(targetPos), self._InternalHeight-1, _x, _y, self._height, self._width-1, self._direction, self._cursorOrientation);
+      self.Parent.Canvas.LineTo(_x,_y);
+    end;
+
+    // Drawing base of cursor
+    self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
+    _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
     self.Parent.Canvas.MoveTo(_x,_y);
-    _translateXY(trunc(targetPos), self._InternalHeight-1, _x, _y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    _translateXY (self._InternalInterval-1,0, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
     self.Parent.Canvas.LineTo(_x,_y);
-  end;
+    // Drawing left Border
+    self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
+    _translateXY (1,0,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (1,self._internalHeight, _x, _y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    // Drawing right Border
+    self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
+    _translateXY (self._InternalInterval-1,0,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (self._InternalInterval-1,self._internalHeight,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    // Drawing border
+    self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
+    _translateXY (0,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.MoveTo(_x,_y);
+    _translateXY (self._InternalInterval,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    _translateXY (self._InternalInterval,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    _translateXY (0,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
+    _translateXY (0,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
+    self.Parent.Canvas.LineTo(_x,_y);
 
-  // Drawing base of cursor
-  self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
-  _translateXY (1,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval-1,0, _x, _y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  // Drawing left Border
-  self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
-  _translateXY (1,0,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (1,self._internalHeight, _x, _y, self._height, self._width-1, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  // Drawing right Border
-  self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
-  _translateXY (self._InternalInterval-1,0,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval-1,self._internalHeight,_x,_y, self._height, self._width-1, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  // Drawing border
-  self.Parent.Canvas.Pen.Color:=V_IU_DefaultBG;
-  _translateXY (0,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.MoveTo(_x,_y);
-  _translateXY (self._InternalInterval,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  _translateXY (self._InternalInterval,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  _translateXY (0,self._internalHeight,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
-  _translateXY (0,0,_x,_y, self._height, self._width, self._direction, self._cursorOrientation);
-  self.Parent.Canvas.LineTo(_x,_y);
+  end;
 end;
 
 
@@ -2520,7 +2601,7 @@ begin
 end;
 
 
-// * Personnal track bar object : Mouse leave event manager
+// * Personnal Scrool bar object : Mouse leave event manager
 // *
 // * @author : Pascal Lemaître
 // *
@@ -2642,6 +2723,26 @@ begin
   self.Parent.ShowHint:=false;
 end;
 
+// ***
+
+// ***
+// * Add v0.15
+// ***
+// * overriding _setVisible for hidding or showing graphical objects
+// *
+// @author Pascal Lemaitre
+// *
+procedure T_IU_ScrollBar._setVisible (value : boolean) ;
+begin
+  if self.Parent <> nil then self.Parent.visible := value;
+end;
+
+function T_IU_ScrollBar._getVisible : boolean;
+begin
+  _getVisible := self.Parent.Visible;
+end;
+// *
+// * End Add v0.15
 // ***
 
 
@@ -2774,64 +2875,74 @@ end;
 procedure T_IU_CheckBox._draw;
 var i, k, marge, nb_lines, y : integer ;
 begin
-  // Drawing selected or unselected check box
-  k := self._box.Height div 4;
-  marge := k;
-  // pen definition for drawing
-  // drawing selected symbol
-  self._box.Canvas.Pen.Color:=rgbtocolor(V_IU_Box_BGColor.red,
-                                         V_IU_Box_BGColor.green,
-                                         V_IU_Box_BGColor.blue);
-  for i := 0 to self._box.Height do begin
-    self._box.Canvas.moveto(0,i);
-    self._box.Canvas.lineto(self._box.Width,i);
-  end;
+  // ***
+  // * Add v0.15
+  if (not self._box.Visible) and (self.isSelected) then raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+  if self._box.Visible then begin
+  // *
+  // * End Add v0.15
+  // ***
+
+    // Drawing selected or unselected check box
+    k := self._box.Height div 4;
+    marge := k;
+    // pen definition for drawing
+    // drawing selected symbol
+    self._box.Canvas.Pen.Color:=rgbtocolor(V_IU_Box_BGColor.red,
+                                           V_IU_Box_BGColor.green,
+                                           V_IU_Box_BGColor.blue);
+    for i := 0 to self._box.Height do begin
+      self._box.Canvas.moveto(0,i);
+      self._box.Canvas.lineto(self._box.Width,i);
+    end;
 
 
-  for i := 0 to k - 1 do begin
-    if isSelected then
-      if self.checked then
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_CheckedHigh.red,
-                                          V_IU_Box_Color_CheckedHigh.green,
-                                          V_IU_Box_Color_CheckedHigh.blue)
+    for i := 0 to k - 1 do begin
+      if isSelected then
+        if self.checked then
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_CheckedHigh.red,
+                                            V_IU_Box_Color_CheckedHigh.green,
+                                            V_IU_Box_Color_CheckedHigh.blue)
+        else
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_ColorHigh.red,
+                                            V_IU_Box_ColorHigh.green,
+                                            V_IU_Box_ColorHigh.blue)
       else
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_ColorHigh.red,
-                                          V_IU_Box_ColorHigh.green,
-                                          V_IU_Box_ColorHigh.blue)
+        if self.checked then
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_Checked.red,
+                                            V_IU_Box_Color_Checked.green,
+                                            V_IU_Box_Color_Checked.blue)
+        else
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red,
+                                            V_IU_Box_DefaultColor.green,
+                                            V_IU_Box_DefaultColor.blue);
+      y := i*2+marge+1;
+      self._box.Canvas.MoveTo(0,y);
+      self._box.Canvas.LineTo(self._box.width,y);
+    end;
+    // drawing frame of the box
+    self._box.Canvas.Pen.Color := clBlack;
+    self._box.Canvas.MoveTo(0,0);
+    self._box.Canvas.LineTo(self._box.Width-1, 0);
+    self._box.Canvas.Pen.Color := rgbtocolor(V_IU_Box_ColorHigh.red,
+                                             V_IU_Box_ColorHigh.green,
+                                             V_IU_Box_ColorHigh.blue);
+    self._box.Canvas.LineTo(self._box.Width-1, self._box.Height-1);
+    self._box.Canvas.LineTo(0, self._box.Height-1);
+    self._box.Canvas.Pen.Color := clBlack;
+    self._box.Canvas.LineTo(0,0);
+
+    // setting text color
+    if not isSelected then
+      self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red,
+                                           V_IU_Box_TextColorDefault.green,
+                                           V_IU_Box_TextColorDefault.blue)
     else
-      if self.checked then
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_Checked.red,
-                                          V_IU_Box_Color_Checked.green,
-                                          V_IU_Box_Color_Checked.blue)
-      else
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red,
-                                          V_IU_Box_DefaultColor.green,
-                                          V_IU_Box_DefaultColor.blue);
-    y := i*2+marge+1;
-    self._box.Canvas.MoveTo(0,y);
-    self._box.Canvas.LineTo(self._box.width,y);
-  end;
-  // drawing frame of the box
-  self._box.Canvas.Pen.Color := clBlack;
-  self._box.Canvas.MoveTo(0,0);
-  self._box.Canvas.LineTo(self._box.Width-1, 0);
-  self._box.Canvas.Pen.Color := rgbtocolor(V_IU_Box_ColorHigh.red,
-                                           V_IU_Box_ColorHigh.green,
-                                           V_IU_Box_ColorHigh.blue);
-  self._box.Canvas.LineTo(self._box.Width-1, self._box.Height-1);
-  self._box.Canvas.LineTo(0, self._box.Height-1);
-  self._box.Canvas.Pen.Color := clBlack;
-  self._box.Canvas.LineTo(0,0);
+      self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red,
+                                           V_IU_Box_TextColorHigh.green,
+                                           V_IU_Box_TextColorHigh.blue);
 
-  // setting text color
-  if not isSelected then
-    self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red,
-                                         V_IU_Box_TextColorDefault.green,
-                                         V_IU_Box_TextColorDefault.blue)
-  else
-    self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red,
-                                         V_IU_Box_TextColorHigh.green,
-                                         V_IU_Box_TextColorHigh.blue);
+  end;
 end ;
 
 // ***
@@ -2953,6 +3064,28 @@ begin
 end;
 
 // ***
+
+// ***
+// * Add v0.15
+// ***
+// * overriding _setVisible for hidding or showing graphical objects
+// *
+// @author Pascal Lemaitre
+// *
+procedure T_IU_CheckBox._setVisible (value : boolean) ;
+begin
+  if self._box <> nil then self._box.visible := value;
+  if self._caption <> nil then self._caption.visible := value;
+end;
+
+function T_IU_CheckBox._getVisible : boolean;
+begin
+  _getVisible := self._box.Visible;
+end;
+// *
+// * End Add v0.15
+// ***
+
 
 // ********************************
 
@@ -3100,6 +3233,47 @@ end;
 // * @author : Pascal Lemaître
 // *
 // ***
+// *** Add v0.15
+// * Sample of use
+// * When a control is hidden, caller must manage this.
+// * It must check if the control is visible or not and if it is not visible it must call
+// * moveNext or movePrevious again.
+// * See the sample : In kedDown event manager of the main form
+{
+procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+  if Key = K_IU_Key_TAB then begin
+    Key := word(0);
+    if ssShift in Shift then begin
+      LocalObjectQueue.MovePrevious;
+    end else begin
+      LocalObjectQueue.MoveNext;
+    end;
+
+    try
+      LocalObjectQueue.setFocus(TForm(Form1));
+      if (_trackBar.isSelected) and (not _trackBar._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_scrollBar.isSelected) and (not _scrollBar._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_checkbox.isSelected) and (not _checkbox._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton.isSelected) and (not _radioButton._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton2.isSelected) and (not _radioButton2._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton3.isSelected) and (not _radioButton3._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_comA.isSelected) and (not _comA._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_comB.isSelected) and (not _comB._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+    except
+      Key := K_IU_Key_TAB ;
+      Form1.FormKeyDown(Sender, Key, Shift);
+    end;
+}
 procedure T_IU_ControlsQueue.setFocus (var form : TForm) ; // Set the focus on the current control in the queue (auto adapt to the control type)
 begin
   if self._queue = nil then
@@ -3346,79 +3520,90 @@ procedure T_IU_RadioButton._draw;
 var i, k, marge, nb_lines, y, _width : integer ;
   len : extended ;
 begin
-  // drawing back ground
-  // drawing selected symbol
-  self._box.Canvas.Pen.Width:=1;
-  self._box.Canvas.Pen.Color:=rgbtocolor(V_IU_Box_BGColor.red,
-                                         V_IU_Box_BGColor.green,
-                                         V_IU_Box_BGColor.blue);
-  for i := 0 to self._box.Height do begin
-    self._box.Canvas.moveto(0,i);
-    self._box.Canvas.lineto(self._box.Width,i);
-  end;
-  // Drawing guideline
-  k := self._box.Height div 4;
-  marge := k;
-  for i := 0 to k do begin
-    _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red - K_IU_ScrollBar_HighLight,
-                                      V_IU_Box_DefaultColor.green - K_IU_ScrollBar_HighLight,
-                                      V_IU_Box_DefaultColor.blue - K_IU_ScrollBar_HighLight);
-    y := i*2+marge;
-    self._box.Canvas.MoveTo(0,y);
-    self._box.Canvas.LineTo(self._box.width,y);
-  end;
-  // Drawing selected or unselected check box
-  k := self._box.Height div 4;
-  marge := k ;
-  // pen definition for drawing
-  self._box.Canvas.Pen.Width:=1;
+  // ***
+  // * Add v0.15
+  if (not self._box.Visible) and (self.isSelected) then raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+  if self._box.Visible then begin
+  // *
+  // * End Add v0.15
+  // ***
+    // drawing back ground
+    // drawing selected symbol
+    self._box.Canvas.Pen.Width:=1;
+    self._box.Canvas.Pen.Color:=rgbtocolor(V_IU_Box_BGColor.red,
+                                           V_IU_Box_BGColor.green,
+                                           V_IU_Box_BGColor.blue);
+    for i := 0 to self._box.Height do begin
+      self._box.Canvas.moveto(0,i);
+      self._box.Canvas.lineto(self._box.Width,i);
+    end;
+    // Drawing guideline
+    k := self._box.Height div 4;
+    marge := k;
+    for i := 0 to k do begin
+      _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red - K_IU_ScrollBar_HighLight,
+                                        V_IU_Box_DefaultColor.green - K_IU_ScrollBar_HighLight,
+                                        V_IU_Box_DefaultColor.blue - K_IU_ScrollBar_HighLight);
+      y := i*2+marge;
+      self._box.Canvas.MoveTo(0,y);
+      self._box.Canvas.LineTo(self._box.width,y);
+    end;
+    // Drawing selected or unselected check box
+    k := self._box.Height div 4;
+    marge := k ;
+    // pen definition for drawing
+    self._box.Canvas.Pen.Width:=1;
 
-  _width := min (self._box.Width, self._box.Height);
+    _width := min (self._box.Width, self._box.Height);
 
-  for i := 0 to k - 1 do begin
-    if isSelected then
-      if self.checked then
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_CheckedHigh.red,
-                                          V_IU_Box_Color_CheckedHigh.green,
-                                          V_IU_Box_Color_CheckedHigh.blue)
+    for i := 0 to k - 1 do begin
+      if isSelected then
+        if self.checked then
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_CheckedHigh.red,
+                                            V_IU_Box_Color_CheckedHigh.green,
+                                            V_IU_Box_Color_CheckedHigh.blue)
+        else
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_ColorHigh.red,
+                                            V_IU_Box_ColorHigh.green,
+                                            V_IU_Box_ColorHigh.blue)
       else
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_ColorHigh.red,
-                                          V_IU_Box_ColorHigh.green,
-                                          V_IU_Box_ColorHigh.blue)
+        if self.checked then
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_Checked.red,
+                                            V_IU_Box_Color_Checked.green,
+                                            V_IU_Box_Color_Checked.blue)
+        else
+          _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red,
+                                            V_IU_Box_DefaultColor.green,
+                                            V_IU_Box_DefaultColor.blue);
+      y := i*2+marge+1;
+      self._box.Canvas.MoveTo(self._box.width div 4,y);
+      self._box.Canvas.LineTo(self._box.width - self._box.width div 4,y);
+    end;
+    // drawing frame of the box
+    self._box.Canvas.Pen.Color := clBlack;
+    self._box.Canvas.MoveTo(0,0);
+    self._box.Canvas.LineTo(self._box.Width-1, 0);
+    self._box.Canvas.Pen.Color := rgbtocolor(V_IU_Box_ColorHigh.red,
+                                             V_IU_Box_ColorHigh.green,
+                                             V_IU_Box_ColorHigh.blue);
+    self._box.Canvas.LineTo(self._box.Width-1, self._box.Height-1);
+    self._box.Canvas.LineTo(0, self._box.Height-1);
+    self._box.Canvas.Pen.Color := clBlack;
+    self._box.Canvas.LineTo(0,0);
+
+    // setting text color
+    if not isSelected then
+      self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red,
+                                           V_IU_Box_TextColorDefault.green,
+                                           V_IU_Box_TextColorDefault.blue)
     else
-      if self.checked then
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_Color_Checked.red,
-                                          V_IU_Box_Color_Checked.green,
-                                          V_IU_Box_Color_Checked.blue)
-      else
-        _box.Canvas.pen.Color:=rgbtocolor(V_IU_Box_DefaultColor.red,
-                                          V_IU_Box_DefaultColor.green,
-                                          V_IU_Box_DefaultColor.blue);
-    y := i*2+marge+1;
-    self._box.Canvas.MoveTo(self._box.width div 4,y);
-    self._box.Canvas.LineTo(self._box.width - self._box.width div 4,y);
+      self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red,
+                                           V_IU_Box_TextColorHigh.green,
+                                           V_IU_Box_TextColorHigh.blue);
+  // ***
+  // * Add v0.15
   end;
-  // drawing frame of the box
-  self._box.Canvas.Pen.Color := clBlack;
-  self._box.Canvas.MoveTo(0,0);
-  self._box.Canvas.LineTo(self._box.Width-1, 0);
-  self._box.Canvas.Pen.Color := rgbtocolor(V_IU_Box_ColorHigh.red,
-                                           V_IU_Box_ColorHigh.green,
-                                           V_IU_Box_ColorHigh.blue);
-  self._box.Canvas.LineTo(self._box.Width-1, self._box.Height-1);
-  self._box.Canvas.LineTo(0, self._box.Height-1);
-  self._box.Canvas.Pen.Color := clBlack;
-  self._box.Canvas.LineTo(0,0);
-
-  // setting text color
-  if not isSelected then
-    self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorDefault.red,
-                                         V_IU_Box_TextColorDefault.green,
-                                         V_IU_Box_TextColorDefault.blue)
-  else
-    self._caption.Font.Color:=rgbtocolor(V_IU_Box_TextColorHigh.red,
-                                         V_IU_Box_TextColorHigh.green,
-                                         V_IU_Box_TextColorHigh.blue);
+  // ***
 end ;
 
 // ***
@@ -3566,6 +3751,27 @@ end;
 
 // *
 // * End Add V0.10
+// ***
+
+// ***
+// * Add v0.15
+// ***
+// * overriding _setVisible for hidding or showing graphical objects
+// *
+// @author Pascal Lemaitre
+// *
+procedure T_IU_RadioButton._setVisible (value : boolean) ;
+begin
+  if self._caption <> nil then self._caption.visible := value;
+  if self._box <> nil then self._box.visible := value;
+end;
+
+function T_IU_RadioButton._getVisible : boolean;
+begin
+  _getVisible := self._box.Visible;
+end;
+// *
+// * End Add v0.15
 // ***
 
 

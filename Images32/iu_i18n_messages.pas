@@ -9,7 +9,8 @@ unit IU_I18N_Messages;
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
-// * v.10 * Adding current dir caption for import file
+// * v0.11 : Adding exception message for control selected but not visible
+// * v0.10 : Adding current dir caption for import file
 // * v0.9 : Adding exception and text for Exif reading
 // * v0.8 : Adding text for drives status list
 // * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
@@ -112,6 +113,11 @@ const
   // ***
   // * Add v0.10
   K_IU_ExceptMSG_ExecError=53;
+  // ***
+
+  // ***
+  // * Add v0.11
+  K_IU_ExceptMSG_SetFocusError=54;
   // ***
 
   // *************************************************************
@@ -596,6 +602,14 @@ begin
   IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ExecError] := 'exiv2.exe non installé. L''installer depuis les dépôts !';
   IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ExecError] := 'exiv2 not found. Could be install from repositories !';
   {$endif}
+  // ***
+
+  // ***
+  // * Add v0.11
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_SetFocusError] := 'Impossible de dessiner un contrôle cacher et sélectionné !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_SetFocusError] := 'Can''t draw an hidden and selected control !';
+  // *
+  // * End Add v0.11
   // ***
 
 end.

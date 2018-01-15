@@ -143,8 +143,10 @@ begin
   end;
   scrollBar := T_IU_ScrollBar.Create(iu_tb_cursordirection_standard, _maxy - form1.Panel1.height, Image1);
   scrollBar.onChange:= @_scroll;
-  if _maxy > Panel1.Height then Image1.visible :=true
-  else Image1.visible := false;
+  //
+  if _maxy > Panel1.Height then scrollBar.visible :=true
+  // else Image1.visible := false;
+  else scrollBar.visible := true;
   scrollBar._setValue(0);
   scrollBar._draw;
   Form1.Refresh;

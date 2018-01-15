@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 595
+  Left = 480
   Height = 240
-  Top = 66
+  Top = 235
   Width = 345
   Caption = 'Form1'
   ClientHeight = 240
@@ -45,16 +45,17 @@ object Form1: TForm1
     Height = 49
     Top = 82
     Width = 276
-    Caption = 'Progression'
+    Font.Color = clCream
+    ParentFont = False
     TabOrder = 1
   end
   object Button1: TButton
-    Left = 32
+    Left = 24
     Height = 23
-    Top = 171
+    Top = 208
     Width = 75
     Caption = 'Go'
-    Color = 4473924
+    Color = 6316128
     OnClick = Button1Click
     TabOrder = 2
   end
@@ -115,6 +116,35 @@ object Form1: TForm1
     Top = 210
     Width = 66
     Caption = 'RadioButton'
+    ParentColor = False
+  end
+  object Image7: TImage
+    Left = 75
+    Height = 14
+    Top = 151
+    Width = 26
+  end
+  object Image8: TImage
+    Left = 102
+    Height = 14
+    Top = 151
+    Width = 26
+  end
+  object Label5: TLabel
+    Left = 24
+    Height = 15
+    Top = 151
+    Width = 40
+    Alignment = taRightJustify
+    Caption = 'Gauche'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 131
+    Height = 15
+    Top = 151
+    Width = 26
+    Caption = 'Droit'
     ParentColor = False
   end
 end

@@ -7,7 +7,6 @@ object Form1: TForm1
   ClientHeight = 134
   ClientWidth = 500
   Color = clSilver
-  Constraints.MaxHeight = 134
   Constraints.MinHeight = 134
   Constraints.MinWidth = 500
   OnChangeBounds = FormChangeBounds

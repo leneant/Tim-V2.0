@@ -5,10 +5,13 @@ unit IU_I18N_Messages;
 // * Unit provides all declaration and messages initialization for internationalization
 // * Creation Date : 2017 September
 // *
-// * Version : 0.7
+// * Version : 0.10
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v.10 * Adding current dir caption for import file
+// * v0.9 : Adding exception and text for Exif reading
+// * v0.8 : Adding text for drives status list
 // * v0.7 : Adding text for contextual menu for importFile. Del button text for invert font color
 // * v0.6 : For dedicated linux -> Adding text for list invert font color
 // * v0.5 : Adding loading image file error message.
@@ -99,6 +102,18 @@ const
   // * End Add v0.6
   // ***
 
+  // ***
+  // * Add v0.9
+  K_IU_ExceptMSG_ProcessError = 51;
+  K_IU_ExceptMSG_GetExifListError = 52;
+  // *
+  // * End Add v0.9
+
+  // ***
+  // * Add v0.10
+  K_IU_ExceptMSG_ExecError=53;
+  // ***
+
   // *************************************************************
   // IHM Messages
 
@@ -142,7 +157,7 @@ const
 
 
   // ***
-  // * Add v0.6
+  // * Add v0.7
   K_IU_HIMSG_setWindowsColor = 20;
   K_IU_HIMSG_setTextColor = 21;
   K_IU_HIMSG_setListColor = 22;
@@ -150,12 +165,49 @@ const
   K_IU_HIMSG_setListTextColor = 24;
   K_IU_HIMSG_setDropDownColor = 25;
   K_IU_HIMSG_setDropDownSelectedColor = 26;
-  K_IU_HIMSG_setDropDownTextColor = 28;
-  K_IU_HIMSG_setButtonColor = 29;
-  K_IU_HIMSG_setButtonSelectedColor = 30;
-  K_IU_HIMSG_setStandardColors = 32;
+  K_IU_HIMSG_setDropDownTextColor = 27;
+  K_IU_HIMSG_setButtonColor = 28;
+  K_IU_HIMSG_setButtonSelectedColor = 29;
+  K_IU_HIMSG_setStandardColors = 30;
   // *
-  // * End Add v0.6
+  // * End Add v0.7
+  // ***
+
+  // ***
+  // * Add v0.8
+  K_IU_HIMSG_Size = 31;
+  K_IU_HIMSG_Free = 32;
+  // *
+  // * End Add v0.8
+  // ***
+
+  // ***
+  // * Add v0.9
+  K_IU_HIMSG_Yes = 33;
+  K_IU_HIMSG_No = 34;
+  K_IU_HIMSG_TopLeft = 35;
+  K_IU_HIMSG_RightTop = 36;
+  K_IU_HIMSG_BottomRight = 37;
+  K_IU_HIMSG_LeftBottom = 38;
+  // *
+  // * End Add v0.9
+  // ***
+
+  // ***
+  // * Add v0.10
+  K_IU_HIMSG_CurrentDir = 39;
+  K_IU_HIMSG_PhotoOrientation = 40;
+  K_IU_HIMSG_PhotoUnknowOrientation=41;
+  K_IU_HIMSG_PhotoAperture=42;
+  K_IU_HIMSG_PhotoSpeed=43;
+  K_IU_HIMSG_PhotoISO=44;
+  K_IU_HIMSG_PhotoFocal=45;
+  K_IU_HIMSG_PhotoColorSpace=46;
+  K_IU_HIMSG_PhotoFlash=47;
+  K_IU_HIMSG_PhotoShootDate=48;
+  K_IU_HIMSG_PhotoArtist=49;
+  K_IU_HIMSG_PhotoCopyrights=50;
+  K_IU_HIMSG_APN=51;
   // ***
 
   type
@@ -282,7 +334,7 @@ begin
   // ***
 
   // ***
-  // * Add v0.6
+  // * Add v0.7
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setWindowsColor] := 'Couleur de la fenêtre';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setWindowsColor] := 'Windows Color';
 
@@ -316,7 +368,85 @@ begin
   IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_setStandardColors] := 'Couleurs standards';
   IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_setStandardColors] := 'Standard Colors';
   // *
-  // * End Add v0.6
+  // * End Add v0.7
+  // ***
+
+  // ***
+  // * Add v0.8
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Size] := 'Taille';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Size] := 'Size';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Free] := 'Libre';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Free] := 'Free';
+  // *
+  // * End Add v0.8
+  // ***
+
+  // ***
+  // * Add v0.9
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_Yes] := 'Oui';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_Yes] := 'Yes';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_No] := 'Non';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_No] := 'No';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_TopLeft] := 'Dessus, Gauche';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_TopLeft] := 'Top, Left';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_RightTop] := 'Droit, Dessus';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_RightTop] := 'Right, Top';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_BottomRight] := 'Dessous, Droit';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_BottomRight] := 'Bottom, Right';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_LeftBottom] := 'Gauche, Dessous';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_LeftBottom] := 'Left, Bottom';
+  // *
+  // * End Add v0.9
+  // ***
+
+  // ***
+  // * Add v0.10
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_CurrentDir] := 'Répertoire courant :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_CurrentDir] := 'Current dir :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_APN] := 'Appareil :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_APN] := 'Camera :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoOrientation] := 'Orientation :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoUnknowOrientation] := 'Non reconnue';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoUnknowOrientation] := 'Unknow';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoAperture] := 'Ouverture :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoAperture] := 'Aperture :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoSpeed] := 'Vitesse :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoSpeed] := 'Speed :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoISO] := 'ISO :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoISO] := 'ISO :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoFocal] := 'Focale :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoFocal] := 'Focal :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoColorSpace] := 'Espace couleur :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoColorSpace] := 'Space color :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoFlash] := 'Flash :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoFlash] := 'Flash :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoShootDate] := 'Date prise de vue :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoShootDate] := 'Shooting date :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoArtist] := 'Auteur :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoArtist] := 'Artist :';
+
+  IU_HI_Messages[K_IU_I18N_FRENCH,K_IU_HIMSG_PhotoCopyrights] := 'Copyrights :';
+  IU_HI_Messages[K_IU_I18N_ENGLISH,K_IU_HIMSG_PhotoCopyrights] := 'Copyrights :';
+  // *
+  // * End Add v0.10
   // ***
 
   // init exception messages
@@ -444,6 +574,28 @@ begin
   IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_FileWriteError] := 'Can''t create file !';
   // *
   // * End Add v0.6
+  // ***
+
+  // ***
+  // * Add v0.9
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ProcessError] := 'Erreur dans l''exécution de la commande exiv2. Vérifier si exiv2 est installé !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ProcessError] := 'exiv2 run error. Check if exiv2 is installed !';
+
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_GetExifListError] := 'Impossible de récupérer les informations sortantes de exiv2 !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_GetExifListError] := 'Can''t get outputs from exiv2 !';
+
+  // *
+  // End Add v0.9
+  // ***
+  // ***
+  // * Add v0.10
+  {$ifdef windows}
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ExecError] := 'exiv2.exe non installé. Il doit être dans le répertoire de l''application !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ExecError] := 'exiv2 not found. It must be located in application directory !';
+  {$else}
+  IU_ExceptionsMessages[K_IU_I18N_FRENCH, K_IU_ExceptMSG_ExecError] := 'exiv2.exe non installé. L''installer depuis les dépôts !';
+  IU_ExceptionsMessages[K_IU_I18N_ENGLISH, K_IU_ExceptMSG_ExecError] := 'exiv2 not found. Could be install from repositories !';
+  {$endif}
   // ***
 
 end.

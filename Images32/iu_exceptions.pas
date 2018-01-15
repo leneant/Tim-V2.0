@@ -5,10 +5,11 @@ unit IU_Exceptions;
 // * Unit provides all images with 32 bytes per chanel exceptions
 // * Creation Date : 2017 September
 // *
-// * Version : 0.4
+// * Version : 0.5
 // * Version Date : 2018 January
 // * Version Contributors : Pascal Lemaître
 // *
+// * v0.5 : Adding exception when drawing a select control not visible
 // * v0.4 : Adding exception for exif reading
 // * v0.3 : Adding exception for properties file management
 // * v0.2 : Adding exception for IU_T_StringDoubleChainedList
@@ -172,6 +173,11 @@ Type
   // * End Add v0.4
   // ***
 
+  // ***
+  // * Add v0.5
+  IU_RSetFocusOnNotVisibleControl = class(exception);
+  // Can't draw a non visible selected control
+  // ***
 implementation
 
 end.
