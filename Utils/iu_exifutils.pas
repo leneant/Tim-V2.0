@@ -3,9 +3,11 @@ unit IU_ExifUtils;
 // * Unit defining controls objects like progress bar, scroll bars, tracks bars...
 // * Creation date : 2018 January
 // *
-// * Version : 0.1
+// * Version : 0.2
 // * Version Date : 2018 January
 // * Version contributors : Pascal Lemaître
+// *
+// * v0.2 : Adding extract exposure tim from exif. If shutterspeed not exist exposure time is displaying
 // *
 // * @authors : Pascal Lemaître
 // *
@@ -38,6 +40,10 @@ const
   IU_K_Exif_ISO              = 'ISO';
   IU_K_Exif_Aperture         = 'Aperture';
   IU_K_Exif_Speed            = 'Speed';
+  // ***
+  // * Add v0.2
+  IU_K_Exif_ExposureTime     = 'ExposureTime';
+  // ***
   IU_K_Exif_Focal            = 'Focal';
   IU_K_Exif_ColorSpace       = 'ColorSpace';
   IU_K_Exif_Flash            = 'Flash';
@@ -78,6 +84,10 @@ const
   ISO                     = 'Exif.Photo.ISOSpeedRatings';
   Aperture                = 'Exif.Photo.FNumber';
   Speed                   = 'Exif.Photo.ShutterSpeedValue';
+  // ***
+  // * Add v0.2
+  ExposureTime            = 'Exif.Photo.ExposureTime';
+  // ***
   Focal                   = 'Exif.Photo.FocalLength';
   ColorSpace              = 'Exif.Photo.ColorSpace';
   Flash                   = 'Exif.Photo.Flash';
@@ -124,6 +134,11 @@ begin
       AProcess.Parameters.Add(Aperture);
       AProcess.Parameters.Add('-K');
       AProcess.Parameters.Add(Speed);
+      // ***
+      // * Add v0.2
+      AProcess.Parameters.Add('-K');
+      AProcess.Parameters.Add(ExposureTime);
+      // ***
       AProcess.Parameters.Add('-K');
       AProcess.Parameters.Add(Focal);
       AProcess.Parameters.Add('-K');
@@ -148,6 +163,11 @@ begin
       AProcess.Parameters.Add(Aperture);
       AProcess.Parameters.Add('-g');
       AProcess.Parameters.Add(Speed);
+      // ***
+      // * Add v0.2
+      AProcess.Parameters.Add('-g');
+      AProcess.Parameters.Add(ExposureTime);
+      // ***
       AProcess.Parameters.Add('-g');
       AProcess.Parameters.Add(Focal);
       AProcess.Parameters.Add('-g');
@@ -245,7 +265,14 @@ begin
                           if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
                             _test := leftstr(line, length(Flash) + 1);
                             if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
+                              // ***
+                              // Add v0.2
+                              begin
+                                _test := leftstr(line, length(ExposureTime) + 1);
+                                if (_test = Flash + ' ') then _return := IU_K_Exif_ExposureTime else
+                              // ***
                               _return := '';
+                              end;
                           end;
                         end;
                       end;

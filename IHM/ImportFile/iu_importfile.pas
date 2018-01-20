@@ -960,6 +960,28 @@ begin
     ListBox1DblClick(Sender);
 end;
 
+// ***
+// * Add IU_ExifUtils v0.2
+// * Internal function for checking if shutter speed info exist in exif list
+// *
+// @author : Pascal Lemaitre
+// *
+// * in Exif list in an array
+// *
+// * return true if shutter speed found else return false
+function isShutterSpeedInfo(var _exifsList : IU_T_ExifArray) : boolean;
+var i : integer;
+  _return : boolean;
+begin
+  _return := false;
+  for i := Low(_exifsList) to High(_exifsList) do
+    if _exifsList[i].Exif = IU_K_Exif_Speed then _return := true;
+  isShutterSpeedInfo := _return;
+end;
+// *
+// * End Add IU_ExifUtils v0.2
+// ***
+
 procedure TImportFile.ListBox2Click(Sender: TObject);
 var stretched : TBGRABitmap;
   _width, _height, x, y, i : integer;
@@ -970,6 +992,10 @@ var stretched : TBGRABitmap;
   // * Add v0.8
   _exifsList : IU_T_ExifArray ;
   _value : string;
+  // ***
+  // ***
+  // * Add IU_ExifUtils v0.2
+  speedInfo : boolean;
   // ***
 begin
   ListBox2.Color:=WindowsColors.ListSelectedColor;
@@ -1053,6 +1079,10 @@ begin
         Label21.Caption := '';
         Label22.Caption := '';
         // FullFill exifs values
+        // ***
+        // * Add IU_ExifUtils v0.2
+        speedInfo := isShutterSpeedInfo(_exifsList);
+        // ***
         for i := Low(_exifsList) to High(_exifsList) do begin
           // 1 APN - Label12
           if _exifsList[i].Exif = IU_K_Exif_APN then
@@ -1087,6 +1117,14 @@ begin
           if _exifsList[i].Exif = IU_K_Exif_Speed then
              Label15.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoSpeed] + _exifsList[i].value
           else
+          // ***
+          // * Add IU_ExifUtils v0.2
+          if (_exifsList[i].Exif = IU_K_Exif_ExposureTime) and (not speedInfo) then
+            Label15.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoSpeed] + _exifsList[i].value
+          else
+          // *
+          // * End Add IU_ExifUtils v0.2
+          // ***
           // 5 ISO - Label 16
           if _exifsList[i].Exif = IU_K_Exif_ISO then
              Label16.Caption :=  IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoISO] + _exifsList[i].value
