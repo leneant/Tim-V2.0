@@ -77,7 +77,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="/home/pascal/Developpements/Tim-V2.0/Utils;../../Images32;../../Utils"/>
+      <OtherUnitFiles Value="/home/pascal/Developpements/Tim-V2.0/Utils/;../../Images32;../../Utils"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

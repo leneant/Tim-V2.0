@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit1.pas"/>
@@ -23,7 +23,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="300"/>
         <CursorPos Y="321"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -35,7 +35,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="3241"/>
         <CursorPos X="64" Y="3241"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -45,7 +45,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="227"/>
         <CursorPos X="15" Y="97"/>
-        <UsageCount Value="87"/>
+        <UsageCount Value="88"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -54,7 +54,7 @@
         <UnitName Value="IU_Exceptions"/>
         <TopLine Value="160"/>
         <CursorPos X="34" Y="178"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -64,7 +64,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="597"/>
         <CursorPos X="26" Y="608"/>
-        <UsageCount Value="64"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>

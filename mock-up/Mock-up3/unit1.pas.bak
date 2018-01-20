@@ -6,7 +6,12 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, RTTICtrls, Forms, Controls, Graphics, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, IU_TimControls, IU_Types;
+  StdCtrls, ExtCtrls, Buttons, IU_TimControls, IU_Types
+  // ***
+  // * Add IU_TimControls v0.15
+  , IU_Exceptions, IU_I18N_Messages
+  // ***
+  ;
 
 type
 
@@ -177,6 +182,7 @@ begin
   // * End Added IU_TimControls V0.9
   _progressBar._init;
   _scrollBar._init;
+  _scrollBar._setValueInInterval(5000);
 
   BaseY[1] := Edit1.Top;
   BaseY[2] := Image1.Top;
@@ -218,6 +224,10 @@ begin
   LocalCom.Add(@LocalCom, @_comB);
   // ***
 
+  // ***
+  // * Testing visibility
+  _radioButton3._setvisible(false);  // -> Ok
+  // ***
 
 end;
 
@@ -277,9 +287,38 @@ procedure TForm1.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
 begin
   if Key = K_IU_Key_TAB then begin
     Key := word(0);
-    if ssShift in Shift then LocalObjectQueue.MovePrevious
-    else LocalObjectQueue.MoveNext;
-    LocalObjectQueue.setFocus(TForm(Form1));
+    if ssShift in Shift then begin
+      LocalObjectQueue.MovePrevious;
+    end else begin
+      LocalObjectQueue.MoveNext;
+    end;
+    // ***
+    // Add IU_TimControls v0.15
+    try
+      LocalObjectQueue.setFocus(TForm(Form1));
+      if (_trackBar.isSelected) and (not _trackBar._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_scrollBar.isSelected) and (not _scrollBar._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_checkbox.isSelected) and (not _checkbox._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton.isSelected) and (not _radioButton._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton2.isSelected) and (not _radioButton2._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_radioButton3.isSelected) and (not _radioButton3._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_comA.isSelected) and (not _comA._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError])
+      else if (_comB.isSelected) and (not _comB._getVisible) then
+        raise IU_RSetFocusOnNotVisibleControl.Create(IU_ExceptionsMessages[IU_CurrentLang, K_IU_ExceptMSG_SetFocusError]);
+    except
+      Key := K_IU_Key_TAB ;
+      Form1.FormKeyDown(Sender, Key, Shift);
+    end;
+    // *
+    // * End Add IU_TimControls v0.15
+
   end else begin
     _trackBar._setValueFromKeyboard(Key);
     _scrollBar._setValueFromKeyboard(Key);
