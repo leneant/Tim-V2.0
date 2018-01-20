@@ -1114,8 +1114,10 @@ begin
              Label14.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoAperture]  + _exifsList[i].value
           else
           // 4 Speed - Label 15
-          if _exifsList[i].Exif = IU_K_Exif_Speed then
-             Label15.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoSpeed] + _exifsList[i].value
+          if _exifsList[i].Exif = IU_K_Exif_Speed then begin
+             Label15.Caption := IU_HI_Messages[IU_CurrentLang,K_IU_HIMSG_PhotoSpeed] + _exifsList[i].value ;
+             speedInfo := true;
+          end
           else
           // ***
           // * Add IU_ExifUtils v0.2

@@ -255,24 +255,23 @@ begin
                     // shoot speed
                     _test := leftstr(line, length(Speed) + 1);
                     if (_test = Speed + ' ') then _return := IU_K_Exif_Speed else begin
+                      // ***
+                      // Add v0.2
+                        _test := leftstr(line, length(ExposureTime) + 1);
+                        if (_test = ExposureTime + ' ') then _return := IU_K_Exif_ExposureTime else begin
+                      // ***
                       // Focal
-                      _test := leftstr(line, length(Focal) + 1);
-                      if (_test = Focal + ' ') then _return := IU_K_Exif_Focal else begin
-                        // Color Space
-                        _test := leftstr(line, length(ColorSpace) + 1);
-                        if (_test = ColorSpace + ' ') then _return := IU_K_Exif_ColorSpace else begin
-                          _test := leftstr(line, length(PhotoOrientation) + 1);
-                          if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
-                            _test := leftstr(line, length(Flash) + 1);
-                            if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
-                              // ***
-                              // Add v0.2
-                              begin
-                                _test := leftstr(line, length(ExposureTime) + 1);
-                                if (_test = Flash + ' ') then _return := IU_K_Exif_ExposureTime else
-                              // ***
-                              _return := '';
-                              end;
+                          _test := leftstr(line, length(Focal) + 1);
+                          if (_test = Focal + ' ') then _return := IU_K_Exif_Focal else begin
+                            // Color Space
+                            _test := leftstr(line, length(ColorSpace) + 1);
+                            if (_test = ColorSpace + ' ') then _return := IU_K_Exif_ColorSpace else begin
+                              _test := leftstr(line, length(PhotoOrientation) + 1);
+                              if (_test = PhotoOrientation + ' ') then _return := IU_K_Exif_Orientation else begin
+                                _test := leftstr(line, length(Flash) + 1);
+                                if (_test = Flash + ' ') then _return := IU_K_Exif_Flash else
+                                 _return := '';
+                            end;
                           end;
                         end;
                       end;
