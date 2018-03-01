@@ -1,0 +1,76 @@
+object MemoryTest: TMemoryTest
+  Left = 366
+  Height = 148
+  Top = 112
+  Width = 320
+  Caption = 'MemoryTest'
+  ClientHeight = 148
+  ClientWidth = 320
+  OnCreate = FormCreate
+  LCLVersion = '1.6.0.4'
+  object Label1: TLabel
+    Left = 9
+    Height = 14
+    Top = 11
+    Width = 113
+    Caption = 'Installed memory :'
+    ParentColor = False
+  end
+  object LBL_InstalledMemory: TLabel
+    Left = 138
+    Height = 14
+    Top = 11
+    Width = 127
+    Caption = 'LBL_InstalledMemory'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 9
+    Height = 14
+    Top = 40
+    Width = 170
+    Caption = 'Coef for allocating memory :'
+    ParentColor = False
+  end
+  object LBL_CoefMem: TLabel
+    Left = 186
+    Height = 14
+    Top = 40
+    Width = 83
+    Caption = 'LBL_CoefMem'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 9
+    Height = 14
+    Top = 93
+    Width = 168
+    Caption = 'Size for allocating memory :'
+    ParentColor = False
+    OnClick = Label3Click
+  end
+  object LBL_AllocMemory: TLabel
+    Left = 186
+    Height = 14
+    Top = 93
+    Width = 104
+    Caption = 'LBL_AllocMemory'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 9
+    Height = 14
+    Top = 67
+    Width = 69
+    Caption = 'Resolution :'
+    ParentColor = False
+  end
+  object LBL_Resolution: TLabel
+    Left = 94
+    Height = 14
+    Top = 67
+    Width = 89
+    Caption = 'LBL_Resolution'
+    ParentColor = False
+  end
+end
