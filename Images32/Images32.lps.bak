@@ -40,7 +40,6 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_Types"/>
         <EditorIndex Value="8"/>
-        <TopLine Value="276"/>
         <CursorPos X="9" Y="316"/>
         <UsageCount Value="144"/>
         <Loaded Value="True"/>
@@ -66,9 +65,10 @@
         <Filename Value="iu_generalutils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_GeneralUtils"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
-        <TopLine Value="306"/>
-        <CursorPos X="7" Y="341"/>
+        <TopLine Value="474"/>
+        <CursorPos X="27" Y="488"/>
         <UsageCount Value="140"/>
         <Loaded Value="True"/>
       </Unit6>
@@ -106,9 +106,8 @@
         <Filename Value="iu_frames.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_Frames"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="2868"/>
+        <TopLine Value="199"/>
         <CursorPos X="9" Y="2908"/>
         <UsageCount Value="107"/>
         <Loaded Value="True"/>

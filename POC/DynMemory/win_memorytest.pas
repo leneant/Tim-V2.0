@@ -54,7 +54,7 @@ begin
   InstalledMemory := IU_getInstalledRAM;
   CoefForAlloc := IU_getAdaptationRAMCoefWithoutAlpha;
   C9 := 8*InstalledMemory/1024/1024/1024*CoefForAlloc;
-  AllocatingSize := ((C9*1024*1024+700)*3*3/1024/1024/1024)*3+0.07;
+  AllocatingSize := ((C9*1024*1024+700)*3*4/1024/1024/1024)*3+0.07;
   LBL_InstalledMemory.Caption := IU_RealToString(InstalledMemory/1024/1024/1024, 2) + ' Gb';
   LBL_CoefMem.Caption := IU_RealToString(CoefForAlloc, 4);
   LBL_Resolution.Caption := IU_RealToString(C9,2) + ' Mp';

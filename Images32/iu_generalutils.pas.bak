@@ -3,10 +3,11 @@ unit IU_GeneralUtils;
 // * Unit provides generals utils services (adapted from TIm V1.x branch)
 // * Creation Date : 2017 September
 // *
-// * Version : 1.8
-// * Version Date : 2018 January
+// * Version : 1.9
+// * Version Date : 2018 March
 // * Version Contributors : Pascal Lemaître
 // *
+// * Version 1.9 : New method to calc adaptation coef for memory allocation depending on memory size
 // * Version 1.8 : Adding Linux and Windows drives properties (conditionnal compilations)
 // * Version 1.7 : Procedure to save and read user properties for windows
 // * Version 1.6 : Testing equality in file name because under windows x.tiff = x.TIFF
@@ -249,6 +250,20 @@ function IU_getInstalledRAM : qword;
 // ***
 function IU_getAdaptationRAMCoef : real;
 // function return a real has an allocation memory coef to adapt size of frame according to installed RAM
+
+// ***
+// Add v1.8
+// ***
+// * Return coef adaptation for allocated memory according to installed RAM
+// *
+// * @author : Pascal Lemaître
+// *
+// * return : adaptation coef
+// *
+// ***
+function IU_getAdaptationRAMCoefWithoutAlpha : real;
+// function return a real has an allocation memory coef to adapt size of frame according to installed RAM
+
 
 // ***
 // * Add V1.2
@@ -624,10 +639,37 @@ var
   coef : real;
 begin
   RAM := IU_getInstalledRAM / 1024 / 1024 /1024  ;
+  // ***
+  // * Modified v1.8
   // coef := real(IU_min(2.05, 1+((RAM*_K)/ 1024 / 1024 / 1024))); // old version
-  coef := 0.8+RAM/(1+((33.55*RAM)/128));
+  coef := 0.4+RAM/(1+((59*RAM)/128));
+  // ***
   IU_getAdaptationRAMCoef := coef;
 end;
+
+// ***
+// Add v1.8
+// ***
+// * Return coef adaptation for allocated memory according to installed RAM
+// *
+// * @author : Pascal Lemaître
+// *
+// * return : adaptation coef
+// *
+// ***
+function IU_getAdaptationRAMCoefWithoutAlpha : real;
+// function return a real has an allocation memory coef to adapt size of frame according to installed RAM
+var
+  RAM : real;
+  coef : real;
+begin
+  RAM := IU_getInstalledRAM / 1024 / 1024 /1024  ;
+  coef := 0.8+RAM/(1+((33.55*RAM)/128));
+  IU_getAdaptationRAMCoefWithoutAlpha := coef;
+end;
+// *
+// * End Add V1.8
+// ***
 
 // ***
 // * Add V1.2

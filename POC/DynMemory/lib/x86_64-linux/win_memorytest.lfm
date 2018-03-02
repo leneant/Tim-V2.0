@@ -1,7 +1,7 @@
 object MemoryTest: TMemoryTest
-  Left = 366
+  Left = 365
   Height = 148
-  Top = 112
+  Top = 84
   Width = 320
   Caption = 'MemoryTest'
   ClientHeight = 148

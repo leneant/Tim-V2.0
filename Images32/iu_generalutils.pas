@@ -664,7 +664,7 @@ var
   coef : real;
 begin
   RAM := IU_getInstalledRAM / 1024 / 1024 /1024  ;
-  coef := 0.8+RAM/(1+((33.55*RAM)/128));
+  coef := 0.8+RAM/(1+((48.65*RAM)/128));
   IU_getAdaptationRAMCoefWithoutAlpha := coef;
 end;
 // *
