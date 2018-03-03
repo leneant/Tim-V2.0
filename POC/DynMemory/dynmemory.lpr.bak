@@ -1,0 +1,21 @@
+program dynmemory;
+
+{$mode objfpc}{$H+}
+
+uses
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  cthreads,
+  {$ENDIF}{$ENDIF}
+  Interfaces, // this includes the LCL widgetset
+  Forms, win_memorytest, IU_GeneralUtils, win_memorytest
+  { you can add units after this };
+
+{$R *.res}
+
+begin
+  RequireDerivedFormResource:=True;
+  Application.Initialize;
+  Application.CreateForm(TMemoryTest, MemoryTest);
+  Application.Run;
+end.
+

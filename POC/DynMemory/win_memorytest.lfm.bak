@@ -1,10 +1,10 @@
 object MemoryTest: TMemoryTest
-  Left = 366
-  Height = 148
-  Top = 112
+  Left = 338
+  Height = 261
+  Top = 132
   Width = 320
   Caption = 'MemoryTest'
-  ClientHeight = 148
+  ClientHeight = 261
   ClientWidth = 320
   OnCreate = FormCreate
   LCLVersion = '1.6.0.4'
@@ -71,6 +71,88 @@ object MemoryTest: TMemoryTest
     Top = 67
     Width = 89
     Caption = 'LBL_Resolution'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Left = 9
+    Height = 22
+    Top = 130
+    Width = 95
+    Caption = 'Alloc 1 frame'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Button2: TButton
+    Left = 225
+    Height = 22
+    Top = 130
+    Width = 71
+    Caption = 'Release'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object Label5: TLabel
+    Left = 9
+    Height = 14
+    Top = 162
+    Width = 44
+    Caption = 'Width :'
+    ParentColor = False
+  end
+  object LBL_Largeur: TLabel
+    Left = 80
+    Height = 14
+    Top = 162
+    Width = 8
+    Caption = '0'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 9
+    Height = 14
+    Top = 186
+    Width = 48
+    Caption = 'Height :'
+    ParentColor = False
+  end
+  object LBL_Hauteur: TLabel
+    Left = 80
+    Height = 14
+    Top = 186
+    Width = 8
+    Caption = '0'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 9
+    Height = 14
+    Top = 209
+    Width = 35
+    Caption = 'MPix :'
+    ParentColor = False
+  end
+  object LBL_MPix: TLabel
+    Left = 52
+    Height = 14
+    Top = 209
+    Width = 8
+    Caption = '0'
+    ParentColor = False
+  end
+  object Label9: TLabel
+    Left = 10
+    Height = 14
+    Top = 232
+    Width = 84
+    Caption = 'Memory Size :'
+    ParentColor = False
+  end
+  object LBL_MemSize: TLabel
+    Left = 104
+    Height = 14
+    Top = 232
+    Width = 8
+    Caption = '0'
     ParentColor = False
   end
 end

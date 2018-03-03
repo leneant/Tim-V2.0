@@ -32,7 +32,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="dynmemory.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -49,6 +49,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_GeneralUtils"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="iu_framesmanagement.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="IU_FramesManagement"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
