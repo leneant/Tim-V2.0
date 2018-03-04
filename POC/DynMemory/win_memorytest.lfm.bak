@@ -1,11 +1,11 @@
 object MemoryTest: TMemoryTest
-  Left = 337
-  Height = 261
-  Top = 104
-  Width = 320
+  Left = 329
+  Height = 350
+  Top = 116
+  Width = 533
   Caption = 'MemoryTest'
-  ClientHeight = 261
-  ClientWidth = 320
+  ClientHeight = 350
+  ClientWidth = 533
   OnCreate = FormCreate
   LCLVersion = '1.6.0.4'
   object Label1: TLabel
@@ -140,7 +140,7 @@ object MemoryTest: TMemoryTest
     ParentColor = False
   end
   object Label9: TLabel
-    Left = 10
+    Left = 9
     Height = 14
     Top = 232
     Width = 84
@@ -172,5 +172,54 @@ object MemoryTest: TMemoryTest
     Caption = 'Load'
     OnClick = Button4Click
     TabOrder = 3
+  end
+  object Button5: TButton
+    Left = 9
+    Height = 22
+    Top = 264
+    Width = 87
+    Caption = 'Test'
+    OnClick = Button5Click
+    TabOrder = 4
+  end
+  object Label8: TLabel
+    Left = 130
+    Height = 14
+    Top = 267
+    Width = 67
+    Caption = 'Test value :'
+    ParentColor = False
+  end
+  object LBL_Test: TLabel
+    Left = 216
+    Height = 14
+    Top = 267
+    Width = 8
+    Caption = '0'
+    ParentColor = False
+  end
+  object Button6: TButton
+    Left = 9
+    Height = 20
+    Top = 307
+    Width = 87
+    Caption = 'Copy'
+    TabOrder = 5
+  end
+  object Label10: TLabel
+    Left = 130
+    Height = 14
+    Top = 310
+    Width = 40
+    Caption = 'Value :'
+    ParentColor = False
+  end
+  object LBL_CopyTestValue: TLabel
+    Left = 191
+    Height = 14
+    Top = 310
+    Width = 8
+    Caption = '0'
+    ParentColor = False
   end
 end

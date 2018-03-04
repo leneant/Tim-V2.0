@@ -25,10 +25,11 @@ Type
     _pixels : IU_T_Frame_Data;
   end;
 
-  procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer) ;
+  procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer ; initValue : char) ;
   procedure IU_ReleaseFrame (var frame : IU_T_Frame);
   procedure IU_FrameSave (var frame : IU_T_Frame ; filename : string);
   procedure IU_FrameLoad (var frame : IU_T_Frame ; filename : string);
+  procedure IU_CopyFrame (var frameSource, frameTarget : IU_T_Frame);
 
 implementation
 
@@ -41,7 +42,7 @@ begin
 end;
 
 
-procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer) ;
+procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer ; initValue : char) ;
 var
   _allocsize : qword;
 begin
@@ -52,7 +53,7 @@ begin
   frame._descriptor.Height := Height;
   frame._descriptor.StartX := StartX;
   frame._descriptor.StartY := StartY;
-  fillchar((frame._pixels[0]), _allocsize, 0);
+  fillchar((frame._pixels[0]), _allocsize, initValue);
 end;
 
 procedure IU_ReleaseFrame (var frame : IU_T_Frame);
@@ -63,6 +64,18 @@ begin
   frame._descriptor.Height := 0;
   frame._descriptor.StartX := 0;
   frame._descriptor.StartY := 0;
+end;
+
+procedure IU_CopyFrame (var frameSource, frameTarget : IU_T_Frame);
+var copysize : qword;
+  _size : qword;
+begin
+  frameTarget._descriptor := frameSource._descriptor;
+  _size := frameTarget._descriptor.Width*frameTarget._descriptor.Height;
+  copysize := _size * sizeof(IU_T_Pixel);
+  setLength(frameTarget._pixels, _size);
+  move(frameSource._pixels[0], frameTarget._pixels[0], copysize);
+
 end;
 
 procedure IU_FrameSave (var frame : IU_T_Frame ; filename : string);
@@ -80,7 +93,7 @@ begin
   Blockwrite(_file, frame._descriptor, sizeof(frame._descriptor));
   // #2 writing data
   // #2.1 Start saving address
-  pt := PByte(frame._pixels);
+  pt := PByte(@(frame._pixels[0]));
   // #2.2 max save block
   _maxsave := _privatemin(_allocsize,MAX_BlocSize);
   _saved := 0;
@@ -96,7 +109,10 @@ end;
 
 procedure IU_FrameLoad (var frame : IU_T_Frame ; filename : string);
 var _file : File of Byte;
-    _allocsize : qword;
+    _allocsize, _maxsave : qword;
+    i : integer;
+    pt : ^Byte ; // pointer to follow saving area
+    _loaded, _diff : qword; // how many bytes saved
 begin
   // Open file for reading
   assign(_file, filename);
@@ -108,7 +124,19 @@ begin
   // #3 set data size for the frame
   setLength(frame._pixels, _allocsize);
   // #4 read data
-  Blockread(_file, frame._pixels, _allocsize*sizeof(IU_T_Pixel));
+  // #4.1 Start saving address
+  pt := PByte(@(frame._pixels[0]));
+  // #4.2 max save block
+  _maxsave := _privatemin(_allocsize,MAX_BlocSize);
+  _loaded := 0;
+  _allocsize := _allocsize * *sizeof(IU_T_Pixel);
+  while _loaded < _allocsize do begin
+     Blockread(_file, pt^, _maxsave);
+     pt := pt + _maxsave;
+     inc(_loaded, _maxsave);
+     _diff := _allocsize-_loaded;
+     _maxsave := _privatemin(_diff, _maxsave);
+  end;
   close (_file);
 end;
 

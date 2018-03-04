@@ -3,13 +3,13 @@
   <ProjectSession>
     <Version Value="9"/>
     <BuildModes Active="Default"/>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="dynmemory.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="10"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
       </Unit0>
       <Unit1>
         <Filename Value="win_memorytest.pas"/>
@@ -17,9 +17,9 @@
         <ComponentName Value="MemoryTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="74"/>
-        <CursorPos X="38" Y="114"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="133"/>
+        <CursorPos X="55" Y="155"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -30,7 +30,7 @@
         <EditorIndex Value="3"/>
         <TopLine Value="653"/>
         <CursorPos X="29" Y="667"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -39,16 +39,16 @@
         <UnitName Value="IU_FramesManagement"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="27"/>
-        <CursorPos Y="35"/>
-        <UsageCount Value="25"/>
+        <TopLine Value="65"/>
+        <CursorPos Y="75"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="../../Images32/iu_types.pas"/>
         <UnitName Value="IU_Types"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
@@ -59,127 +59,133 @@
         <CursorPos Y="114"/>
         <UsageCount Value="10"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/3.0.0/packages/pasjpeg/src/jinclude.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos Y="65"/>
+        <UsageCount Value="10"/>
+      </Unit6>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="76" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="90" TopLine="84"/>
       </Position1>
       <Position2>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="77" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="133" Column="84" TopLine="114"/>
       </Position2>
       <Position3>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="79" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="134" Column="84" TopLine="115"/>
       </Position3>
       <Position4>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="82" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="133" TopLine="116"/>
       </Position4>
       <Position5>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="84" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="134" TopLine="116"/>
       </Position5>
       <Position6>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="85" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="135" TopLine="116"/>
       </Position6>
       <Position7>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="86" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="136" TopLine="116"/>
       </Position7>
       <Position8>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="87" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="135" TopLine="116"/>
       </Position8>
       <Position9>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="88" TopLine="69"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="136" TopLine="116"/>
       </Position9>
       <Position10>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="89" TopLine="70"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="135" TopLine="116"/>
       </Position10>
       <Position11>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="90" TopLine="71"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="136" TopLine="116"/>
       </Position11>
       <Position12>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="91" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="135" TopLine="116"/>
       </Position12>
       <Position13>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="86" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="134" Column="30" TopLine="119"/>
       </Position13>
       <Position14>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="87" TopLine="72"/>
+        <Caret Line="28" Column="93" TopLine="9"/>
       </Position14>
       <Position15>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="88" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="99" Column="53" TopLine="94"/>
       </Position15>
       <Position16>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="89" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="133" Column="3" TopLine="119"/>
       </Position16>
       <Position17>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="90" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="134" Column="3" TopLine="120"/>
       </Position17>
       <Position18>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="91" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="135" Column="3" TopLine="121"/>
       </Position18>
       <Position19>
-        <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="86" TopLine="72"/>
+        <Filename Value="win_memorytest.pas"/>
+        <Caret Line="61" Column="18" TopLine="61"/>
       </Position19>
       <Position20>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="87" TopLine="72"/>
+        <Caret Line="74" Column="3" TopLine="57"/>
       </Position20>
       <Position21>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="88" TopLine="72"/>
+        <Caret Line="72" Column="104" TopLine="42"/>
       </Position21>
       <Position22>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="89" TopLine="72"/>
+        <Caret Line="73" TopLine="61"/>
       </Position22>
       <Position23>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="90" TopLine="72"/>
+        <Caret Line="74" TopLine="61"/>
       </Position23>
       <Position24>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="91" TopLine="72"/>
+        <Caret Line="76" Column="35" TopLine="61"/>
       </Position24>
       <Position25>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="86" TopLine="72"/>
+        <Caret Line="75" TopLine="61"/>
       </Position25>
       <Position26>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="93" TopLine="74"/>
+        <Caret Line="76" TopLine="61"/>
       </Position26>
       <Position27>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="94" TopLine="75"/>
+        <Caret Line="77" Column="54" TopLine="65"/>
       </Position27>
       <Position28>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="76" TopLine="72"/>
+        <Caret Line="75" TopLine="65"/>
       </Position28>
       <Position29>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="77" TopLine="72"/>
+        <Caret Line="76" TopLine="65"/>
       </Position29>
       <Position30>
         <Filename Value="iu_framesmanagement.pas"/>
-        <Caret Line="79" TopLine="72"/>
+        <Caret Line="77" TopLine="65"/>
       </Position30>
     </JumpHistory>
   </ProjectSession>

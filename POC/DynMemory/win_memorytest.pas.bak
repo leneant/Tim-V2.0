@@ -20,13 +20,19 @@ type
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
     Label1: TLabel;
+    Label10: TLabel;
+    LBL_CopyTestValue: TLabel;
+    LBL_Test: TLabel;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
+    Label8: TLabel;
     LBL_MemSize: TLabel;
     LBL_MPix: TLabel;
     Label9: TLabel;
@@ -40,6 +46,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
   private
@@ -50,7 +57,7 @@ type
 
 var
   MemoryTest: TMemoryTest;
-  frame : IU_T_Frame;
+  frame, frmecopy : IU_T_Frame;
 
 implementation
 
@@ -85,7 +92,6 @@ var
   _width, _height : integer;
   _size : QWord;
   _sqrsize : real;
-  _h,_w : real;
 begin
   // Size of frame in Mpix
   _size := trunc((8*IU_getInstalledRAM*IU_getAdaptationRAMCoefWithoutAlpha+700*700)/1024/4);
@@ -93,7 +99,7 @@ begin
   _height := trunc(_sqrsize);
   if (_height > 32767) or (_height < 0) then _height := 32768 ; // Max size of a pix dimension
   _width := _height;
-  IU_AllocFrame(frame, _width, _height, 0,0);
+  IU_AllocFrame(frame, _width, _height, 0,0, char(1));
   LBL_Largeur.Caption := inttostr(_width);
   LBL_Hauteur.Caption := inttostr(_height);
   LBL_MPix.Caption := IU_RealToString(_width*_height/1024/1024,2) + ' MPix';
@@ -111,16 +117,28 @@ end;
 
 procedure TMemoryTest.Button3Click(Sender: TObject);
 begin
-  IU_FrameSave(frame, '/home/pascal/tmp/test.frame');
+  IU_FrameSave(frame, '/home/pascal/Temps/test.frame');
 end;
 
 procedure TMemoryTest.Button4Click(Sender: TObject);
 begin
-  IU_FrameLoad(frame, '/home/pascal/tmp/test.frame');
+  IU_FrameLoad(frame, '/home/pascal/Temps/test.frame');
   LBL_Largeur.Caption := inttostr(frame._descriptor.Width);
   LBL_Hauteur.Caption := inttostr(frame._descriptor.Height);
   LBL_MPix.Caption := IU_RealToString(frame._descriptor.Height*frame._descriptor.Width/1024/1024,2) + ' MPix';
   LBL_MemSize.Caption := IU_RealToString(frame._descriptor.Height*frame._descriptor.Width*3*4/1024/1024,2) + ' Mb';
+end;
+
+procedure TMemoryTest.Button5Click(Sender: TObject);
+var i : dword;
+  _value : qword;
+begin
+  LBL_Test.Caption := 'Running sum of each RGB values for all pixels !';
+  Application.ProcessMessages;
+  _value := 0;
+  for i := 0 to frame._descriptor.Height*frame._descriptor.Width - 1 do
+    _value := _value + frame._pixels[i].B+frame._pixels[i].R+frame._pixels[i].G;
+  LBL_Test.Caption := inttostr(_value);
 end;
 
 end.
