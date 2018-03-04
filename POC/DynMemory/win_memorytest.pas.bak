@@ -18,6 +18,8 @@ type
   TMemoryTest = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
@@ -36,6 +38,8 @@ type
     LBL_InstalledMemory: TLabel;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label3Click(Sender: TObject);
   private
@@ -46,7 +50,7 @@ type
 
 var
   MemoryTest: TMemoryTest;
-  frame : IU_Frame;
+  frame : IU_T_Frame;
 
 implementation
 
@@ -103,6 +107,20 @@ begin
   LBL_Hauteur.Caption := '0';
   LBL_MPix.Caption := '0';
   LBL_MemSize.Caption := '0';
+end;
+
+procedure TMemoryTest.Button3Click(Sender: TObject);
+begin
+  IU_FrameSave(frame, '/home/pascal/tmp/test.frame');
+end;
+
+procedure TMemoryTest.Button4Click(Sender: TObject);
+begin
+  IU_FrameLoad(frame, '/home/pascal/tmp/test.frame');
+  LBL_Largeur.Caption := inttostr(frame._descriptor.Width);
+  LBL_Hauteur.Caption := inttostr(frame._descriptor.Height);
+  LBL_MPix.Caption := IU_RealToString(frame._descriptor.Height*frame._descriptor.Width/1024/1024,2) + ' MPix';
+  LBL_MemSize.Caption := IU_RealToString(frame._descriptor.Height*frame._descriptor.Width*3*4/1024/1024,2) + ' Mb';
 end;
 
 end.

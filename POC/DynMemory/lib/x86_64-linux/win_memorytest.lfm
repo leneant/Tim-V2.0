@@ -1,7 +1,7 @@
 object MemoryTest: TMemoryTest
-  Left = 338
+  Left = 337
   Height = 261
-  Top = 132
+  Top = 104
   Width = 320
   Caption = 'MemoryTest'
   ClientHeight = 261
@@ -154,5 +154,23 @@ object MemoryTest: TMemoryTest
     Width = 8
     Caption = '0'
     ParentColor = False
+  end
+  object Button3: TButton
+    Left = 225
+    Height = 22
+    Top = 163
+    Width = 71
+    Caption = 'Save'
+    OnClick = Button3Click
+    TabOrder = 2
+  end
+  object Button4: TButton
+    Left = 225
+    Height = 24
+    Top = 200
+    Width = 71
+    Caption = 'Load'
+    OnClick = Button4Click
+    TabOrder = 3
   end
 end

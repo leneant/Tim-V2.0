@@ -5,53 +5,112 @@ unit IU_FramesManagement;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils
+  , math
+  ;
 
 Type
-  IU_Pixel = record
+  IU_T_Pixel = record
     R,G,B : dword;
   end;
 
-  IU_Frame = record
-    Width, Height : integer;
-    Pixels : array of IU_Pixel;
-    StartX, StartY : integer;
+  IU_T_Frame_Descriptor = record
+    Width, Height, StartX, StartY : integer;
   end;
 
-  procedure IU_AllocFrame (var frame : IU_Frame ; Width, Height, StartX, StartY : integer) ;
-  procedure IU_ReleaseFrame (var frame : IU_Frame);
+  IU_T_Frame_Data = array of IU_T_Pixel;
+
+  IU_T_Frame = record
+    _descriptor : IU_T_Frame_Descriptor;
+    _pixels : IU_T_Frame_Data;
+  end;
+
+  procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer) ;
+  procedure IU_ReleaseFrame (var frame : IU_T_Frame);
+  procedure IU_FrameSave (var frame : IU_T_Frame ; filename : string);
+  procedure IU_FrameLoad (var frame : IU_T_Frame ; filename : string);
 
 implementation
 
-procedure IU_AllocFrame (var frame : IU_Frame ; Width, Height, StartX, StartY : integer) ;
+const MAX_BlocSize =  524288000 ; // 500Mo
+
+
+function _privatemin (a, b : qword) : qword;
+begin
+  if a < b then _privatemin := a else _privatemin := b;
+end;
+
+
+procedure IU_AllocFrame (var frame : IU_T_Frame ; Width, Height, StartX, StartY : integer) ;
 var
-  x: integer;
+  _allocsize : qword;
 begin
   // Trying to set array size
-  SetLength (frame.Pixels, Width*Height);
-  frame.Width := Width;
-  frame.Height := Height;
-  frame.StartX := StartX;
-  frame.StartY := StartY;
-  for x := 0 to Width*Height - 1 do
-      begin
-        frame.Pixels[x].R:=0;
-        frame.Pixels[x].G:=0;
-        frame.Pixels[x].B:=0;
-      end;
+  _allocsize := (Width*Height)*sizeof(IU_T_Pixel);
+  SetLength(frame._pixels, Width * Height);
+  frame._descriptor.Width := Width;
+  frame._descriptor.Height := Height;
+  frame._descriptor.StartX := StartX;
+  frame._descriptor.StartY := StartY;
+  fillchar((frame._pixels[0]), _allocsize, 0);
 end;
 
-procedure IU_ReleaseFrame (var frame : IU_Frame);
+procedure IU_ReleaseFrame (var frame : IU_T_Frame);
 begin
   // Trying to release frame
-  SetLength (frame.Pixels,0,0);
-  frame.Width := 0;
-  frame.Height := 0;
-  frame.StartX := 0;
-  frame.StartY := 0;
+  SetLength(frame._pixels, 0);
+  frame._descriptor.Width := 0;
+  frame._descriptor.Height := 0;
+  frame._descriptor.StartX := 0;
+  frame._descriptor.StartY := 0;
 end;
 
+procedure IU_FrameSave (var frame : IU_T_Frame ; filename : string);
+var _file : File of Byte;
+    _allocsize, _maxsave : qword;
+    i : integer;
+    pt : ^Byte ; // pointer to follow saving area
+    _saved, _diff : qword; // how many bytes saved
+begin
+  _allocsize := (frame._descriptor.Width*frame._descriptor.Height)*sizeof(IU_T_Pixel);
+  // create file for writing
+  assign (_file, filename);
+  rewrite(_file);
+  // #1 writing descriptor
+  Blockwrite(_file, frame._descriptor, sizeof(frame._descriptor));
+  // #2 writing data
+  // #2.1 Start saving address
+  pt := PByte(frame._pixels);
+  // #2.2 max save block
+  _maxsave := _privatemin(_allocsize,MAX_BlocSize);
+  _saved := 0;
+  while _saved < _allocsize do begin
+     Blockwrite(_file, pt^, _maxsave);
+     pt := pt + _maxsave;
+     inc(_saved, _maxsave);
+     _diff := _allocsize-_saved;
+     _maxsave := _privatemin(_diff, _maxsave);
+  end;
+  close(_file);
+end;
 
+procedure IU_FrameLoad (var frame : IU_T_Frame ; filename : string);
+var _file : File of Byte;
+    _allocsize : qword;
+begin
+  // Open file for reading
+  assign(_file, filename);
+  reset(_file);
+  // #1 reading descriptor
+  Blockread(_file, frame._descriptor, sizeof(frame._descriptor));
+  // #2 call data size
+  _allocsize := frame._descriptor.Width * frame._descriptor.Height;
+  // #3 set data size for the frame
+  setLength(frame._pixels, _allocsize);
+  // #4 read data
+  Blockread(_file, frame._pixels, _allocsize*sizeof(IU_T_Pixel));
+  close (_file);
+end;
 
 end.
 

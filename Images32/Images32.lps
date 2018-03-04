@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="9"/>
         <CursorPos X="18" Y="10"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -21,7 +21,7 @@
         <UnitName Value="MainForm"/>
         <TopLine Value="77"/>
         <CursorPos X="3" Y="80"/>
-        <UsageCount Value="132"/>
+        <UsageCount Value="133"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -32,7 +32,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="422"/>
         <CursorPos X="45" Y="328"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
@@ -42,7 +42,7 @@
         <EditorIndex Value="8"/>
         <TopLine Value="270"/>
         <CursorPos X="5" Y="217"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -51,7 +51,7 @@
         <UnitName Value="IU_Pix"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="80" Y="17"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
       </Unit4>
       <Unit5>
         <Filename Value="iu_exceptions.pas"/>
@@ -59,7 +59,7 @@
         <UnitName Value="IU_Exceptions"/>
         <EditorIndex Value="10"/>
         <CursorPos X="66" Y="5"/>
-        <UsageCount Value="144"/>
+        <UsageCount Value="145"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -69,7 +69,7 @@
         <EditorIndex Value="7"/>
         <TopLine Value="474"/>
         <CursorPos X="27" Y="488"/>
-        <UsageCount Value="140"/>
+        <UsageCount Value="141"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -79,7 +79,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="404"/>
         <CursorPos Y="420"/>
-        <UsageCount Value="135"/>
+        <UsageCount Value="136"/>
         <Loaded Value="True"/>
       </Unit7>
       <Unit8>
@@ -89,7 +89,7 @@
         <EditorIndex Value="6"/>
         <TopLine Value="20"/>
         <CursorPos X="4" Y="20"/>
-        <UsageCount Value="128"/>
+        <UsageCount Value="129"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -99,7 +99,7 @@
         <EditorIndex Value="4"/>
         <TopLine Value="4"/>
         <CursorPos X="19" Y="8"/>
-        <UsageCount Value="120"/>
+        <UsageCount Value="121"/>
         <Loaded Value="True"/>
       </Unit9>
       <Unit10>
@@ -108,9 +108,9 @@
         <UnitName Value="IU_Frames"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="2860"/>
-        <CursorPos X="9" Y="2908"/>
-        <UsageCount Value="107"/>
+        <TopLine Value="1113"/>
+        <CursorPos X="50" Y="1128"/>
+        <UsageCount Value="108"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -120,7 +120,7 @@
         <EditorIndex Value="5"/>
         <TopLine Value="173"/>
         <CursorPos Y="199"/>
-        <UsageCount Value="76"/>
+        <UsageCount Value="77"/>
         <Loaded Value="True"/>
       </Unit11>
       <Unit12>
@@ -165,127 +165,123 @@
         <UsageCount Value="7"/>
       </Unit17>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
-        <Filename Value="iu_temporarypixfiles.pas"/>
-        <Caret Line="386" Column="112" TopLine="369"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="596" Column="59" TopLine="580"/>
       </Position1>
       <Position2>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="21"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="645" Column="36" TopLine="616"/>
       </Position2>
       <Position3>
-        <Filename Value="iu_imagesutils.pas"/>
-        <Caret Line="24" Column="39" TopLine="16"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="767" Column="45" TopLine="682"/>
       </Position3>
       <Position4>
-        <Filename Value="iu_imagesutils.pas"/>
-        <Caret Line="28" Column="24" TopLine="16"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="810" Column="45" TopLine="751"/>
       </Position4>
       <Position5>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="1232" TopLine="1208"/>
+        <Caret Line="862" Column="44" TopLine="764"/>
       </Position5>
       <Position6>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="596" Column="59" TopLine="580"/>
+        <Caret Line="910" Column="44" TopLine="807"/>
       </Position6>
       <Position7>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="645" Column="36" TopLine="616"/>
+        <Filename Value="mainform.pas"/>
+        <Caret Line="80" Column="16" TopLine="73"/>
       </Position7>
       <Position8>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="767" Column="45" TopLine="682"/>
+        <Caret Line="2752" Column="20" TopLine="840"/>
       </Position8>
       <Position9>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="810" Column="45" TopLine="751"/>
+        <Caret Line="626" Column="32" TopLine="606"/>
       </Position9>
       <Position10>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="862" Column="44" TopLine="764"/>
+        <Caret Line="983" Column="88" TopLine="960"/>
       </Position10>
       <Position11>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="910" Column="44" TopLine="807"/>
+        <Caret Line="1120" Column="46" TopLine="1087"/>
       </Position11>
       <Position12>
-        <Filename Value="mainform.pas"/>
-        <Caret Line="80" Column="16" TopLine="73"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="2618" Column="74" TopLine="2585"/>
       </Position12>
       <Position13>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="2752" Column="20" TopLine="840"/>
+        <Caret Line="700" Column="36" TopLine="680"/>
       </Position13>
       <Position14>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="626" Column="32" TopLine="606"/>
+        <Caret Line="983" Column="88" TopLine="950"/>
       </Position14>
       <Position15>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="983" Column="88" TopLine="960"/>
+        <Caret Line="1120" Column="46" TopLine="1087"/>
       </Position15>
       <Position16>
         <Filename Value="iu_frames.pas"/>
-        <Caret Line="1120" Column="46" TopLine="1087"/>
+        <Caret Line="2618" Column="74" TopLine="2585"/>
       </Position16>
       <Position17>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="2618" Column="74" TopLine="2585"/>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="248" Column="77" TopLine="208"/>
       </Position17>
       <Position18>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="700" Column="36" TopLine="680"/>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="283" Column="27" TopLine="238"/>
       </Position18>
       <Position19>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="983" Column="88" TopLine="950"/>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="211" Column="25" TopLine="191"/>
       </Position19>
       <Position20>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="1120" Column="46" TopLine="1087"/>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="272" Column="48" TopLine="239"/>
       </Position20>
       <Position21>
-        <Filename Value="iu_frames.pas"/>
-        <Caret Line="2618" Column="74" TopLine="2585"/>
+        <Filename Value="iu_types.pas"/>
+        <Caret Line="211" Column="25" TopLine="191"/>
       </Position21>
       <Position22>
         <Filename Value="iu_types.pas"/>
-        <Caret Line="248" Column="77" TopLine="208"/>
+        <Caret Line="279" Column="79" TopLine="259"/>
       </Position22>
       <Position23>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="283" Column="27" TopLine="238"/>
+        <Filename Value="iu_generalutils.pas"/>
+        <Caret Line="330" Column="33" TopLine="297"/>
       </Position23>
       <Position24>
         <Filename Value="iu_types.pas"/>
-        <Caret Line="211" Column="25" TopLine="191"/>
+        <Caret Line="277" Column="7" TopLine="261"/>
       </Position24>
       <Position25>
         <Filename Value="iu_types.pas"/>
-        <Caret Line="272" Column="48" TopLine="239"/>
+        <Caret Line="316" Column="9"/>
       </Position25>
       <Position26>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="211" Column="25" TopLine="191"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="2908" Column="9" TopLine="2630"/>
       </Position26>
       <Position27>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="279" Column="79" TopLine="259"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="634" Column="32" TopLine="622"/>
       </Position27>
       <Position28>
-        <Filename Value="iu_generalutils.pas"/>
-        <Caret Line="330" Column="33" TopLine="297"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="968" Column="30" TopLine="996"/>
       </Position28>
       <Position29>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="277" Column="7" TopLine="261"/>
+        <Filename Value="iu_frames.pas"/>
+        <Caret Line="652" Column="13" TopLine="640"/>
       </Position29>
-      <Position30>
-        <Filename Value="iu_types.pas"/>
-        <Caret Line="316" Column="9"/>
-      </Position30>
     </JumpHistory>
   </ProjectSession>
   <Debugging>
