@@ -1,7 +1,7 @@
 object MemoryTest: TMemoryTest
-  Left = 329
+  Left = 327
   Height = 350
-  Top = 116
+  Top = 60
   Width = 533
   Caption = 'MemoryTest'
   ClientHeight = 350
@@ -44,13 +44,13 @@ object MemoryTest: TMemoryTest
     Left = 9
     Height = 14
     Top = 93
-    Width = 168
-    Caption = 'Size for allocating memory :'
+    Width = 229
+    Caption = 'Size for allocating memory (1 frame) :'
     ParentColor = False
     OnClick = Label3Click
   end
   object LBL_AllocMemory: TLabel
-    Left = 186
+    Left = 248
     Height = 14
     Top = 93
     Width = 104
@@ -61,12 +61,12 @@ object MemoryTest: TMemoryTest
     Left = 9
     Height = 14
     Top = 67
-    Width = 69
-    Caption = 'Resolution :'
+    Width = 108
+    Caption = 'Frame resolution :'
     ParentColor = False
   end
   object LBL_Resolution: TLabel
-    Left = 94
+    Left = 131
     Height = 14
     Top = 67
     Width = 89

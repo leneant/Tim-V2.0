@@ -78,27 +78,30 @@ var
   AllocatingSize : real;
   C9 : real;
 begin
-  InstalledMemory := IU_getInstalledRAM;
+  InstalledMemory := IU_getInstalledRAM; // G Bytes
   CoefForAlloc := IU_getAdaptationRAMCoefWithoutAlpha;
-  C9 := 8*InstalledMemory/1024/1024/1024*CoefForAlloc;
-  AllocatingSize := ((C9*1024*1024+700)*3*4/1024/1024/1024)*3+0.14;
+  AllocatingSize := (71*(InstalledMemory/1024/1024/1024)-30);
+  C9 :=  AllocatingSize / 3 / 4;
   LBL_InstalledMemory.Caption := IU_RealToString(InstalledMemory/1024/1024/1024, 2) + ' Gb';
   LBL_CoefMem.Caption := IU_RealToString(CoefForAlloc, 4);
   LBL_Resolution.Caption := IU_RealToString(C9,2) + ' Mp';
-  LBL_AllocMemory.Caption := IU_RealToString(AllocatingSize,2) + ' Gb';
+  LBL_AllocMemory.Caption := IU_RealToString(AllocatingSize,2) + ' Mb';
 end;
 
 procedure TMemoryTest.Button1Click(Sender: TObject);
 var
   _width, _height : integer;
-  _size : QWord;
+  _size : real;
   _sqrsize : real;
+  _ram : real;
 begin
   // Size of frame in Mpix
-  _size := trunc((8*IU_getInstalledRAM*IU_getAdaptationRAMCoefWithoutAlpha+700*700)/1024/4);
-  _sqrsize := sqrt(_size);
-  _height := trunc(_sqrsize);
-  if (_height > 32767) or (_height < 0) then _height := 32768 ; // Max size of a pix dimension
+
+  _ram := IU_getInstalledRAM/1024/1024/1024; // G Bytes
+  _size := (71*_ram-30)/3/4 *1024*1024; // Pix
+  _sqrsize := sqrt(_size);  // Pix
+  _height := trunc(_sqrsize); // Pix
+  if (_height > 32767) or (_height < 0) then _height := 32767 ; // Max size of a pix dimension
   _width := _height;
   IU_AllocFrame(frame, _width, _height, 0,0, char(1));
   LBL_Largeur.Caption := inttostr(_width);
