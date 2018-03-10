@@ -2,7 +2,7 @@ unit IU_Types;
 
 {$mode objfpc}{$H+}
 // ***
-// * Unit provides all needed types and globals var and const for 64 bytes per chanels pictures
+// * Unit provides all needed types and globals var and const for 32 bytes per chanels pictures
 // * Creation Date : 2017 September
 // *
 // * Version : 0.3

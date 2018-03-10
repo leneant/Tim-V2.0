@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="41" Y="10"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
       </Unit0>
       <Unit1>
         <Filename Value="win_memorytest.pas"/>
@@ -17,10 +17,9 @@
         <ComponentName Value="MemoryTest"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="70"/>
         <CursorPos X="15" Y="83"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -29,26 +28,29 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_GeneralUtils"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="602"/>
-        <CursorPos Y="614"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="614"/>
+        <CursorPos X="8" Y="632"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="iu_framesmanagement.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="IU_FramesManagement"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="30" Y="132"/>
-        <UsageCount Value="29"/>
+        <TopLine Value="256"/>
+        <CursorPos X="44" Y="288"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="../../Images32/iu_types.pas"/>
         <UnitName Value="IU_Types"/>
         <EditorIndex Value="2"/>
-        <UsageCount Value="15"/>
+        <TopLine Value="43"/>
+        <CursorPos X="69" Y="5"/>
+        <UsageCount Value="16"/>
         <Loaded Value="True"/>
       </Unit4>
       <Unit5>
